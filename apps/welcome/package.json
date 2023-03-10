@@ -1,0 +1,24 @@
+{
+  "name": "@laobiao/welcome",
+  "version": "1.0.0",
+  "description": "welcome app of laobiao community",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "zeekerpro@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@laobiao/tsconfig": "workspace:*",
+    "fast-glob": "^3.2.12",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/turbo": "^7.2.5"
+  }
+}
