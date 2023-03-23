@@ -53,9 +53,14 @@ self.addEventListener('fetch', (event) => {
 
   console.log("service-worker fetch..")
 
+
   // ignore POST requests etc
   // @ts-ignore
-  if (event.request.method !== 'GET') return;
+  if(event.request.method !== 'GET') return;
+
+  // ignore chrome-extension requests etc
+  // @ts-ignore
+  if(event.request.url.startsWith('chrome-extension')) return;
 
   async function respond() {
     // @ts-ignore
@@ -74,6 +79,7 @@ self.addEventListener('fetch', (event) => {
       // @ts-ignore
       const response = await fetch(event.request);
 
+      // @ts-ignore
       if (response.status === 200) {
         // @ts-ignore
         cache.put(event.request, response.clone());
