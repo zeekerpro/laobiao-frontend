@@ -2,58 +2,33 @@
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
-import { build, files, version } from '$service-worker';
 
-// Create a unique cache name for this deployment
-const CACHE = `cache-${version}`;
-
-const ASSETS = [
-  ...build, // the app itself
-  ...files  // everything in `static`
-];
-
+import { CACHE, ASSETS, MAX_ITEMS } from './constants';
+import { precache, deleteDeprecatedCaches, limitCacheCount } from "./utils";
 
 self.addEventListener('install', (event) => {
-  console.log("service-worker installing..")
-
-  // Create a new cache and add all files to it
-  async function addFilesToCache() {
-    const cache = await caches.open(CACHE);
-    await cache.addAll(ASSETS);
-  }
+  console.log("service-worker has been installed..")
   // @ts-ignore
-  event.waitUntil( Promise.all([
-    addFilesToCache(),
+ event.waitUntil( Promise.all([
+    precache(CACHE, ASSETS),
     // @ts-ignore
-    self.skipWaiting() // automatic activate after each install
+    self.skipWaiting() // automatic activate after service-worker installed
   ]));
 });
 
 self.addEventListener('activate', (event) => {
-  console.log("service-worker activate..")
-
-  // Remove previous cached data from disk
-  async function deleteOldCaches() {
-    for (const key of await caches.keys()) {
-      if (key !== CACHE) await caches.delete(key);
-    }
-  }
-
+  console.log("service-worker has been activated..")
   const tasks = Promise.all([
-    deleteOldCaches(),
+    deleteDeprecatedCaches(CACHE),
+    limitCacheCount(CACHE, MAX_ITEMS),
     // @ts-ignore
     self.clients.claim()
   ])
-
   // @ts-ignore
   event.waitUntil(tasks);
 });
 
 self.addEventListener('fetch', (event) => {
-
-  console.log("service-worker fetch..")
-
-
   // ignore POST requests etc
   // @ts-ignore
   if(event.request.method !== 'GET') return;
@@ -70,6 +45,7 @@ self.addEventListener('fetch', (event) => {
     // `build`/`files` can always be served from the cache
     if (ASSETS.includes(url.pathname)) {
       // @ts-ignore
+      console.log("result from cache ..")
       return cache.match(event.request);
     }
 
@@ -79,10 +55,14 @@ self.addEventListener('fetch', (event) => {
       // @ts-ignore
       const response = await fetch(event.request);
 
+      console.log("fetching from network..")
+
       // @ts-ignore
       if (response.status === 200) {
         // @ts-ignore
         cache.put(event.request, response.clone());
+
+        limitCacheCount(CACHE, MAX_ITEMS);
       }
 
       return response;
