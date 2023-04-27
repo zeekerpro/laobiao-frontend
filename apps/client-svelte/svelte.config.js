@@ -11,10 +11,10 @@ const config = {
 		adapter: adapter(),
     alias: {
       '@views': './src/views',
-      '@components': './src/components',
-      '@stores': './src/stores',
-      '@utils': './src/utils',
-      '@styles': './src/styles',
+      '@components': './src/lib/components',
+      '@stores': './src/lib/stores',
+      '@utils': './src/lib/utils',
+      '@styles': './src/lib/styles',
     }
 	}
 };
