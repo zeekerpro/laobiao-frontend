@@ -1,6 +1,6 @@
-<section class="sign-container px-3">
+<section class="sign-container px-3 flow-root">
 
-  <div class="mt-16 mb-8 ">
+  <div class="mt-32">
 
     <div class="sign-logo flex items-center justify-center">
       <img src="/images/logo.png" class="h-16" alt="logo" />

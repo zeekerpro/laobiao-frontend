@@ -10,7 +10,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
     alias: {
-      '@views': './src/views',
+      '@views': './src/lib/views',
       '@components': './src/lib/components',
       '@stores': './src/lib/stores',
       '@utils': './src/lib/utils',
