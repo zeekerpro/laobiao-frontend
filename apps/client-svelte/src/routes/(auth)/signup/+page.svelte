@@ -42,7 +42,7 @@
 
 </script>
 
-<div class="signup-form divide-y overflow-hidden pb-8">
+<div class="signup-form divide-y pb-8 flow-root">
 
   <div class="flex justify-center items-center my-5">
     <h3 class="text-xl font-semibold text-center">Sign Up</h3>

@@ -2,6 +2,6 @@
   import "@styles/app.css";
 </script>
 
-<main>
+<main class="flow-root">
   <slot></slot>
 </main>
