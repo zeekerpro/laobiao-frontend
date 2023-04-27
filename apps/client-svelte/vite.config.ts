@@ -8,6 +8,7 @@ export default defineConfig({
     mkcert(),
   ],
   server: {
+    port: 3173,
     https: true
   },
 	test: {

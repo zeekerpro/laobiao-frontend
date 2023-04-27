@@ -1,1 +1,3 @@
-this is root page of laobiao oh yeah! changed
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
