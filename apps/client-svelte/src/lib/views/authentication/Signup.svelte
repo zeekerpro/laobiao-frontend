@@ -44,9 +44,7 @@
 
 <div class="signup-form pb-8 flow-root">
 
-  <div class="flex justify-center items-center my-5">
-    <h3 class="text-xl font-semibold text-center">Sign Up</h3>
-  </div>
+  <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign Up</h3>
 
   <div class="px-8">
 
@@ -77,7 +75,7 @@
 
     <div class="p-5">
       <p class="text-sm text-center italic">
-        Have an account already ?
+        Have an account already?
         <a class="text-accent-focus font-medium capitalize not-italic" href="/signin"> Sign In</a>
       </p>
     </div>

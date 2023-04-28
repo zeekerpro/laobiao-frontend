@@ -23,9 +23,7 @@
 
 <div class="signin-form pb-8 flow-root">
 
-  <div class="flex justify-center items-center my-5">
-    <h3 class="text-xl font-semibold text-center">Sign In</h3>
-  </div>
+  <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
   <div class="px-8">
 

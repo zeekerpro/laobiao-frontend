@@ -1,16 +1,11 @@
 <script>
   import "@styles/app.css";
-  import {onMount} from "svelte";
-  import { themeChange } from "theme-change";
-
-  onMount(() => {
-    // true: theme based on system settings
-    // false: theme based on user settings
-    themeChange(true)
-  })
-
+  import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
 </script>
 
 <main class="flow-root">
+  <div class="fixed top-3 right-6">
+    <ThemeSwitcher />
+  </div>
   <slot></slot>
 </main>
