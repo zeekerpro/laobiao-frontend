@@ -13,7 +13,12 @@ module.exports = {
           'primary': "#103c58",
         }
       },
-      "night"
+      {
+        night: {
+          ...require("daisyui/src/colors/themes")["[data-theme=night]"],
+          'primary': "#103c58",
+        }
+      }
     ],
     darkTheme: "night",
   }

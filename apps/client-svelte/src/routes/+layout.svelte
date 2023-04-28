@@ -3,7 +3,11 @@
   import {onMount} from "svelte";
   import { themeChange } from "theme-change";
 
-  onMount(() => { themeChange(true) })
+  onMount(() => {
+    // true: theme based on system settings
+    // false: theme based on user settings
+    themeChange(true)
+  })
 
 </script>
 
