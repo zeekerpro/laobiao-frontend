@@ -16,6 +16,9 @@ importers:
       daisyui:
         specifier: ^2.51.6
         version: 2.51.6(autoprefixer@10.4.14)(postcss@8.4.21)
+      theme-change:
+        specifier: ^2.5.0
+        version: 2.5.0
     devDependencies:
       '@fontsource/fira-mono':
         specifier: ^4.5.10
@@ -4116,6 +4119,10 @@ packages:
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
+
+  /theme-change@2.5.0:
+    resolution: {integrity: sha512-B/UdsgdHAGhSKHTAQnxg/etN0RaMDpehuJmZIjLMDVJ6DGIliRHGD6pODi1CXLQAN9GV0GSyB3G6yCuK05PkPQ==}
+    dev: false
 
   /tiny-glob@0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
