@@ -48,7 +48,7 @@
     <h3 class="text-xl font-semibold text-center">Sign Up</h3>
   </div>
 
-  <div class="px-4">
+  <div class="px-8">
 
     {#each signupFormOptions as option }
       <div class="form-control my-3">

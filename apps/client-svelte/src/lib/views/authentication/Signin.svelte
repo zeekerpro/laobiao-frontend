@@ -21,13 +21,13 @@
 
 </script>
 
-<div class="signup-form divide-y pb-8 flow-root">
+<div class="signin-form divide-y pb-8 flow-root">
 
   <div class="flex justify-center items-center my-5">
     <h3 class="text-xl font-semibold text-center">Sign In</h3>
   </div>
 
-  <div class="px-4">
+  <div class="px-8">
 
     {#each signupFormOptions as option }
       <div class="form-control my-3">
@@ -51,7 +51,7 @@
         </span>
       </label>
       <span class="label-text-alt text-xs text-gray-600">
-        <a href="#" class="hover:underline text-primary italic">
+        <a href="/forgot" class="hover:underline text-primary italic">
           Forgot password?
         </a>
       </span>
