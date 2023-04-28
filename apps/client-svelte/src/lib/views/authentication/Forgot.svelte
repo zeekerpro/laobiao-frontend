@@ -12,7 +12,7 @@
 
 </script>
 
-<div class="forgot-from divide-y pb-8 flow-root">
+<div class="forgot-from pb-8 flow-root">
 
   <div class="flex justify-center items-center my-5">
     <h3 class="text-xl font-semibold text-center capitalize">
@@ -41,6 +41,16 @@
     {/each}
 
     <button class="btn btn-primary w-full capitalize">send reset instructions</button>
+
+    <div class="p-5">
+      <p class="text-xs font-light text-right">
+        <a class="text-primary font-medium lowercase italic hover:underline "
+          href="/signin"
+          >
+          back to sign in
+        </a>
+      </p>
+    </div>
 
   </div>
 

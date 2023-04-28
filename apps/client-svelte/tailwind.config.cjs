@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  darkMode: 'class',
   plugins: [
     require("@tailwindcss/typography"),
     require("daisyui")
@@ -13,7 +14,6 @@ module.exports = {
           'primary': "#103c58",
         }
       },
-      "dark",
       "night"
     ]
   }

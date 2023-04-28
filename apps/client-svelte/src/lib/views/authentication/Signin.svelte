@@ -21,7 +21,7 @@
 
 </script>
 
-<div class="signin-form divide-y pb-8 flow-root">
+<div class="signin-form pb-8 flow-root">
 
   <div class="flex justify-center items-center my-5">
     <h3 class="text-xl font-semibold text-center">Sign In</h3>
@@ -59,6 +59,12 @@
 
     <button class="btn btn-primary w-full">Sign In</button>
 
+    <div class="p-5">
+      <p class="text-sm text-gray-500 font-light text-center">
+        Don't have an account?
+        <a class="text-primary font-medium" href="/signup"> Sign up </a>
+      </p>
+    </div>
   </div>
 
 </div>

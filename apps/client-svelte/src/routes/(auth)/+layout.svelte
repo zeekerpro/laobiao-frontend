@@ -1,4 +1,4 @@
-<section class="sign-container px-3 flow-root">
+<section class="sign-container flow-root">
 
   <div class="mt-16 sm:mt-32 mb-32">
 
@@ -14,11 +14,9 @@
     </section>
 
     <section class="
-      rounded border-0 bg-white
+      rounded border-0
       w-full sm:max-w-md
       mt-6 mx-auto
-      shadow
-      drop-shadow-sm
       overflow-hidden
       "
       >
