@@ -64,21 +64,21 @@
       </div>
     {/each}
 
-    <div class="form-control my-3">
+    <div class="form-control my-6">
       <label class="cursor-pointer flex gap-1">
         <input type="checkbox" checked="{conditionChecked}" class="checkbox checkbox-xs" />
-        <span class="text-gray-500 text-xs">
+        <span class="text-xs">
         Creating An Account Means You’re Okay With Our Terms Of Service And Privacy Policy My Preference
         </span>
       </label>
     </div>
 
-    <button class="btn btn-primary w-full mt-5">Create Account</button>
+    <button class="btn btn-primary w-full">Create Account</button>
 
     <div class="p-5">
-      <p class="text-sm text-gray-500 font-light text-center">
+      <p class="text-sm text-center italic">
         Have an account already ?
-        <a class="text-primary font-medium" href="/signin"> Sign In</a>
+        <a class="text-accent-focus font-medium capitalize not-italic" href="/signin"> Sign In</a>
       </p>
     </div>
 

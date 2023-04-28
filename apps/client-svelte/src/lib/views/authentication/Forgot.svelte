@@ -44,7 +44,7 @@
 
     <div class="p-5">
       <p class="text-xs font-light text-right">
-        <a class="text-primary font-medium lowercase italic hover:underline "
+        <a class="text-accent-focus font-medium lowercase italic hover:underline "
           href="/signin"
           >
           back to sign in

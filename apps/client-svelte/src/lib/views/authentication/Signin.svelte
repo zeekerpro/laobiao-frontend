@@ -46,12 +46,12 @@
     <div class="my-6 flex justify-between">
       <label class="cursor-pointer flex gap-1">
         <input type="checkbox" checked="{conditionChecked}" class="checkbox checkbox-xs" />
-        <span class="text-gray-500 text-xs">
+        <span class="text-xs">
           remember me
         </span>
       </label>
-      <span class="label-text-alt text-xs text-gray-600">
-        <a href="/forgot" class="hover:underline text-primary italic">
+      <span class="label-text-alt text-xs">
+        <a href="/forgot" class="hover:underline italic">
           Forgot password?
         </a>
       </span>
@@ -60,9 +60,9 @@
     <button class="btn btn-primary w-full">Sign In</button>
 
     <div class="p-5">
-      <p class="text-sm text-gray-500 font-light text-center">
+      <p class="text-sm font-light text-center italic">
         Don't have an account?
-        <a class="text-primary font-medium" href="/signup"> Sign up </a>
+        <a class="text-accent-focus font-medium not-italic" href="/signup"> Sign up </a>
       </p>
     </div>
   </div>
