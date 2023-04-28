@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
   import {onMount} from "svelte";
   import { themeChange } from "theme-change";
+  import theme from "@stores/theme";
+
+  $: themeColor = $theme === "dark" ? "#0F172A" : "white";
 
   onMount(() => {
     // true: theme just based on system settings
@@ -10,8 +13,17 @@
 
 </script>
 
+<svelte:head>
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A">
+  <meta name="theme-color" content={themeColor}>
+</svelte:head>
+
 <label class="theme-toggle cursor-pointer">
-  <input class="hidden" type="checkbox" data-toggle-theme="light,dark" />
+  <input class="hidden"
+    type="checkbox"
+    data-toggle-theme="light,dark"
+    />
   <span></span>
 </label>
 
