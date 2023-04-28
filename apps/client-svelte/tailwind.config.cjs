@@ -1,14 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
-  theme: {
-    extend: {},
-  },
   plugins: [
     require("@tailwindcss/typography"),
     require("daisyui")
   ],
-  dasyui: {
-    themes: ["light", "dark", "night"]
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          'primary': "#103c58",
+        }
+      },
+      "dark",
+      "night"
+    ]
   }
 }
