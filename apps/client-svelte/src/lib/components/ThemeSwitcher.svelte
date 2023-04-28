@@ -16,8 +16,8 @@
 </script>
 
 <svelte:head>
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A">
+  <!-- <meta name="theme-color" media="(prefers-color-scheme: light)" content="white"> -->
+  <!-- <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A"> -->
   <meta name="theme-color" content={themeColor}>
 </svelte:head>
 
