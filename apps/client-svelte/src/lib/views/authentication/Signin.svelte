@@ -43,13 +43,18 @@
       </div>
     {/each}
 
-    <div class="form-control my-6">
+    <div class="my-6 flex justify-between">
       <label class="cursor-pointer flex gap-1">
         <input type="checkbox" checked="{conditionChecked}" class="checkbox checkbox-xs" />
         <span class="text-gray-500 text-xs">
           remember me
         </span>
       </label>
+      <span class="label-text-alt text-xs text-gray-600">
+        <a href="#" class="hover:underline text-primary italic">
+          Forgot password?
+        </a>
+      </span>
     </div>
 
     <button class="btn btn-primary w-full">Sign In</button>

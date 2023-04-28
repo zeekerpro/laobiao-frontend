@@ -5,7 +5,7 @@
 
   onMount(() => {
     if(!$isLoggedIn){
-      goto("/signup")
+      goto("/signin")
     }
   });
 
