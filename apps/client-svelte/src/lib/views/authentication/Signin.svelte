@@ -62,7 +62,7 @@
     <div class="p-5">
       <p class="text-sm font-light text-center italic">
         Don't have an account?
-        <a class="text-accent-focus font-medium not-italic" href="/signup"> Sign up </a>
+        <a class="text-accent-focus font-medium not-italic capitalize" href="/signup"> Sign up </a>
       </p>
     </div>
   </div>
