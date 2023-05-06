@@ -3,7 +3,7 @@
   import { themeChange } from "theme-change";
   import theme from "@stores/theme";
 
-  let isChecked = $theme === "light";
+  let isChecked = false;
 
   $: themeColor = isChecked ? "white" : "#0F172A";
 
@@ -11,6 +11,7 @@
     // true: theme just based on system settings
     // false: theme based on user settings
     themeChange(false)
+    isChecked = $theme === "light";
   })
 
 </script>
