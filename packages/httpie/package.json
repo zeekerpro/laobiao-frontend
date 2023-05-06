@@ -1,0 +1,13 @@
+{
+  "name": "@laobiao/httpie",
+  "version": "1.0.0",
+  "description": "http client for laobiao community",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "zeekerpro@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}

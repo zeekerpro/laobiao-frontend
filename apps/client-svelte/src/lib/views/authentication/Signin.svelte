@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
   let signupFormOptions = [
     {
@@ -19,13 +19,22 @@
 
   let conditionChecked = false;
 
+  function handleSubmit(event :SubmitEvent) {
+    event.preventDefault();
+    const data = new FormData(event.target as HTMLFormElement);
+    // @ts-ignore
+    const value = Object.fromEntries(data.entries());
+    console.log({value});
+  }
+
+
 </script>
 
 <div class="signin-form pb-8 flow-root">
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
-  <div class="px-8">
+  <form class="px-8" on:submit={handleSubmit}>
 
     {#each signupFormOptions as option }
       <div class="form-control my-3">
@@ -55,7 +64,7 @@
       </span>
     </div>
 
-    <button class="btn btn-primary w-full">Sign In</button>
+    <button type="submit" class="btn btn-primary w-full">Sign In</button>
 
     <div class="p-5">
       <p class="text-sm font-light text-center italic">
@@ -63,6 +72,6 @@
         <a class="text-accent-focus font-medium not-italic capitalize" href="/signup"> Sign up </a>
       </p>
     </div>
-  </div>
+  </form>
 
 </div>
