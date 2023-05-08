@@ -35,8 +35,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@laobiao/httpie": "workspace:*",
+		"axios": "^1.4.0",
 		"daisyui": "^2.51.6",
-		"theme-change": "^2.5.0",
-    "@laobiao/httpie": "workspace:*"
+		"theme-change": "^2.5.0"
 	}
 }

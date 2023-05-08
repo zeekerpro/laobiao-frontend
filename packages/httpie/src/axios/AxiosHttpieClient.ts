@@ -9,7 +9,6 @@ export class AxiosHttpieClient implements HttpieClient {
 
   private readonly axios: AxiosInstance
   private readonly config: AxiosHttpieConfig
-  private withCredentials: boolean = false
 
   constructor(config: AxiosHttpieConfig) {
     this.config = config
@@ -18,49 +17,62 @@ export class AxiosHttpieClient implements HttpieClient {
     this.axios.interceptors.response.use(config.responseInterceptor, config.responseErrorInterceptor)
   }
 
-  setHeader(name: string, value: string): void {
-    this.config.headers[name] = value
-  }
-
   setWithCredentials(value: boolean): void {
-    this.withCredentials = value
+    this.config.withCredentials = value
   }
 
   get(url: string, params?: any): Promise<HttpieResponse> {
-    return this.request(RequestTypes.GET , url, params)
+    return this.request({
+      method: RequestTypes.GET,
+      url,
+      params
+    })
   }
 
   delete(url: string): Promise<HttpieResponse> {
-    return this.request(RequestTypes.DELETE, url)
+    return this.request({
+      method: RequestTypes.DELETE,
+      url
+    })
   }
 
   head(url: string): Promise<HttpieResponse> {
-    return this.request(RequestTypes.HEAD, url)
+    return this.request({
+      method: RequestTypes.HEAD,
+      url
+    })
   }
 
   post(url: string, data?: any): Promise<HttpieResponse> {
-    return this.request(RequestTypes.POST, url, data)
+    return this.request({
+      method: RequestTypes.POST,
+      url,
+      data
+    })
   }
 
   put(url: string, data?: any): Promise<HttpieResponse> {
-    return this.request(RequestTypes.PUT, url, data)
+    return this.request({
+      method: RequestTypes.PUT,
+      url,
+      data
+    })
   }
 
   patch(url: string, data?: any): Promise<HttpieResponse> {
-    return this.request(RequestTypes.PATCH, url, data)
+    return this.request({
+      method: RequestTypes.PATCH,
+      url,
+      data
+    })
   }
 
-  private async request(method: RequestTypes, url: string, data?: any): Promise<HttpieResponse> {
-    return this.axios.request({
-      method: method,
-      url: url,
-      headers: this.config.headers,
-      withCredentials: this.withCredentials,
-      data: data
-    }).then((response: AxiosResponse) => {
+  private async request(config: AxiosHttpieConfig): Promise<HttpieResponse> {
+    const conf = Object.assign({}, this.config, config)
+    return this.axios.request(conf).then((response: AxiosResponse) => {
       return new AxiosHttpieResponse(response)
     }).catch((error: any) => {
-      return new AxiosHttpieResponse(error)
+      return Promise.reject(new AxiosHttpieResponse(error))
     })
   }
 

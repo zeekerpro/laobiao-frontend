@@ -16,6 +16,9 @@ importers:
       '@laobiao/httpie':
         specifier: workspace:*
         version: link:../../packages/httpie
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0(debug@4.3.4)
       daisyui:
         specifier: ^2.51.6
         version: 2.51.6(autoprefixer@10.4.14)(postcss@8.4.21)
@@ -73,7 +76,7 @@ importers:
         version: 4.9.5
       vite:
         specifier: ^4.0.0
-        version: 4.1.4(sass@1.62.1)
+        version: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
       vite-plugin-mkcert:
         specifier: ^1.13.3
         version: 1.13.3(vite@4.1.4)
@@ -104,7 +107,7 @@ importers:
         version: 4.9.5
       vite:
         specifier: ^4.0.0
-        version: 4.1.4
+        version: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
 
   configs/tsconfig: {}
 
@@ -112,7 +115,14 @@ importers:
     dependencies:
       axios:
         specifier: ^1.4.0
-        version: 1.4.0
+        version: 1.4.0(debug@4.3.4)
+    devDependencies:
+      '@laobiao/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
+      typescript:
+        specifier: ^4.9.3
+        version: 4.9.5
 
 packages:
 
@@ -1854,7 +1864,7 @@ packages:
       svelte: 3.55.1
       tiny-glob: 0.2.9
       undici: 5.20.0
-      vite: 4.1.4(sass@1.62.1)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1872,7 +1882,7 @@ packages:
       magic-string: 0.27.0
       svelte: 3.55.1
       svelte-hmr: 0.15.1(svelte@3.55.1)
-      vite: 4.1.4(sass@1.62.1)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
       vitefu: 0.2.4(vite@4.1.4)
     transitivePeerDependencies:
       - supports-color
@@ -1912,12 +1922,12 @@ packages:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
-  /@types/node@18.14.0:
-    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
+  /@types/node@16.7.13:
+    resolution: {integrity: sha512-pLUPDn+YG3FYEt/pHI74HmnJOWzeR+tOIQzUx93pi9M7D8OE7PSLr97HboXwk5F+JS+TLtWuzCOW97AHjmOXXA==}
     dev: true
 
-  /@types/node@18.15.11:
-    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
+  /@types/node@18.14.0:
+    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
     dev: true
 
   /@types/pug@2.0.6:
@@ -1927,13 +1937,13 @@ packages:
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.14.0
     dev: true
 
   /@types/sass@1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
-      '@types/node': 18.14.0
+      '@types/node': 16.7.13
     dev: true
 
   /@types/trusted-types@2.0.3:
@@ -2098,25 +2108,14 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /axios@1.3.4(debug@4.3.4):
-    resolution: {integrity: sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==}
+  /axios@1.4.0(debug@4.3.4):
+    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
     dependencies:
       follow-redirects: 1.15.2(debug@4.3.4)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
-    dev: true
-
-  /axios@1.4.0:
-    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
-    dependencies:
-      follow-redirects: 1.15.2
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /babel-plugin-polyfill-corejs2@0.3.3(@babel/core@7.21.3):
     resolution: {integrity: sha512-8hOdmFYFSZhqg2C/JgLUQ+t52o5nirNwaWM2B9LWteozwIvM14VSwdsCAUET10qT+kmySAlseadmfeeSWFCy+Q==}
@@ -2422,7 +2421,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: true
 
   /deep-eql@4.1.3:
     resolution: {integrity: sha512-WaEtAOpRA1MQ0eohqZjpGD8zdI0Ovsm8mmFhaDN8dvDZzyoUMcYDnf5Y6iu7HTXxf8JDS23qWa4a+hKCDyOPzw==}
@@ -2689,16 +2687,6 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
 
-  /follow-redirects@1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
-
   /follow-redirects@1.15.2(debug@4.3.4):
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
@@ -2709,7 +2697,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4
-    dev: true
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -3139,7 +3126,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.14.0
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -3372,7 +3359,6 @@ packages:
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
 
   /nanoid@3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
@@ -4386,10 +4372,10 @@ packages:
       vite: '>=3'
     dependencies:
       '@octokit/rest': 19.0.7
-      axios: 1.3.4(debug@4.3.4)
+      axios: 1.4.0(debug@4.3.4)
       debug: 4.3.4
       picocolors: 1.0.0
-      vite: 4.1.4(sass@1.62.1)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4407,44 +4393,11 @@ packages:
       fast-glob: 3.2.12
       pretty-bytes: 6.1.0
       rollup: 3.17.2
-      vite: 4.1.4(sass@1.62.1)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /vite@4.1.4:
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.16.17
-      postcss: 8.4.21
-      resolve: 1.22.1
-      rollup: 3.17.2
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite@4.1.4(@types/node@18.14.0)(sass@1.62.1):
@@ -4482,40 +4435,6 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.4(sass@1.62.1):
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.16.17
-      postcss: 8.4.21
-      resolve: 1.22.1
-      rollup: 3.17.2
-      sass: 1.62.1
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /vitefu@0.2.4(vite@4.1.4):
     resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}
     peerDependencies:
@@ -4524,7 +4443,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.1.4(sass@1.62.1)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.62.1)
     dev: true
 
   /vitest@0.25.8(sass@1.62.1):

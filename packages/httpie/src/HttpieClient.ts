@@ -2,8 +2,6 @@ import { HttpieResponse } from "./HttpieResponse";
 
 export interface HttpieClient  {
 
-  setHeader(name: string, value: string) :void
-
   setWithCredentials(value: boolean) :void
 
   get(url: string, params?: any) :Promise<HttpieResponse>

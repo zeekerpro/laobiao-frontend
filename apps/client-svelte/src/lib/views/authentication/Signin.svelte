@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { userService } from "@apis";
 
   let signupFormOptions = [
     {
@@ -24,9 +25,15 @@
     const data = new FormData(event.target as HTMLFormElement);
     // @ts-ignore
     const value = Object.fromEntries(data.entries());
-    console.log({value});
-  }
 
+    console.log(value);
+
+    userService.signin(value).then((res) => {
+      debugger
+      console.log(res);
+    });
+
+  }
 
 </script>
 

@@ -1,4 +1,1 @@
-export * from './HttpieClient';
-export * from './HttpieResponse'
-export * from './types'
-export * from './axios'
+export * from './src';

@@ -15,8 +15,10 @@ const config = {
       '@stores': './src/lib/stores',
       '@utils': './src/lib/utils',
       '@styles': './src/lib/styles',
+      '@apis': './src/apis'
     }
-	}
+	},
+
 };
 
 export default config;
