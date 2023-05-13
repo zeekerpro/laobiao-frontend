@@ -36,8 +36,8 @@ const defaultServiceConfig :AxiosHttpieConfig = {
         console.log(error.response?.data)
         break
       case 401:
+        debugger
         // localStorage.removeItem(PUBLIC_ACCESS_TOKEN_LABEL);
-        error.response.data = "Unauthorized";
         break
       default:
         console.log(error.response?.statusText)

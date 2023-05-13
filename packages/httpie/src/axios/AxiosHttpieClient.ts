@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { HttpieClient } from '../HttpieClient';
 import { HttpieResponse } from '../HttpieResponse';
 import { AxiosHttpieResponse } from './AxiosHttpieResponse';
@@ -69,11 +69,21 @@ export class AxiosHttpieClient implements HttpieClient {
 
   private async request(config: AxiosHttpieConfig): Promise<HttpieResponse> {
     const conf = Object.assign({}, this.config, config)
-    return this.axios.request(conf).then((response: AxiosResponse) => {
-      return new AxiosHttpieResponse(response)
-    }).catch((error: any) => {
+
+    try {
+      const res = await this.axios.request(conf)
+      debugger
+      return new AxiosHttpieResponse(res)
+    } catch (error: any) {
+      debugger
       return Promise.reject(new AxiosHttpieResponse(error))
-    })
+    }
+
+    // return this.axios.request(conf).then((response: AxiosResponse) => {
+    //   return new AxiosHttpieResponse(response)
+    // }).catch((error: any) => {
+    //   return Promise.reject(new AxiosHttpieResponse(error))
+    // })
   }
 
 }

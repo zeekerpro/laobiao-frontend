@@ -19,19 +19,17 @@
   ];
 
   let conditionChecked = false;
+  let isLoading = false;
 
-  function handleSubmit(event :SubmitEvent) {
+  async function handleSubmit(event :SubmitEvent) {
     event.preventDefault();
     const data = new FormData(event.target as HTMLFormElement);
     // @ts-ignore
     const value = Object.fromEntries(data.entries());
 
-    console.log(value);
-
-    userService.signin(value).then((res) => {
-      debugger
-      console.log(res);
-    });
+    isLoading = true;
+    let res = await userService.signin(value)
+    isLoading = false
 
   }
 
@@ -71,7 +69,9 @@
       </span>
     </div>
 
-    <button type="submit" class="btn btn-primary w-full">Sign In</button>
+    <button type="submit" class="btn btn-primary w-full {isLoading ? 'loading' : ''}" >
+      Sign In
+    </button>
 
     <div class="p-5">
       <p class="text-sm font-light text-center italic">
