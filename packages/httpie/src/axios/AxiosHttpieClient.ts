@@ -1,9 +1,10 @@
-import axios, { AxiosInstance } from 'axios';
-import { HttpieClient } from '../HttpieClient';
-import { HttpieResponse } from '../HttpieResponse';
+import axios from 'axios';
+import type { AxiosInstance } from 'axios';
+import type { HttpieClient } from '../HttpieClient';
+import type { HttpieResponse } from '../HttpieResponse';
 import { AxiosHttpieResponse } from './AxiosHttpieResponse';
 import { RequestTypes } from '../types';
-import { AxiosHttpieConfig } from './AxiosHttpieConfig';
+import type { AxiosHttpieConfig } from './AxiosHttpieConfig';
 
 export class AxiosHttpieClient implements HttpieClient {
 

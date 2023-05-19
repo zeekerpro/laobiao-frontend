@@ -1,5 +1,6 @@
-import { AxiosError, AxiosResponse, isAxiosError } from 'axios'
-import { HttpieResponse } from '../HttpieResponse'
+import type { AxiosError, AxiosResponse } from 'axios'
+import { isAxiosError } from 'axios'
+import type { HttpieResponse } from '../HttpieResponse'
 
 export class AxiosHttpieResponse implements HttpieResponse {
 

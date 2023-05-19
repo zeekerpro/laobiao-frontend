@@ -1,4 +1,4 @@
-import { HttpieResponse } from "./HttpieResponse";
+import type { HttpieResponse } from "./HttpieResponse";
 
 export interface HttpieClient  {
 

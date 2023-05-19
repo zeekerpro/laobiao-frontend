@@ -21,7 +21,7 @@ export const deleteDeprecatedCaches = async (currentCacheName: string) => {
 //  @param {String} cacheName - the cache name
 //  @param {Number} maxItems - the max number of cache to keep
 //  @return {Array} - the new cache list
-export const limitCacheCount = async (cacheName, maxItems) => {
+export const limitCacheCount = async (cacheName :string, maxItems :number) => {
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
   if (keys.length > maxItems) {

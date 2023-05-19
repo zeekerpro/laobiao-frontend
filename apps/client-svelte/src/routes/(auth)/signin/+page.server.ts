@@ -6,9 +6,7 @@ export const actions: Actions = {
     console.log(request)
     return {
       props: {
-        email: request.locals.email,
-      },
-      some: "page data from signin"
+      }
     };
   }
 } satisfies Actions;

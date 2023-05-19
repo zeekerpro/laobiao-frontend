@@ -1,4 +1,4 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export interface AxiosHttpieConfig extends AxiosRequestConfig{
 
