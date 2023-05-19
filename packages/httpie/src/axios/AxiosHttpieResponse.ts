@@ -10,6 +10,9 @@ export class AxiosHttpieResponse implements HttpieResponse {
   public readonly status?: number
 
   constructor(response: AxiosResponse | AxiosError) {
+
+    if(!isAxiosError(response) && response instanceof Error){ throw response; }
+
     this.underlying = response
 
     if (isAxiosError(response)) {

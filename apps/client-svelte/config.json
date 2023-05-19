@@ -1,0 +1,7 @@
+{
+  "authWhiteList": [
+    "/(auth)/signin",
+    "/(auth)/signup",
+    "/(auth)/forgor"
+  ]
+}

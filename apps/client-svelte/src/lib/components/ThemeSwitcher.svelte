@@ -14,6 +14,7 @@
     isChecked = $theme === "light";
   })
 
+
 </script>
 
 <svelte:head>

@@ -70,12 +70,12 @@ export class AxiosHttpieClient implements HttpieClient {
   private async request(config: AxiosHttpieConfig): Promise<HttpieResponse> {
     const conf = Object.assign({}, this.config, config)
 
+    console.log(`send request to: ${conf.url}`)
+
     try {
       const res = await this.axios.request(conf)
-      debugger
       return new AxiosHttpieResponse(res)
     } catch (error: any) {
-      debugger
       return Promise.reject(new AxiosHttpieResponse(error))
     }
 

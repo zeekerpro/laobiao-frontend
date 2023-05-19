@@ -8,6 +8,7 @@ export const actions: Actions = {
       props: {
         email: request.locals.email,
       },
+      some: "page data from signin"
     };
   }
 } satisfies Actions;

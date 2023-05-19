@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <section class="sign-container flow-root">
 
   <div class="sm:mt-20">

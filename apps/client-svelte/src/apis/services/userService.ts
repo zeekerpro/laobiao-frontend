@@ -26,6 +26,10 @@ class UserService extends BaseService {
     return this.delete(`/user/${id}`);
   }
 
+  async me(){
+    return this.get(`/me`);
+  }
+
 }
 
 export default new UserService();
