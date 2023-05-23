@@ -32,8 +32,8 @@
 
   {#key data.url}
   <div
-    in:fly={{ x: -200, duration: 500, delay: 300 }}
-    out:pageOut={{ duration: 300, direction: "bottom right" }}
+    in:fly={{ x: -200, duration: 500, delay: 210 }}
+    out:pageOut={{ duration: 200, direction: "bottom right" }}
     >
     <slot></slot>
   </div>
