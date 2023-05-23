@@ -1,6 +1,9 @@
 <script lang="ts">
   import "@styles/app.css";
   import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
+  import { fly } from "svelte/transition";
+
+  export let data
 </script>
 
 <main class="flow-root">
@@ -9,6 +12,13 @@
     <ThemeSwitcher />
   </div>
 
-  <slot></slot>
+  {#key data.url}
+  <div
+    in:fly={{ x: -200, duration: 500, delay: 800 }}
+    out:fly={{ x: 200, duration: 700 }}
+    >
+    <slot></slot>
+  </div>
+  {/key}
 
 </main>

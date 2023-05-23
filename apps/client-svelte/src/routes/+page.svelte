@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { isLoggedIn } from "@stores/userSession";
+  // import { onMount } from "svelte";
+  // import { isLoggedIn } from "@stores/userSession";
 
   // onMount(() => {
   //   if(!$isLoggedIn){

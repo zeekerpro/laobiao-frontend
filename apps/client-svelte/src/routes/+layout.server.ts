@@ -4,7 +4,7 @@ import log from "@utils/log";
 import type { LayoutServerLoad } from "./$types";
 import config from "../../config.json";
 
-export const load = ( async ({route}) => {
+export const load = ( async ({route, url}) => {
 
   if(config.authWhiteList.includes(route.id || "")) { return }
 
@@ -20,5 +20,5 @@ export const load = ( async ({route}) => {
     user: ret.data
   }
 
-} ) satisfies LayoutServerLoad;
+}) satisfies LayoutServerLoad;
 
