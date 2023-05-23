@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "NODE_OPTIONS=\"--inspect\" vite dev --host",
-		"build": "vite build",
+		"build": "svelte-kit sync &&vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"prepare": "svelte-kit sync",
