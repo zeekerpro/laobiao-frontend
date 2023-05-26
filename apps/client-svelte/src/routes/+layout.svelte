@@ -3,8 +3,6 @@
   import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
   import PageTransition from "@components/PageTransition.svelte";
 
-  export let data
-
 </script>
 
 <main class="flow-root">
@@ -13,7 +11,7 @@
     <ThemeSwitcher />
   </div>
 
-  <PageTransition url={data.url} >
+  <PageTransition>
     <slot></slot>
   </PageTransition>
 
