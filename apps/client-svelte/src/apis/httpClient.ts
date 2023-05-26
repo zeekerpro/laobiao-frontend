@@ -36,7 +36,6 @@ const defaultServiceConfig :AxiosHttpieConfig = {
       case 422:
         break
       case 401:
-        debugger
         // localStorage.removeItem(PUBLIC_ACCESS_TOKEN_LABEL);
         break
       default:
