@@ -2,7 +2,7 @@
   import { fly, type EasingFunction, type TransitionConfig } from "svelte/transition";
   import { cubicOut } from "svelte/easing";
 
-  export let key: string
+  export let url: string
   export let duration = { in: 800, out: 500 }
 
   type Params = {
@@ -26,10 +26,9 @@
       `
     }
   }
-
 </script>
 
-{#key key}
+{#key url}
 <div
   in:fly={{ x: -200, duration: duration.in, delay: duration.out }}
   out:pageOut={{ duration: duration.out  }}

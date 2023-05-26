@@ -13,7 +13,7 @@
     <ThemeSwitcher />
   </div>
 
-  <PageTransition key={data.url} >
+  <PageTransition url={data.url} >
     <slot></slot>
   </PageTransition>
 
