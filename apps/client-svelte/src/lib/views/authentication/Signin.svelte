@@ -1,9 +1,9 @@
 <script lang="ts">
   import { userService } from "@apis";
-  import LbFormItem from "@components/form/LbFormItem.svelte";
   import * as yup from "yup";
   import type { ValidationError } from "yup";
   import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
+  import LbForm from "@components/form/LbForm.svelte";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {
@@ -29,35 +29,15 @@
   let conditionChecked = false;
   let isLoading = false;
 
+  let signinFormRef :LbForm;
+
   async function handleSubmit(event :SubmitEvent) {
-    event.preventDefault();
-    const data = new FormData(event.target as HTMLFormElement);
+    const formData = await signinFormRef.validate();
+    if(!formData){ return; }
+
     // @ts-ignore
-    const value = Object.fromEntries(data.entries());
+    const value = Object.fromEntries(formData.entries());
 
-    // validate form data
-    const shape = Object.fromEntries(
-      signinFormOptions.map((option) => {
-        return [option.name, option.schema];
-      })
-    ) as yup.ObjectShape
-    const schema = yup.object().shape(shape);
-
-    try {
-      await schema.validate(value, {abortEarly: false});
-    } catch (error :unknown) {
-      (error as ValidationError).inner.forEach((err: any) => {
-        let option = signinFormOptions.find((option) => option.name === err.path);
-        if (option) {
-          option.message = err.message;
-        }
-      });
-      // trigger reactivity, otherwise svelte won't update the dom
-      signinFormOptions = signinFormOptions;
-      return
-    }
-
-    // submit form data
     isLoading = true;
     let res = await userService.signin(value)
     isLoading = false
@@ -73,11 +53,7 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
-  <form class="px-8" on:submit={handleSubmit} method="post">
-
-    {#each signinFormOptions as option }
-      <LbFormItem {option} />
-    {/each}
+  <LbForm {handleSubmit} options="{signinFormOptions}" bind:this={signinFormRef} >
 
     <div class="my-6 flex justify-between">
       <label class="cursor-pointer flex gap-1">
@@ -103,6 +79,6 @@
         <a class="text-accent-focus font-medium not-italic capitalize" href="/signup"> Sign up</a>
       </p>
     </div>
-  </form>
+  </LbForm>
 
 </div>

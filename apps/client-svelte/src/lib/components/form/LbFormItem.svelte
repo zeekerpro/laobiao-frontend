@@ -14,6 +14,8 @@
   import type { StringSchema } from "yup";
 
   export let option: LbFromItemOption
+
+  function typeAction(node :HTMLInputElement){ node.type = option.type }
 </script>
 
 <div class="form-control my-3">
@@ -22,7 +24,8 @@
   </lable>
   <input
     name="{option.name}"
-    type="{option.type}"
+    use:typeAction
+    bind:value="{option.value}"
     placeholder="{option.placeholder}"
     class="input input-bordered rounded {option.message ? 'input-error' : ''}"
     on:focus="{ () => option.message = '' }"
