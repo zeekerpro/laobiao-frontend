@@ -1,5 +1,7 @@
 <script lang="ts">
   import { userService } from "@apis";
+  import * as yup from "yup";
+  import type { ValidationError } from "yup";
 
   let signupFormOptions = [
     {
@@ -8,6 +10,7 @@
       placeholder: "account",
       value: "",
       label: "Account",
+      message: "",
     },
     {
       name: 'password',
@@ -15,6 +18,7 @@
       placeholder: "password",
       value: "",
       label: "Password",
+      message: "",
     },
   ];
 
@@ -27,16 +31,35 @@
     // @ts-ignore
     const value = Object.fromEntries(data.entries());
 
+    // validate form data
+    const schema = yup.object().shape({
+      account: yup.string().required(),
+      password: yup.string().required(),
+    });
+
+    try {
+      await schema.validate(value, {abortEarly: false});
+    } catch (error :unknown) {
+      (error as ValidationError).inner.forEach((err: any) => {
+        let option = signupFormOptions.find((option) => option.name === err.path);
+        if (option) {
+          option.message = err.message;
+        }
+      });
+      // trigger reactivity, otherwise svelte won't update the dom
+      signupFormOptions = signupFormOptions;
+      return
+    }
+
+    // submit form data
     isLoading = true;
     let res = await userService.signin(value)
     isLoading = false
-    debugger
     if(res.isSuccess){
 
     }else{
 
     }
-
   }
 
 </script>
@@ -45,7 +68,7 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
-  <form class="px-8" on:submit={handleSubmit}>
+  <form class="px-8" on:submit={handleSubmit} method="post">
 
     {#each signupFormOptions as option }
       <div class="form-control my-3">
@@ -56,8 +79,12 @@
           name="{option.name}"
           type="{option.type}"
           placeholder="{option.placeholder}"
-          class="input input-bordered rounded"
+          class="input input-bordered rounded {option.message ? 'input-error' : ''}"
+          on:focus="{ () => option.message = '' }"
           />
+        <label for="{option.name}" class="label">
+          <span class="label-text-alt text-error">{option.message}</span>
+        </label>
       </div>
     {/each}
 
