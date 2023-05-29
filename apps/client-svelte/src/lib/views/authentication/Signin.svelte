@@ -1,7 +1,6 @@
 <script lang="ts">
   import { userService } from "@apis";
   import * as yup from "yup";
-  import type { ValidationError } from "yup";
   import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
   import LbForm from "@components/form/LbForm.svelte";
 
@@ -13,6 +12,7 @@
       value: "",
       label: "Account",
       message: "",
+      autofocus: true,
       schema: yup.string().required()
     },
     {

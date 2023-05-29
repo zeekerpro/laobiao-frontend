@@ -7,6 +7,7 @@
     placeholder?: string,
     message?: string,
     schema?: StringSchema
+    autofocus?: boolean
   }
 </script>
 
@@ -16,6 +17,21 @@
   export let option: LbFromItemOption
 
   function typeAction(node :HTMLInputElement){ node.type = option.type }
+
+  let isFocus = false
+
+  function autoFocusAction(node :HTMLInputElement){
+    if(option.autofocus && !isFocus){
+      node.focus()
+      isFocus = true
+    }
+  }
+
+  function focusHandler(){
+    option.message = ''
+    isFocus = true
+  }
+
 </script>
 
 <div class="form-control my-3">
@@ -25,10 +41,12 @@
   <input
     name="{option.name}"
     use:typeAction
+    use:autoFocusAction
     bind:value="{option.value}"
     placeholder="{option.placeholder}"
-    class="input input-bordered rounded {option.message ? 'input-error' : ''}"
-    on:focus="{ () => option.message = '' }"
+    class="input input-bordered rounded {option.message ? 'input-error' : ''} {isFocus ? 'input-success' : ''}"
+    on:focus="{focusHandler}"
+    on:focusout="{() => isFocus = false}"
     />
   <label for="{option.name}" class="label">
     <span class="label-text-alt text-error">{option.message}</span>
