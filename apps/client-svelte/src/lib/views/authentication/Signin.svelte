@@ -1,9 +1,11 @@
 <script lang="ts">
   import { userService } from "@apis";
+  import LbFormItem from "@components/form/LbFormItem.svelte";
   import * as yup from "yup";
   import type { ValidationError } from "yup";
+  import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
 
-  let signupFormOptions = [
+  let signinFormOptions :Array<LbFromItemOption> = [
     {
       name: 'account',
       type: "text",
@@ -11,6 +13,7 @@
       value: "",
       label: "Account",
       message: "",
+      schema: yup.string().required()
     },
     {
       name: 'password',
@@ -19,6 +22,7 @@
       value: "",
       label: "Password",
       message: "",
+      schema: yup.string().required()
     },
   ];
 
@@ -32,22 +36,24 @@
     const value = Object.fromEntries(data.entries());
 
     // validate form data
-    const schema = yup.object().shape({
-      account: yup.string().required(),
-      password: yup.string().required(),
-    });
+    const shape = Object.fromEntries(
+      signinFormOptions.map((option) => {
+        return [option.name, option.schema];
+      })
+    ) as yup.ObjectShape
+    const schema = yup.object().shape(shape);
 
     try {
       await schema.validate(value, {abortEarly: false});
     } catch (error :unknown) {
       (error as ValidationError).inner.forEach((err: any) => {
-        let option = signupFormOptions.find((option) => option.name === err.path);
+        let option = signinFormOptions.find((option) => option.name === err.path);
         if (option) {
           option.message = err.message;
         }
       });
       // trigger reactivity, otherwise svelte won't update the dom
-      signupFormOptions = signupFormOptions;
+      signinFormOptions = signinFormOptions;
       return
     }
 
@@ -61,7 +67,6 @@
 
     }
   }
-
 </script>
 
 <div class="signin-form pb-8 flow-root">
@@ -70,22 +75,8 @@
 
   <form class="px-8" on:submit={handleSubmit} method="post">
 
-    {#each signupFormOptions as option }
-      <div class="form-control my-3">
-        <lable class="label">
-          <span class="label-text font-semibold">{option.label}</span>
-        </lable>
-        <input
-          name="{option.name}"
-          type="{option.type}"
-          placeholder="{option.placeholder}"
-          class="input input-bordered rounded {option.message ? 'input-error' : ''}"
-          on:focus="{ () => option.message = '' }"
-          />
-        <label for="{option.name}" class="label">
-          <span class="label-text-alt text-error">{option.message}</span>
-        </label>
-      </div>
+    {#each signinFormOptions as option }
+      <LbFormItem {option} />
     {/each}
 
     <div class="my-6 flex justify-between">
@@ -109,7 +100,7 @@
     <div class="p-5">
       <p class="text-sm font-light text-center italic">
         Don't have an account?
-        <a class="text-accent-focus font-medium not-italic capitalize" href="/signup"> Sign up </a>
+        <a class="text-accent-focus font-medium not-italic capitalize" href="/signup"> Sign up</a>
       </p>
     </div>
   </form>
