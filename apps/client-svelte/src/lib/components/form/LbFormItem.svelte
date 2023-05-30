@@ -44,7 +44,7 @@
     use:autoFocusAction
     bind:value="{option.value}"
     placeholder="{option.placeholder}"
-    class="input input-bordered rounded {option.message ? 'input-error' : ''} {isFocus ? 'input-success' : ''}"
+    class="input input-bordered rounded {option.message ? 'input-error' : ''} {isFocus ? 'input-primary' : ''}"
     on:focus="{focusHandler}"
     on:focusout="{() => isFocus = false}"
     />
