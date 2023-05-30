@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   export type LbFromItemOption = {
     name: string,
-    type: "text" | "password",
+    type: "text" | "password" | "email" | "tel" | "number" | "url" | "search" | "date" | "time" | "datetime-local" | "month" | "week" | "color",
     value: string
     label: string,
     placeholder?: string,

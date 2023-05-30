@@ -1,12 +1,19 @@
-<script>
+<script lang="ts">
+  import * as yup from "yup";
+  import LbForm from "@components/form/LbForm.svelte";
+  import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
+  import { userService } from "@apis";
 
-  let signupFormOptions = [
+  let signupFormOptions :Array<LbFromItemOption> = [
     {
       name: 'username',
       type: "text",
       placeholder: "username",
       value: "",
       label: "Username",
+      message: "",
+      autofocus: true,
+      schema: yup.string().required()
     },
     {
       name: 'email',
@@ -14,6 +21,8 @@
       placeholder: "email",
       value: "",
       label: "Email",
+      message: "",
+      schema: yup.string().email().required()
     },
     {
       name: 'phone',
@@ -21,6 +30,8 @@
       placeholder: "phone",
       value: "",
       label: "Phone",
+      message: "",
+      schema: yup.string().required().matches(/^1[3-9]\d{9}$/, 'Phone number is not valid')
     },
     {
       name: 'password',
@@ -28,6 +39,8 @@
       placeholder: "password",
       value: "",
       label: "Password",
+      message: "",
+      schema: yup.string().required().min(8).max(16).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
     },
     {
       name: 'password_confirmation',
@@ -35,10 +48,32 @@
       placeholder: "password confirmation",
       value: "",
       label: "Password Confirmation",
+      message: "",
+      schema: yup.string().required().oneOf([yup.ref('password'), ''], 'Passwords must match')
     },
   ];
 
   let conditionChecked = false;
+  let isLoading = false;
+
+  let signupFormRef :LbForm;
+
+  async function handleSubmit() {
+    const formData = await signupFormRef.validate();
+    if(!formData){ return; }
+
+    // @ts-ignore
+    const value = Object.fromEntries(formData.entries());
+
+    isLoading = true;
+    let res = await userService.signup(value)
+    isLoading = false
+    if(res.isSuccess){
+
+    }else{
+
+    }
+  }
 
 </script>
 
@@ -46,21 +81,7 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign Up</h3>
 
-  <div class="px-8">
-
-    {#each signupFormOptions as option }
-      <div class="form-control my-3">
-        <lable class="label">
-          <span class="label-text font-semibold">{option.label}</span>
-        </lable>
-        <input
-          name="{option.name}"
-          type="{option.type}"
-          placeholder="{option.placeholder}"
-          class="input input-bordered rounded"
-          />
-      </div>
-    {/each}
+  <LbForm options={signupFormOptions} bind:this={signupFormRef} {handleSubmit} >
 
     <div class="form-control my-6">
       <label class="cursor-pointer flex gap-1">
@@ -71,7 +92,7 @@
       </label>
     </div>
 
-    <button class="btn btn-primary w-full">Create Account</button>
+    <button class="btn btn-primary w-full {isLoading ? 'loading' : ''}">Create Account</button>
 
     <div class="p-5">
       <p class="text-sm text-center italic">
@@ -80,6 +101,6 @@
       </p>
     </div>
 
-  </div>
+  </LbForm>
 
 </div>

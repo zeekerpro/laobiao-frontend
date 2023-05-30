@@ -1,14 +1,28 @@
-<script>
+<script lang="ts">
+  import LbForm from "@components/form/LbForm.svelte";
+import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
+  import * as yup from "yup";
 
-  let signupFormOptions = [
+  let forgotFormOptions :Array<LbFromItemOption> = [
     {
       name: 'email',
       type: "text",
       placeholder: "name@example.com",
       value: "",
       label: "email address",
+      message: "",
+      autofocus: true,
+      schema: yup.string().email().required()
     }
   ];
+
+  let forgotFormRef :LbForm;
+  let isLoading = false;
+
+  async function handleSubmit() {
+    const formData = await forgotFormRef.validate();
+    if(!formData){ return; }
+  }
 
 </script>
 
@@ -20,27 +34,15 @@
     </h3>
   </div>
 
-  <div class="px-8">
+  <p class="px-8 mt-8">
+    Enter the email address you used when you joined and we’ll send you instructions to reset your password.
+  </p>
 
-    <p class="mt-8">
-      Enter the email address you used when you joined and we’ll send you instructions to reset your password.
-    </p>
+  <LbForm options={forgotFormOptions} bind:this={forgotFormRef} {handleSubmit}>
 
-    {#each signupFormOptions as option }
-      <div class="form-control my-6">
-        <lable class="label">
-          <span class="label-text font-semibold capitalize">{option.label}</span>
-        </lable>
-        <input
-          name="{option.name}"
-          type="{option.type}"
-          placeholder="{option.placeholder}"
-          class="input input-bordered rounded"
-          />
-      </div>
-    {/each}
-
-    <button class="btn btn-primary w-full capitalize">send reset instructions</button>
+    <button class="btn btn-primary w-full capitalize {isLoading ? 'loading' : ''}">
+      send reset instructions
+    </button>
 
     <div class="p-5">
       <p class="text-xs font-light text-right">
@@ -51,7 +53,6 @@
         </a>
       </p>
     </div>
-
-  </div>
+  </LbForm>
 
 </div>

@@ -31,7 +31,7 @@
 
   let signinFormRef :LbForm;
 
-  async function handleSubmit(event :SubmitEvent) {
+  async function handleSubmit() {
     const formData = await signinFormRef.validate();
     if(!formData){ return; }
 
@@ -53,7 +53,7 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
-  <LbForm {handleSubmit} options="{signinFormOptions}" bind:this={signinFormRef} >
+  <LbForm options={signinFormOptions} bind:this={signinFormRef} {handleSubmit} >
 
     <div class="my-6 flex justify-between">
       <label class="cursor-pointer flex gap-1">
