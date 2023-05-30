@@ -2,6 +2,7 @@ import type { HttpieResponse } from "@laobiao/httpie";
 import httpClient from "./httpClient";
 
 export default class BaseService {
+
   protected httpClient = httpClient;
 
   async get(url: string, params?: any) : Promise<HttpieResponse> {

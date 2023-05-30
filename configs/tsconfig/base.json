@@ -15,7 +15,8 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "lib": ["DOM", "WebWorker", "ESNext", "DOM.Iterable", "ScriptHost"]
   },
   "exclude": ["node_modules"]
 }

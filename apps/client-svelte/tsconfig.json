@@ -10,7 +10,7 @@
 		"sourceMap": true,
 		"strict": true,
     "noImplicitAny": false,
-    "lib": ["dom", "webworker"]
+    "lib": ["DOM", "WebWorker", "ESNext", "DOM.Iterable", "ScriptHost"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

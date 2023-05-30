@@ -1,42 +1,49 @@
 import { PUBLIC_API_END_POINT, PUBLIC_REQUEST_TIMEOUT, PUBLIC_ACCESS_TOKEN_LABEL } from "$env/static/public";
 import { AxiosHttpieClient, ContentTypes, type AxiosHttpieConfig } from "@laobiao/httpie";
-import log from "@utils/log";
+import { browser } from "$app/environment";
 
-const defaultServiceConfig :AxiosHttpieConfig = {
-
+const baseServiceConfig :AxiosHttpieConfig = {
   baseURL: PUBLIC_API_END_POINT,
-
   timeout: Number(PUBLIC_REQUEST_TIMEOUT),
-
   withCredentials:false,
-
   headers: {
     'Content-Type': ContentTypes.JSON,
     'Accept': ContentTypes.JSON
-  },
+  }
+}
 
-  requestInterceptor: (config) => {
-    // const token = localStorage.getItem(PUBLIC_ACCESS_TOKEN_LABEL);
-    // if (token) {
-    //   config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
-    // }
+async function createCsrConfig() {
+  if(!browser){ throw "Can not create CSR http config in SSR environment" }
+
+  const {appStorage} = await import("@utils/client/storage");
+
+  const httpConfigForCsr :AxiosHttpieConfig = {...baseServiceConfig}
+
+  httpConfigForCsr.requestInterceptor = (config) => {
+    if(!browser){return config}
+    const token = appStorage["access-token"];
+    if (token) {
+      config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
+    }
     return config;
   },
 
-  responseInterceptor: (response) => {
+  httpConfigForCsr.responseInterceptor = (response) => {
+    if(!browser){return response}
     const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
     if (newToken) {
-      // localStorage.setItem(PUBLIC_ACCESS_TOKEN_LABEL, newToken);
+      appStorage["access-token"] = newToken;
     }
     return response;
   },
 
-  responseErrorInterceptor: (error) => {
+  httpConfigForCsr.responseErrorInterceptor = (error) => {
     switch (error.response?.status) {
       case 422:
         break
       case 401:
-        // localStorage.removeItem(PUBLIC_ACCESS_TOKEN_LABEL);
+        if(!browser){break}
+        appStorage.remove("access-token");
         break
       default:
         break
@@ -44,6 +51,14 @@ const defaultServiceConfig :AxiosHttpieConfig = {
     return error
   }
 
+  return httpConfigForCsr;
 }
 
-export default new AxiosHttpieClient(defaultServiceConfig)
+function createSsrConfig() {
+  if(browser){ throw "Can not create SSR http config in CSR environment" }
+  return baseServiceConfig
+}
+
+const defaultConfig = browser ? await createCsrConfig() : createSsrConfig()
+
+export default new AxiosHttpieClient(defaultConfig)

@@ -1,10 +1,10 @@
 import { writable, derived } from "svelte/store";
 
-export const userSession = writable({
+export const session = writable({
   token: null,
   user: null,
 })
 
-export const isLoggedIn = derived(userSession, $userSession => {
+export const isLoggedIn = derived(session, $userSession => {
   return !!$userSession.token;
 })
