@@ -71,3 +71,4 @@ if(browser){
 }
 
 export default httpClient;
+
