@@ -56,7 +56,33 @@ async function createCsrConfig() {
 
 function createSsrConfig() {
   if(browser){ throw "Can not create SSR http config in CSR environment" }
-  return baseServiceConfig
+
+  const httpConfigForSsr :AxiosHttpieConfig = {...baseServiceConfig}
+
+  httpConfigForSsr.requestInterceptor = (config) => {
+    if(browser){return config}
+    return config;
+  },
+
+  httpConfigForSsr.responseInterceptor = (response) => {
+    if(browser){return response}
+    return response;
+  },
+
+  httpConfigForSsr.responseErrorInterceptor = (error) => {
+    switch (error.response?.status) {
+      case 422:
+        break
+      case 401:
+        if(!browser){break}
+        break
+      default:
+        break
+    }
+    return error
+  }
+
+  return httpConfigForSsr;
 }
 
 
