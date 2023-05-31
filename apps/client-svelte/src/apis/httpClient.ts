@@ -59,6 +59,15 @@ function createSsrConfig() {
   return baseServiceConfig
 }
 
-const defaultConfig = browser ? await createCsrConfig() : createSsrConfig()
 
-export default new AxiosHttpieClient(defaultConfig)
+let httpClient = new AxiosHttpieClient(baseServiceConfig)
+
+if(browser){
+  createCsrConfig().then((csrConfig) => {
+    httpClient = new AxiosHttpieClient(csrConfig)
+  })
+}else{
+  httpClient = new AxiosHttpieClient(createSsrConfig())
+}
+
+export default httpClient;
