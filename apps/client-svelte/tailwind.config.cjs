@@ -10,17 +10,16 @@ module.exports = {
     themes: [
       {
         light: {
-          ...require("daisyui/src/colors/themes")["[data-theme=winter]"],
+          ...require("daisyui/src/theming/themes")["[data-theme=winter]"],
           'primary': "#103c58",
         }
       },
       {
-        night: {
-          ...require("daisyui/src/colors/themes")["[data-theme=night]"],
+        dark: {
+          ...require("daisyui/src/theming/themes")["[data-theme=night]"],
           'primary': "#103c58",
         }
       }
     ],
-    darkTheme: "night",
   }
 }
