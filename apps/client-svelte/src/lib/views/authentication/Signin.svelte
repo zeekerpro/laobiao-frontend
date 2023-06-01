@@ -3,6 +3,7 @@
   import * as yup from "yup";
   import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
   import LbForm from "@components/form/LbForm.svelte";
+  import { goto } from "$app/navigation";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {
@@ -42,9 +43,12 @@
     let res = await userService.signin(value)
     isLoading = false
     if(res.isSuccess){
-
+      goto('/')
     }else{
-
+      const error = res.data?.error;
+      // @ts-ignore
+      signinFormOptions.find(item => item.name === error.attribute).message = error.message;
+      signinFormOptions = signinFormOptions
     }
   }
 </script>
