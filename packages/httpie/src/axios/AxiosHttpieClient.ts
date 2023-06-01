@@ -8,18 +8,25 @@ import type { AxiosHttpieConfig } from './AxiosHttpieConfig';
 
 export class AxiosHttpieClient implements HttpieClient {
 
-  private readonly axios: AxiosInstance
-  private readonly config: AxiosHttpieConfig
+  private axios?: AxiosInstance
+  private configInstance?: AxiosHttpieConfig
+  private config: AxiosHttpieConfig | Promise<AxiosHttpieConfig>
 
-  constructor(config: AxiosHttpieConfig) {
+  constructor(config: AxiosHttpieConfig | Promise<AxiosHttpieConfig>) {
     this.config = config
-    this.axios = axios.create(config)
-    this.axios.interceptors.request.use(config.requestInterceptor)
-    this.axios.interceptors.response.use(config.responseInterceptor, config.responseErrorInterceptor)
+  }
+
+  async init(config: AxiosHttpieConfig | Promise<AxiosHttpieConfig> ){
+    let configInstance: AxiosHttpieConfig = config instanceof Promise ? await config : config;
+    this.configInstance = configInstance
+    this.axios = axios.create(configInstance)
+    this.axios.interceptors.request.use(configInstance.requestInterceptor)
+    this.axios.interceptors.response.use(configInstance.responseInterceptor, configInstance.responseErrorInterceptor)
   }
 
   setWithCredentials(value: boolean): void {
-    this.config.withCredentials = value
+    if(!this.configInstance){ return }
+    this.configInstance.withCredentials = value
   }
 
   get(url: string, params?: any): Promise<HttpieResponse> {
@@ -72,6 +79,10 @@ export class AxiosHttpieClient implements HttpieClient {
     const conf = Object.assign({}, this.config, config)
 
     console.log(`send request to: ${conf.url}`)
+
+    if(!this.axios){ await this.init(this.config) }
+
+    if(!this.axios){ throw new Error("axios is not initialized") }
 
     try {
       const res = await this.axios.request(conf)
