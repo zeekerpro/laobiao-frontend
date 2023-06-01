@@ -92,7 +92,11 @@
       </label>
     </div>
 
-    <button class="btn btn-primary w-full {isLoading ? 'loading' : ''}">Create Account</button>
+    <button class="btn btn-primary w-full {isLoading ? 'loading' : ''}">
+      <span class="{isLoading ? 'loading loading-spinner' : ''}"></span>
+      Create Account
+    </button>
+
 
     <div class="p-5">
       <p class="text-sm text-center italic">

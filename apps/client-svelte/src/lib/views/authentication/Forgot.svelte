@@ -40,7 +40,8 @@ import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
 
   <LbForm options={forgotFormOptions} bind:this={forgotFormRef} {handleSubmit}>
 
-    <button class="btn btn-primary w-full capitalize {isLoading ? 'loading' : ''}">
+    <button class="btn btn-primary w-full capitalize ">
+      <span class="{isLoading ? 'loading loading-spinner' : ''}"></span>
       send reset instructions
     </button>
 

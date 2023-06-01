@@ -73,7 +73,8 @@
       </span>
     </div>
 
-    <button type="submit" class="btn btn-primary w-full {isLoading ? 'loading' : ''}" >
+    <button type="submit" class="btn btn-primary w-full " >
+      <span class="{isLoading ? 'loading loading-spinner' : ''}" ></span>
       Sign In
     </button>
 
