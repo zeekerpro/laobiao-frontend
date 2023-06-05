@@ -51,6 +51,15 @@
       message: "",
       schema: yup.string().required().oneOf([yup.ref('password'), ''], 'Passwords must match')
     },
+    {
+      name: 'referral_code',
+      type: "text",
+      placeholder: "referal code",
+      value: "",
+      label: "referral code",
+      message: "",
+      schema: yup.string().required().length(12)
+    },
   ];
 
   let conditionChecked = false;

@@ -36,7 +36,7 @@
 
 <div class="form-control my-3">
   <lable class="label">
-    <span class="label-text font-semibold">{option.label}</span>
+    <span class="label-text font-semibold capitalize">{option.label}</span>
   </lable>
   <input
     name="{option.name}"

@@ -10,12 +10,12 @@ class UserService extends BaseService {
     return this.post("/signout");
   }
 
-  async signup(data: any) {
-    return this.post("/signup", data);
+  async signup(user: any) {
+    return this.post("/signup", {user});
   }
 
-  async update(data: any) {
-    return this.put("/user", data);
+  async update(user: any) {
+    return this.put(`/user/${user.id}`, {user});
   }
 
   async show(id: string) {
