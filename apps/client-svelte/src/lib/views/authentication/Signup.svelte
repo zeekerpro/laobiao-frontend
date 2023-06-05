@@ -3,6 +3,7 @@
   import LbForm from "@components/form/LbForm.svelte";
   import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
   import { userService } from "@apis";
+  import { goto } from "$app/navigation";
 
   let signupFormOptions :Array<LbFromItemOption> = [
     {
@@ -78,9 +79,14 @@
     let res = await userService.signup(value)
     isLoading = false
     if(res.isSuccess){
-
+      goto('/')
     }else{
-
+      const errors = res.data;
+      Object.keys(errors).forEach(key => {
+        // @ts-ignore
+        signupFormOptions.find(item => item.name === key).message = errors[key][0];
+      })
+      signupFormOptions = signupFormOptions
     }
   }
 
