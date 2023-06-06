@@ -10,7 +10,7 @@ export const load = ( async ({route, url}) => {
 
   // check signed status at first open page
   if(config.authWhiteList.includes(route.id || "")) { return }
-  let logged = true;
+  let logged = false;
   const unsubscribe = isLoggedIn.subscribe(value => logged = !!value)
   if(browser && !logged) {
     const ret = await userService.me()
