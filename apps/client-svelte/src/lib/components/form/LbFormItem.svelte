@@ -16,6 +16,9 @@
 
   export let option: LbFromItemOption
 
+  export { classes as class }
+  let classes = ''
+
   function typeAction(node :HTMLInputElement){ node.type = option.type }
 
   let isFocus = false
@@ -34,7 +37,7 @@
 
 </script>
 
-<div class="form-control my-3">
+<div class="form-control my-3 { classes }">
   <lable class="label">
     <span class="label-text font-semibold capitalize">{option.label}</span>
   </lable>

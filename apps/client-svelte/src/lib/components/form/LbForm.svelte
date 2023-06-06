@@ -8,6 +8,9 @@
 
   export let options :Array<LbFromItemOption>;
 
+  export {classes as class}
+  let classes = ''
+
   export let handleSubmit :(e? :SubmitEvent) => void = () => {};
 
   export async function validate() :Promise<false | FormData> {
@@ -38,7 +41,7 @@
   };
 </script>
 
-<form class="px-8"
+<form class="px-8 {classes}"
   bind:this={formRef}
   on:submit={handleSubmit}
   >
