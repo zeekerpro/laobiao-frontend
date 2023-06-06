@@ -4,6 +4,7 @@
   import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
   import LbForm from "@components/form/LbForm.svelte";
   import { goto } from "$app/navigation";
+    import { session } from "@stores/session";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {
@@ -44,6 +45,7 @@
     isLoading = false
     if(res.isSuccess){
       goto('/')
+      $session.user = res.data
     }else{
       const error = res.data?.error;
       // @ts-ignore

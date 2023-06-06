@@ -7,7 +7,7 @@ const styles = {
 	black: chalk.hex('#ffffff').bgHex('#000000'),
 }
 
-export default {
+export const log =  {
 	hooks(text: string) {
 		console.log(styles.tomato(text))
 	},

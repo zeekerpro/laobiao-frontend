@@ -1,6 +1,5 @@
 import type { Handle } from "@sveltejs/kit";
-import log from '@utils/log';
-
+import { log } from '@utils/log';
 
 export const handle = (async ({ event, resolve }) => {
   log.bold(`📣 NEW REQUEST IS BEING MADE FROM ${event.url.pathname}`)

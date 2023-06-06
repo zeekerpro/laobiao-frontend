@@ -78,7 +78,7 @@ export class AxiosHttpieClient implements HttpieClient {
   private async request(config: AxiosHttpieConfig): Promise<HttpieResponse> {
     const conf = Object.assign({}, this.config, config)
 
-    console.log(`send request to: ${conf.url}`)
+    console.log(`AxiosHttpieClient: send request to: ${conf.url}`)
 
     if(!this.axios){ await this.init(this.config) }
 
