@@ -48,17 +48,13 @@
 <main class="flow-root">
 
   {#if !isLoading }
-  <section class="flex justify-between items-center fixed top-0 w-full">
-    <LogoAnimation class="ml-4" dancing="{isLoading}" />
-    <ThemeSwitcher />
-  </section>
   <section>
-      <PageTransition>
-        <slot></slot>
-      </PageTransition>
+    <PageTransition>
+      <slot></slot>
+    </PageTransition>
   </section>
   {:else}
-    <LogoAnimation class="h-screen flex justify-center" dancing="{isLoading}" />
+    <LogoAnimation class="h-screen flex justify-center" dancing={true} />
   {/if }
 
 </main>

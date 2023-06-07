@@ -7,6 +7,9 @@
 
   $: themeColor = isChecked ? "white" : "#0F172A";
 
+  let classes = ''
+  export {classes as class}
+
   onMount(() => {
     // true: theme just based on system settings
     // false: theme based on user settings
@@ -23,14 +26,16 @@
   <meta name="theme-color" content={themeColor}>
 </svelte:head>
 
-<label class="theme-toggle cursor-pointer">
-  <input class="hidden"
-    type="checkbox"
-    bind:checked={isChecked}
-    data-toggle-theme="light,dark"
-    />
-  <span></span>
-</label>
+<div class="{classes}">
+  <label class="theme-toggle cursor-pointer">
+    <input class="hidden"
+      type="checkbox"
+      bind:checked={isChecked}
+      data-toggle-theme="light,dark"
+      />
+    <span></span>
+  </label>
+</div>
 
 <style lang="scss">
   $primary-color: #ffb62e;
