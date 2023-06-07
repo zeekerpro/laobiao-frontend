@@ -11,6 +11,7 @@
   import { userService } from "@apis";
   import { log } from "@utils/log";
   import { goto } from "$app/navigation";
+    import LogoAnimation from "@components/LogoAnimation.svelte";
 
   let isLoading = true
 
@@ -46,14 +47,18 @@
 
 <main class="flow-root">
 
-  <div class="fixed top-3 right-6">
-    <ThemeSwitcher />
-  </div>
-
   {#if !isLoading }
-    <PageTransition>
-      <slot></slot>
-    </PageTransition>
+  <section class="flex justify-between items-center fixed top-0 w-full">
+    <LogoAnimation class="ml-4" dancing="{isLoading}" />
+    <ThemeSwitcher />
+  </section>
+  <section>
+      <PageTransition>
+        <slot></slot>
+      </PageTransition>
+  </section>
+  {:else}
+    <LogoAnimation class="h-screen flex justify-center" dancing="{isLoading}" />
   {/if }
 
 </main>
