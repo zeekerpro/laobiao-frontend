@@ -1,6 +1,5 @@
 <script lang="ts">
   import "@styles/app.css";
-  import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
   import PageTransition from "@components/PageTransition.svelte";
   import { navigating } from "$app/stores";
   import config  from "./config.json";
@@ -11,32 +10,33 @@
   import { userService } from "@apis";
   import { log } from "@utils/log";
   import { goto } from "$app/navigation";
-    import LogoAnimation from "@components/LogoAnimation.svelte";
+  import LogoAnimation from "@components/LogoAnimation.svelte";
+  import StatusBar from "@components/StatusBar.svelte";
+  import TabBar from "@components/TabBar.svelte";
 
   let isLoading = true
 
+  $: isAuthPage = $page.route.id && config.authWhiteList.includes($page.route.id)
+
   // route guard
-  $: if($navigating) {
-    // @ts-ignore
-    guard($navigating, config.authWhiteList)
-  }
+  $: if($navigating) { guard($navigating, config.authWhiteList) }
 
   async function checkIsSigned() {
-    isLoading = true
     // check signed status at first open page
     if(config.authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
     if(!$isLoggedIn) {
+      isLoading = false
       const ret = await userService.me()
       if(ret.isSuccess) {
         log.layout("signed success by token")
         $session.user = ret.data
-        isLoading = false
       }else{
         log.layout("unsigned, goto signin page")
         isLoading = false
         goto("/signin")
       }
     }
+    isLoading = false
   }
 
   onMount(() => {
@@ -48,11 +48,19 @@
 <main class="flow-root">
 
   {#if !isLoading }
-  <section>
-    <PageTransition>
-      <slot></slot>
-    </PageTransition>
-  </section>
+    {#if isAuthPage}
+      <PageTransition>
+        <slot></slot>
+      </PageTransition>
+    {:else}
+      <StatusBar />
+      <main class="mt-12 mx-1">
+        <PageTransition>
+          <slot></slot>
+        </PageTransition>
+      </main>
+      <TabBar />
+    {/if}
   {:else}
     <LogoAnimation class="h-screen flex justify-center" dancing={true} />
   {/if }
