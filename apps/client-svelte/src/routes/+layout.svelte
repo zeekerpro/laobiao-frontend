@@ -26,7 +26,6 @@
     // check signed status at first open page
     if(config.authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
     if(!$isLoggedIn) {
-      isLoading = false
       const ret = await userService.me()
       if(ret.isSuccess) {
         log.layout("signed success by token")
