@@ -2,7 +2,9 @@
 import LogoAnimation from "@components/LogoAnimation.svelte";
 import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
 import { onMount } from "svelte";
-import { throttle } from "lodash";
+import lodash from "lodash";
+
+const { throttle } = lodash;
 
 let logoAnimationRef: LogoAnimation;
 
