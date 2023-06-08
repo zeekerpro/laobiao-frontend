@@ -11,7 +11,6 @@ import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
       value: "",
       label: "email address",
       message: "",
-      autofocus: true,
       schema: yup.string().email().required()
     }
   ];

@@ -14,7 +14,6 @@
       value: "",
       label: "Account",
       message: "",
-      autofocus: true,
       schema: yup.string().required()
     },
     {

@@ -13,7 +13,6 @@
       value: "",
       label: "Username",
       message: "",
-      autofocus: true,
       schema: yup.string().required()
     },
     {
