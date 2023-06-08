@@ -21,7 +21,7 @@
     guard($navigating, config.authWhiteList)
   }
 
-  async function checkIsSngined() {
+  async function checkIsSigned() {
     isLoading = true
     // check signed status at first open page
     if(config.authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
@@ -40,7 +40,7 @@
   }
 
   onMount(() => {
-    checkIsSngined()
+    checkIsSigned()
   })
 
 </script>
