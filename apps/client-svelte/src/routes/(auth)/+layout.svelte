@@ -2,21 +2,24 @@
 import LogoAnimation from "@components/LogoAnimation.svelte";
 import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
 import { onMount } from "svelte";
+import { throttle } from "lodash";
 
 let logoAnimationRef: LogoAnimation;
 
+const handleScroll = throttle( () => {
+  const logoDom = logoAnimationRef?.dom
+  const logoTop = logoDom?.getBoundingClientRect().top || 0
+  if (logoTop == 0) {
+    logoDom?.classList.add("shadow");
+    logoDom?.classList.add("drop-shadow");
+  }else{
+    logoDom?.classList.remove("shadow");
+    logoDom?.classList.remove("drop-shadow");
+  }
+}, 200)
+
 onMount(() => {
-  window.addEventListener("scroll", () => {
-    const logoDom = logoAnimationRef?.dom
-    const logoTop = logoDom?.getBoundingClientRect().top || 0
-    if (logoTop == 0) {
-      logoDom?.classList.add("shadow");
-      logoDom?.classList.add("drop-shadow");
-    }else{
-      logoDom?.classList.remove("shadow");
-      logoDom?.classList.remove("drop-shadow");
-    }
-  });
+  window.addEventListener("scroll", handleScroll);
 })
 
 </script>
@@ -25,7 +28,7 @@ onMount(() => {
 
 <section class=" mt-16 md:mt-24 " >
   <LogoAnimation bind:this={logoAnimationRef}
-    class="sticky top-0 w-full bg-base-100 opacity-95 "
+    class="sticky top-0 w-full bg-base-100 py-2 shadow-primary"
   />
   <div class=" sm:max-w-md mx-auto ">
     <slot></slot>

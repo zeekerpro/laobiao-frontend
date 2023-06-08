@@ -12,7 +12,7 @@
 </script>
 
 <svelte:options accessors />
-<div bind:this={dom} class="{classes}">
+<div bind:this={dom} class="{classes} bg-opacity-95">
   <section class="logo flex items-center justify-center gap-2 font-bold ">
     <img src="/images/logo.png" class="h-12 {dancing ? 'wave' : ''}" alt="logo" style="--order: 1;" />
     <span class="

@@ -22,10 +22,12 @@ importers:
       '@sveltejs/kit': ^1.20.0
       '@tailwindcss/typography': ^0.5.9
       '@types/cookie': ^0.5.1
+      '@types/lodash': ^4.14.195
       autoprefixer: ^10.4.14
       axios: ^1.4.0
       chalk: ^5.2.0
       daisyui: ^3.0.0
+      lodash: ^4.17.21
       postcss: ^8.4.24
       sass: ^1.62.1
       svelte: ^3.59.1
@@ -41,9 +43,11 @@ importers:
       yup: ^1.2.0
     dependencies:
       '@laobiao/httpie': link:../../packages/httpie
+      '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.195
       axios: registry.npmmirror.com/axios/1.4.0
       chalk: registry.npmmirror.com/chalk/5.2.0
       daisyui: registry.npmmirror.com/daisyui/3.0.0_postcss@8.4.24
+      lodash: registry.npmmirror.com/lodash/4.17.21
       theme-change: registry.npmmirror.com/theme-change/2.5.0
     devDependencies:
       '@fontsource/fira-mono': registry.npmmirror.com/@fontsource/fira-mono/4.5.10
@@ -2453,6 +2457,12 @@ packages:
     version: 1.0.1
     dev: true
 
+  registry.npmmirror.com/@types/lodash/4.14.195:
+    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.195.tgz}
+    name: '@types/lodash'
+    version: 4.14.195
+    dev: false
+
   registry.npmmirror.com/@types/node/20.2.5:
     resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.2.5.tgz}
     name: '@types/node'
@@ -4149,7 +4159,6 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz}
     name: lodash
     version: 4.17.21
-    dev: true
 
   registry.npmmirror.com/loupe/2.3.6:
     resolution: {integrity: sha512-RaPMZKiMy8/JruncMU5Bt6na1eftNoo++R4Y+N2FrxkDVTrGvcyzFTsaGif4QTeKESheMGegbhw6iUAq+5A8zA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loupe/-/loupe-2.3.6.tgz}
