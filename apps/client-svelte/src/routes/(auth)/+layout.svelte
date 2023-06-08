@@ -9,7 +9,7 @@ let logoAnimationRef: LogoAnimation;
 const handleScroll = throttle( () => {
   const logoDom = logoAnimationRef?.dom
   const logoTop = logoDom?.getBoundingClientRect().top || 0
-  if (logoTop == 0) {
+  if (logoTop < window.scrollY) {
     logoDom?.classList.add("shadow");
     logoDom?.classList.add("drop-shadow");
   }else{
