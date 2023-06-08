@@ -31,10 +31,7 @@
 
 
 {#key $page.url.pathname}
-<div
-  in:fly={{ x: -200, duration: duration.in, delay: duration.out }}
-  out:pageOut={{ duration: duration.out  }}
-  >
+<div in:fly={{ x: -200, duration: duration.in, delay: duration.out }} >
   <slot></slot>
 </div>
 {/key}
