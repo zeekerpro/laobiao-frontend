@@ -55,11 +55,9 @@
       </PageTransition>
     {:else}
       <StatusBar />
-      <main class="mt-12 mx-1">
-        <PageTransition>
-          <slot></slot>
-        </PageTransition>
-      </main>
+      <PageTransition>
+        <slot></slot>
+      </PageTransition>
       <TabBar />
     {/if}
   {:else}

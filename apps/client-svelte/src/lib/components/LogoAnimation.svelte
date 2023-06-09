@@ -12,19 +12,19 @@
 
   let dom: HTMLElement | null = null
 
-  const handleScroll = throttle( async () => {
+  const dynamicStyle = () => {
     const logoTop = dom?.getBoundingClientRect().top || 0
     if (logoTop < 1) {
       dom?.classList.add("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
     }else{
       dom?.classList.remove("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
     }
-  }, 200)
+  }
 
   onMount(async () => {
-    window.addEventListener("scroll", handleScroll);
+    dynamicStyle()
+    window.addEventListener("scroll", throttle(dynamicStyle, 100));
   })
-
 </script>
 
 <div bind:this={dom} class="{classes} bg-base-100 py-2 bg-opacity-90">
