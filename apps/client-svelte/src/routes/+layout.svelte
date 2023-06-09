@@ -11,6 +11,7 @@
   import { log } from "@utils/log";
   import { goto } from "$app/navigation";
   import LogoAnimation from "@components/LogoAnimation.svelte";
+  import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
   import StatusBar from "@components/StatusBar.svelte";
   import TabBar from "@components/TabBar.svelte";
 
@@ -64,5 +65,7 @@
   {:else}
     <LogoAnimation class="h-screen flex justify-center" dancing={true} />
   {/if }
+
+  <ThemeSwitcher class="fixed right-2 top-2 z-10" />
 
 </main>
