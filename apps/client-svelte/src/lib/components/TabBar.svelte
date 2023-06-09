@@ -39,7 +39,7 @@ $: currentPath = $page.url.pathname
 <footer class="fixed bottom-0 w-full">
   <div class="tabs flex justify-between border-t border-t-primary ">
     {#each tabs as tab}
-      <a class="tab pb-8 pt-2
+      <a class="tab pb-10 pt-1
         {currentPath == tab.path ? 'tab-active text-secondary-focus' : ''}
         grow h-auto
         flex flex-col items-center justify-center flex-nowrap
