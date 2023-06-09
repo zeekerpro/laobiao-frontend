@@ -5,6 +5,8 @@ const defaultValue = 'light';
 // @ts-ignore
 const initialValue = browser ? localStorage.getItem('theme') ?? defaultValue : defaultValue;
 
+
+// todo
 const theme = writable<string>(initialValue);
 
 theme.subscribe((value) => {

@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   const { throttle } = lodash;
   import lodash from "lodash";
+  import theme from "@stores/theme";
 
   let classes = ''
 
@@ -16,8 +17,7 @@
   let borderColor :string;
 
   const handleScroll = throttle( async () => {
-    const { appStorage } = await import("@utils/client/storage");
-    borderColor = appStorage.theme == "dark" ? "border-primary" : "border-neutral-focus"
+    borderColor = $theme == "dark" ? "border-primary" : "border-neutral-focus"
     const logoTop = dom?.getBoundingClientRect().top || 0
     if (logoTop < 1) {
       dom?.classList.add("after:border-b");
