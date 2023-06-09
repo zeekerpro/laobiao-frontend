@@ -3,7 +3,7 @@
   import { cubicOut } from "svelte/easing";
   import { page } from "$app/stores";
 
-  export let duration = { in: 800, out: 500 }
+  export let duration = { in: 800, out: 0}
 
   type Params = {
     delay? :number
