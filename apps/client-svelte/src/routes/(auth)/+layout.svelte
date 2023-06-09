@@ -29,7 +29,7 @@ onMount(() => {
 <section class=" mt-16 md:mt-24 " >
   <LogoAnimation bind:this={logoAnimationRef}
     class="sticky top-0 w-full bg-base-100 py-2
-    after:contenr-[''] after:block after:h-1 after:transition-all"
+    after:contenr-[''] after:block after:border-b after:transition-all"
   />
   <div class=" sm:max-w-md mx-auto ">
     <slot></slot>
