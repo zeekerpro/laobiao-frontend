@@ -8,6 +8,7 @@
   export {classes as class}
 
   let isDark = false;
+  let dataToggleTheme = isDark ? "dark,light" : "light,dark";
 
   $: themeBgColor = isDark ? "#0F172A" : "white";
 
@@ -33,11 +34,9 @@
   <meta name="theme-color" content={themeBgColor}>
 </svelte:head>
 
-{ isDark }
-
 <div class="{classes}">
-  <button data-toggle-theme="dark,light" class="text-3xl my-1" on:click={handleChangeTheme}>
-    {#if isDark }
+  <button data-toggle-theme={dataToggleTheme} class="text-3xl my-1" on:click={handleChangeTheme}>
+    {#if !!isDark }
       <Icon icon="line-md:sunny-outline-to-moon-loop-transition" class="text-[#ffb62e]" />
     {:else}
       <Icon icon="line-md:moon-to-sunny-outline-loop-transition" class="text-[#ffd22e]" />
