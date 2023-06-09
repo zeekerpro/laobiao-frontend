@@ -1,18 +1,43 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+  const { throttle } = lodash;
+  import lodash from "lodash";
 
   let classes = ''
+
   export { classes as class }
 
   export let dancing = false
 
   let logoText = "LaoBiao..."
 
-  export let dom: HTMLElement | null = null
+  let dom: HTMLElement | null = null
+
+  let borderColor :string;
+
+  const handleScroll = throttle( async () => {
+    const { appStorage } = await import("@utils/client/storage");
+    borderColor = appStorage.theme == "dark" ? "border-primary" : "border-neutral-focus"
+    const logoTop = dom?.getBoundingClientRect().top || 0
+    if (logoTop < 1) {
+      dom?.classList.add("after:border-b");
+    }else{
+      dom?.classList.remove("after:border-b");
+    }
+  }, 200)
+
+  onMount(async () => {
+    window.addEventListener("scroll", handleScroll);
+  })
 
 </script>
 
-<svelte:options accessors />
-<div bind:this={dom} class="{classes} bg-opacity-95">
+<div bind:this={dom} class="{classes}
+  bg-base-100 py-2
+  bg-opacity-95
+  after:content-[''] after:block after:h-px after:pb-2 after:{borderColor}
+  "
+  >
   <section class="logo flex items-center justify-center gap-2 font-bold ">
     <img src="/images/logo.png" class="h-12 {dancing ? 'wave' : ''}" alt="logo" style="--order: 1;" />
     <span class="
