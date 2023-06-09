@@ -55,9 +55,11 @@
       </PageTransition>
     {:else}
       <StatusBar />
+      <div class="mt-16">
       <PageTransition>
         <slot></slot>
       </PageTransition>
+      </div>
       <TabBar />
     {/if}
   {:else}

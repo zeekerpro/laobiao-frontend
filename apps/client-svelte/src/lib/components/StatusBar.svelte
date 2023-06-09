@@ -3,6 +3,6 @@
   import LogoAnimation from "@components/LogoAnimation.svelte";
 </script>
 
-<header class="flex justify-between items-center w-full">
+<header class="fixed top-0 flex justify-between items-center w-full">
   <LogoAnimation class="w-full"/>
 </header>
