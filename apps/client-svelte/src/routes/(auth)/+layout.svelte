@@ -12,9 +12,9 @@ const handleScroll = throttle( () => {
   const logoDom = logoAnimationRef?.dom
   const logoTop = logoDom?.getBoundingClientRect().top || 0
   if (logoTop < 1) {
-    logoDom?.classList.add("shadow");
+    logoDom?.classList.add("after:shadow");
   }else{
-    logoDom?.classList.remove("shadow");
+    logoDom?.classList.remove("after:shadow");
   }
 }, 200)
 
@@ -28,7 +28,8 @@ onMount(() => {
 
 <section class=" mt-16 md:mt-24 " >
   <LogoAnimation bind:this={logoAnimationRef}
-    class="sticky top-0 w-full bg-base-100 py-2 shadow-primary "
+    class="sticky top-0 w-full bg-base-100 py-2
+    after:contenr-[''] after:block after:h-1 after:transition-all"
   />
   <div class=" sm:max-w-md mx-auto ">
     <slot></slot>
