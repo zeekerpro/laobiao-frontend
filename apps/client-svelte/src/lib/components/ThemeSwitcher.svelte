@@ -7,7 +7,7 @@
   let classes = ''
   export {classes as class}
 
-  let isDark = false;
+  let isDark = true;
   let dataToggleTheme = isDark ? "dark,light" : "light,dark";
 
   $: themeBgColor = isDark ? "#0F172A" : "white";
@@ -25,7 +25,6 @@
     isDark = !isDark;
     $theme = isDark ? "dark" : "light";
   }
-
 </script>
 
 <svelte:head>

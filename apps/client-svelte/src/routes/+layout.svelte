@@ -66,6 +66,6 @@
     <LogoAnimation class="h-screen flex justify-center" dancing={true} />
   {/if }
 
-  <ThemeSwitcher class="fixed right-2 top-2 z-10" />
+  <ThemeSwitcher class="fixed right-4 top-2 z-10" />
 
 </main>

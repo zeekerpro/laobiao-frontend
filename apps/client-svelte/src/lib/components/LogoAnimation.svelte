@@ -2,10 +2,8 @@
   import { onMount } from "svelte";
   const { throttle } = lodash;
   import lodash from "lodash";
-  import theme from "@stores/theme";
 
   let classes = ''
-
   export { classes as class }
 
   export let dancing = false
@@ -14,15 +12,12 @@
 
   let dom: HTMLElement | null = null
 
-  let borderColor :string;
-
   const handleScroll = throttle( async () => {
-    borderColor = $theme == "dark" ? "border-primary" : "border-neutral-focus"
     const logoTop = dom?.getBoundingClientRect().top || 0
     if (logoTop < 1) {
-      dom?.classList.add("after:border-b");
+      dom?.classList.add("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
     }else{
-      dom?.classList.remove("after:border-b");
+      dom?.classList.remove("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
     }
   }, 200)
 
@@ -32,12 +27,7 @@
 
 </script>
 
-<div bind:this={dom} class="{classes}
-  bg-base-100 py-2
-  bg-opacity-95
-  after:content-[''] after:block after:h-px after:pb-2 after:{borderColor}
-  "
-  >
+<div bind:this={dom} class="{classes} bg-base-100 py-2 bg-opacity-90">
   <section class="logo flex items-center justify-center gap-2 font-bold ">
     <img src="/images/logo.png" class="h-12 {dancing ? 'wave' : ''}" alt="logo" style="--order: 1;" />
     <span class="
@@ -51,8 +41,7 @@
   </section>
 </div>
 
-<style>
-
+<style lang="scss">
 .bg-gradient-animate {
 	background-size: 300% 300%;
 	animation: gradient-x 2.5s ease-in-out infinite;
