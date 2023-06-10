@@ -16,10 +16,13 @@
     }
   }
 
+  let classes = ""
+  export { classes as class }
+
 </script>
 
 {#key $page.url.pathname}
-<div in:fly={{ x: flyX, duration: duration.in, delay: duration.out }} >
+<div in:fly={{ x: flyX, duration: duration.in, delay: duration.out }} class={classes} >
   <slot></slot>
 </div>
 {/key}

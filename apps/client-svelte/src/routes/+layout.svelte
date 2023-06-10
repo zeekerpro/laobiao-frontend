@@ -46,7 +46,7 @@
 
 </script>
 
-<main class="flow-root">
+<div class="flow-root">
 
   {#if !isLoading }
     {#if isAuthPage}
@@ -55,11 +55,13 @@
       </PageTransition>
     {:else}
       <StatusBar class="h-16" />
-      <div class="h-screen pt-16 pb-24">
-        <PageTransition>
-          <slot></slot>
-        </PageTransition>
-      </div>
+      <main class="h-screen pt-16 pb-24">
+        <div class="h-full overflow-scroll">
+          <PageTransition class="h-full">
+            <slot></slot>
+          </PageTransition>
+        </div>
+      </main>
       <TabBar class="h-24" />
     {/if}
   {:else}
@@ -68,4 +70,4 @@
 
   <ThemeSwitcher class="fixed right-4 top-2 z-10" />
 
-</main>
+</div>
