@@ -1,6 +1,6 @@
 export const tabs = [
   {
-    id: 1,
+    index: 1,
     label: "home",
     path: "/",
     icon: {
@@ -9,7 +9,7 @@ export const tabs = [
     }
   },
   {
-    id: 2,
+    index: 2,
     label: "chat",
     path: "/chat",
     icon: {
@@ -18,7 +18,7 @@ export const tabs = [
     }
   },
   {
-    id: 3,
+    index: 3,
     label: "profile",
     path: "/profile",
     icon: {
