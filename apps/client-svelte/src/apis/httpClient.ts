@@ -1,6 +1,7 @@
 import { PUBLIC_API_END_POINT, PUBLIC_REQUEST_TIMEOUT, PUBLIC_ACCESS_TOKEN_LABEL } from "$env/static/public";
 import { AxiosHttpieClient, ContentTypes, type AxiosHttpieConfig } from "@laobiao/httpie";
 import { browser } from "$app/environment";
+import { log } from "$utils/log";
 
 const baseServiceConfig :AxiosHttpieConfig = {
   baseURL: PUBLIC_API_END_POINT,
@@ -51,6 +52,8 @@ async function createCsrConfig() {
     return error
   }
 
+  log.bold("create csr httpie config complted")
+
   return httpConfigForCsr;
 }
 
@@ -81,6 +84,8 @@ function createSsrConfig() {
     }
     return error
   }
+
+  log.bold("create ssr httpie config complted")
 
   return httpConfigForSsr;
 }
