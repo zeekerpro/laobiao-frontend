@@ -34,9 +34,9 @@ async function createCsrConfig() {
   },
 
   httpConfigForCsr.responseInterceptor = (response) => {
-    log.endpoint(`recive response: ${response.headers['Access-Token']} `)
+    log.endpoint(`recive response: ${response.headers[PUBLIC_ACCESS_TOKEN_LABEL]} `)
     if(!browser){ return response}
-    const newToken = response.headers['Access-Token'];
+    const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
     log.endpoint(`csr newToken: ${newToken}`)
     if (newToken) {
       appStorage["token"] = newToken;
