@@ -23,19 +23,21 @@ async function createCsrConfig() {
   const httpConfigForCsr :AxiosHttpieConfig = {...baseServiceConfig}
 
   httpConfigForCsr.requestInterceptor = (config) => {
+    log.endpoint(`request to ${config.url}`)
     if(!browser){return config}
     const token = appStorage["token"];
     if (token) {
       config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
     }
-    log.bold(`header token: ${config.headers[PUBLIC_ACCESS_TOKEN_LABEL]}`)
+    log.endpoint(`csr header token: ${config.headers[PUBLIC_ACCESS_TOKEN_LABEL]}`)
     return config;
   },
 
   httpConfigForCsr.responseInterceptor = (response) => {
+    log.endpoint(`recive response: ${response.data} `)
     if(!browser){return response}
     const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
-    log.bold(`newToken: ${newToken}`)
+    log.endpoint(`csr newToken: ${newToken}`)
     if (newToken) {
       appStorage["token"] = newToken;
     }
@@ -56,7 +58,7 @@ async function createCsrConfig() {
     return error
   }
 
-  log.bold("create csr httpie config complted")
+  log.endpoint("create csr httpie config complted")
 
   return httpConfigForCsr;
 }
@@ -89,7 +91,7 @@ function createSsrConfig() {
     return error
   }
 
-  log.bold("create ssr httpie config complted")
+  log.endpoint("create ssr httpie config complted")
 
   return httpConfigForSsr;
 }
