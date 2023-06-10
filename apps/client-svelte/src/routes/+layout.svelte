@@ -54,13 +54,13 @@
         <slot></slot>
       </PageTransition>
     {:else}
-      <StatusBar />
-      <div class="mt-16">
+      <StatusBar class="h-16" />
+      <div class="h-screen pt-16 pb-24">
         <PageTransition>
           <slot></slot>
         </PageTransition>
       </div>
-      <TabBar />
+      <TabBar class="h-24" />
     {/if}
   {:else}
     <LogoAnimation class="h-screen flex justify-center" dancing={true} />

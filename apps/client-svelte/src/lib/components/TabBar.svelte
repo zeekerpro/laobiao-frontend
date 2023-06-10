@@ -5,12 +5,15 @@ import { tabs }  from "$configs"
 
 $: currentPath = $page.url.pathname
 
+let classes = ''
+export { classes as class }
+
 </script>
 
-<footer class="fixed bottom-0 w-full">
+<footer class="{classes} fixed bottom-0 w-full overflow-hidden">
   <div class="tabs flex justify-between border-t border-t-primary ">
     {#each tabs as tab}
-      <a class="tab pb-10 pt-1
+      <a class="tab py-2
         {currentPath == tab.path ? 'tab-active text-secondary-focus' : ''}
         grow h-auto
         flex flex-col items-center justify-center flex-nowrap
@@ -22,5 +25,4 @@ $: currentPath = $page.url.pathname
       </a>
     {/each}
   </div>
-
 </footer>

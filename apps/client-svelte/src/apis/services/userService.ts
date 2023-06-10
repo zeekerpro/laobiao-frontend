@@ -30,6 +30,11 @@ class UserService extends BaseService {
     return this.get(`/me`);
   }
 
+  async createReferral(user :any){
+    return this.post(`/{user.id}/referral`);
+  }
+
+
 }
 
 export default new UserService();

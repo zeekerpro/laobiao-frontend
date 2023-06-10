@@ -5,6 +5,4 @@
   <title>Home</title>
 </svelte:head>
 
-<h1>
-  home page here
-</h1>
+<button class="btn glass">create a referral code</button>
