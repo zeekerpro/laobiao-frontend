@@ -35,7 +35,9 @@ async function createCsrConfig() {
 
   httpConfigForCsr.responseInterceptor = (response) => {
     log.endpoint(`recive response: ${response.headers[PUBLIC_ACCESS_TOKEN_LABEL]} `)
+    debugger
     if(!browser){ return response}
+    log.endpoint(PUBLIC_ACCESS_TOKEN_LABEL)
     const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
     log.endpoint(`csr newToken: ${newToken}`)
     if (newToken) {
