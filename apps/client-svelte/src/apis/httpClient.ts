@@ -23,23 +23,17 @@ async function createCsrConfig() {
   const httpConfigForCsr :AxiosHttpieConfig = {...baseServiceConfig}
 
   httpConfigForCsr.requestInterceptor = (config) => {
-    log.endpoint(`request to ${config.url}`)
     if(!browser){return config}
     const token = appStorage["token"];
     if (token) {
       config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
     }
-    log.endpoint(`csr header token: ${config.headers[PUBLIC_ACCESS_TOKEN_LABEL]}`)
     return config;
   },
 
   httpConfigForCsr.responseInterceptor = (response) => {
-    log.endpoint(`recive response: ${response.headers[PUBLIC_ACCESS_TOKEN_LABEL]} `)
-    debugger
     if(!browser){ return response}
-    log.endpoint(PUBLIC_ACCESS_TOKEN_LABEL)
     const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
-    log.endpoint(`csr newToken: ${newToken}`)
     if (newToken) {
       appStorage["token"] = newToken;
     }
