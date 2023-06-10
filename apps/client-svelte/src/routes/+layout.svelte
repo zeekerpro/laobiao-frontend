@@ -1,19 +1,19 @@
 <script lang="ts">
-  import "@styles/app.css";
-  import PageTransition from "@components/PageTransition.svelte";
+  import "$styles/app.css";
+  import PageTransition from "$components/PageTransition.svelte";
   import { navigating } from "$app/stores";
-  import { authWhiteList } from "@configs";
-  import { guard } from "@utils/client/routeMonitor";
+  import { authWhiteList } from "$configs";
+  import { guard } from "$utils/client/routeMonitor";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
-  import { session, isLoggedIn } from "@stores/session";
-  import { userService } from "@apis";
-  import { log } from "@utils/log";
+  import { session, isLoggedIn } from "$stores/session";
+  import { userService } from "$apis";
+  import { log } from "$utils/log";
   import { goto } from "$app/navigation";
-  import LogoAnimation from "@components/LogoAnimation.svelte";
-  import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
-  import StatusBar from "@components/StatusBar.svelte";
-  import TabBar from "@components/TabBar.svelte";
+  import LogoAnimation from "$components/LogoAnimation.svelte";
+  import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
+  import StatusBar from "$components/StatusBar.svelte";
+  import TabBar from "$components/TabBar.svelte";
 
   let isLoading = true
 

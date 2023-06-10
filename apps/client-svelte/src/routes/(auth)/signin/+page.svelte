@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Signin from "@views/authentication/Signin.svelte";
+  import Signin from "$views/authentication/Signin.svelte";
 </script>
 
 <svelte:head>

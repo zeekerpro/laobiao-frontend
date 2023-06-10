@@ -1,8 +1,8 @@
 <script lang="ts">
   import * as yup from "yup";
-  import LbForm from "@components/form/LbForm.svelte";
-  import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
-  import { userService } from "@apis";
+  import LbForm from "$components/form/LbForm.svelte";
+  import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
+  import { userService } from "$apis";
   import { goto } from "$app/navigation";
 
   let signupFormOptions :Array<LbFromItemOption> = [

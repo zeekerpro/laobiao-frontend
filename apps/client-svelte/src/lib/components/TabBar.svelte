@@ -1,7 +1,7 @@
 <script lang="ts">
 import {page} from "$app/stores"
 import Icon from "@iconify/svelte"
-import { tabs }  from "@configs"
+import { tabs }  from "$configs"
 
 $: currentPath = $page.url.pathname
 

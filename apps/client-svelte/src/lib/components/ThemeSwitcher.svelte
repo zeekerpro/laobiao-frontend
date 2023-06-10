@@ -1,7 +1,7 @@
 <script lang="ts">
   import {onMount} from "svelte";
   import { themeChange } from "theme-change";
-  import theme from "@stores/theme";
+  import theme from "$stores/theme";
   import Icon from "@iconify/svelte"
 
   let classes = ''
@@ -16,7 +16,7 @@
     // true: theme just based on system settings
     // false: theme based on user settings
     themeChange(false)
-    const { appStorage } = await import("@utils/client/storage");
+    const { appStorage } = await import("$utils/client/storage");
     $theme = appStorage.theme || "light";
     isDark = $theme === "dark";
   })

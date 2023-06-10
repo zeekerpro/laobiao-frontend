@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LbFormItem from "@components/form/LbFormItem.svelte";
+  import LbFormItem from "$components/form/LbFormItem.svelte";
   import * as yup from "yup";
   import type { ValidationError } from "yup";
   import type { LbFromItemOption } from "./LbFormItem.svelte";

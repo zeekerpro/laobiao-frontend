@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { userService } from "@apis";
+  import { userService } from "$apis";
   import * as yup from "yup";
-  import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
-  import LbForm from "@components/form/LbForm.svelte";
+  import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
+  import LbForm from "$components/form/LbForm.svelte";
   import { goto } from "$app/navigation";
-    import { session } from "@stores/session";
+    import { session } from "$stores/session";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {

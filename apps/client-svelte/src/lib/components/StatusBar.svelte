@@ -1,6 +1,6 @@
 <script lang="ts">
-  import "@styles/app.css";
-  import LogoAnimation from "@components/LogoAnimation.svelte";
+  import "$styles/app.css";
+  import LogoAnimation from "$components/LogoAnimation.svelte";
 </script>
 
 <header class="fixed top-0 flex justify-between items-center w-full">

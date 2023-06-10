@@ -1,5 +1,5 @@
 <script lang="ts">
-import LogoAnimation from "@components/LogoAnimation.svelte";
+import LogoAnimation from "$components/LogoAnimation.svelte";
 </script>
 
 <section class=" mt-16 md:mt-24 " >

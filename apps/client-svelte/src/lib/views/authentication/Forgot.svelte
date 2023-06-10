@@ -1,6 +1,6 @@
 <script lang="ts">
-  import LbForm from "@components/form/LbForm.svelte";
-import type { LbFromItemOption } from "@components/form/LbFormItem.svelte";
+  import LbForm from "$components/form/LbForm.svelte";
+import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
   import * as yup from "yup";
 
   let forgotFormOptions :Array<LbFromItemOption> = [

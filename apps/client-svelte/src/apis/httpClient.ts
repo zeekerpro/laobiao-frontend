@@ -15,7 +15,7 @@ const baseServiceConfig :AxiosHttpieConfig = {
 async function createCsrConfig() {
   if(!browser){ throw "Can not create CSR http config in SSR environment" }
 
-  const {appStorage} = await import("@utils/client/storage");
+  const {appStorage} = await import("$utils/client/storage");
 
   const httpConfigForCsr :AxiosHttpieConfig = {...baseServiceConfig}
 
