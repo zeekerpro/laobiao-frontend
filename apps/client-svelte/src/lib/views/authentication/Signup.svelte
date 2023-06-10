@@ -2,8 +2,9 @@
   import * as yup from "yup";
   import LbForm from "$components/form/LbForm.svelte";
   import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
-  import { userService } from "$apis";
   import { goto } from "$app/navigation";
+    import { plainToInstance } from "class-transformer";
+    import User from "$models/User";
 
   let signupFormOptions :Array<LbFromItemOption> = [
     {
@@ -73,9 +74,10 @@
 
     // @ts-ignore
     const value = Object.fromEntries(formData.entries());
+    const user = plainToInstance(User, value)
 
     isLoading = true;
-    let res = await userService.signup(value)
+    let res = await user.signup()
     isLoading = false
     if(res.isSuccess){
       goto('/')

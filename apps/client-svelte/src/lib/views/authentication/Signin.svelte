@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { userService } from "$apis";
   import * as yup from "yup";
   import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
   import LbForm from "$components/form/LbForm.svelte";
   import { goto } from "$app/navigation";
-    import { session } from "$stores/session";
+  import { session } from "$stores/session";
+  import User from "$models/User";
+  import { plainToInstance } from "class-transformer";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {
@@ -38,9 +39,10 @@
 
     // @ts-ignore
     const value = Object.fromEntries(formData.entries());
+    const user = plainToInstance(User, value)
 
     isLoading = true;
-    let res = await userService.signin(value)
+    let res = await user.signin()
     isLoading = false
     if(res.isSuccess){
       goto('/')

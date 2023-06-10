@@ -26,9 +26,11 @@ importers:
       autoprefixer: ^10.4.14
       axios: ^1.4.0
       chalk: ^5.2.0
+      class-transformer: ^0.5.1
       daisyui: ^3.0.0
       lodash: ^4.17.21
       postcss: ^8.4.24
+      reflect-metadata: ^0.1.13
       sass: ^1.62.1
       svelte: ^3.59.1
       svelte-check: ^3.4.3
@@ -46,8 +48,10 @@ importers:
       '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.195
       axios: registry.npmmirror.com/axios/1.4.0
       chalk: registry.npmmirror.com/chalk/5.2.0
+      class-transformer: registry.npmmirror.com/class-transformer/0.5.1
       daisyui: registry.npmmirror.com/daisyui/3.0.0_postcss@8.4.24
       lodash: registry.npmmirror.com/lodash/4.17.21
+      reflect-metadata: registry.npmmirror.com/reflect-metadata/0.1.13
       theme-change: registry.npmmirror.com/theme-change/2.5.0
     devDependencies:
       '@fontsource/fira-mono': registry.npmmirror.com/@fontsource/fira-mono/4.5.10
@@ -2940,6 +2944,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  registry.npmmirror.com/class-transformer/0.5.1:
+    resolution: {integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/class-transformer/-/class-transformer-0.5.1.tgz}
+    name: class-transformer
+    version: 0.5.1
+    dev: false
+
   registry.npmmirror.com/color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/color-convert/-/color-convert-1.9.3.tgz}
     name: color-convert
@@ -4701,6 +4711,12 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: registry.npmmirror.com/picomatch/2.3.1
+
+  registry.npmmirror.com/reflect-metadata/0.1.13:
+    resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz}
+    name: reflect-metadata
+    version: 0.1.13
+    dev: false
 
   registry.npmmirror.com/regenerate-unicode-properties/10.1.0:
     resolution: {integrity: sha512-d1VudCLoIGitcU/hEg2QqvyGZQmdC0Lf8BqdOMXGFSvJP4bNV1+XqbPQeHHLD51Jh4QJJ225dlIFvY4Ly6MXmQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.1.0.tgz}

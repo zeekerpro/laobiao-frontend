@@ -7,13 +7,13 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { session, isLoggedIn } from "$stores/session";
-  import { userService } from "$apis";
   import { log } from "$utils/log";
   import { goto } from "$app/navigation";
   import LogoAnimation from "$components/LogoAnimation.svelte";
   import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
   import StatusBar from "$components/StatusBar.svelte";
   import TabBar from "$components/TabBar.svelte";
+  import User from "$models/User";
 
   let isLoading = true
 
@@ -27,7 +27,7 @@
     // check signed status at first open page
     if(authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
     if(!$isLoggedIn) {
-      const ret = await userService.me()
+      const ret = await User.me()
       if(ret.isSuccess) {
         log.layout("signed success by token")
         $session.user = ret.data

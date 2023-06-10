@@ -1,6 +1,11 @@
+import type User from "$models/User";
 import { writable, derived } from "svelte/store";
 
-export const session = writable({
+type SessionType = {
+  user: User | null
+}
+
+export const session = writable<SessionType>({
   user: null,
 })
 

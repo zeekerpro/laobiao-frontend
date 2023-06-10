@@ -1,21 +1,35 @@
 <script lang="ts">
-  import { userService } from "$apis";
+  import Referral from "$models/Referral";
   import { session } from "$stores/session";
   import { log } from "$utils/log";
+  import { onMount } from "svelte";
 
-  let referralCodes :Array<any> = []
+  let referrals :Array<Referral> = []
+
+  let isLoadingReferral = true
 
   async function createReferral() {
     if(!$session.user) return log.layout("user not login")
-    const ret = await userService.createReferral($session.user)
+    const ret = await Referral.create()
     if(ret.isSuccess) {
-      referralCodes = ret.data
+      referrals = ret.data
       log.layout("create referral success")
     }else{
       log.layout("create referral failed")
     }
   }
 
+  async function getReferrals() {
+    const ret = await Referral.index()
+    if(ret.isSuccess) {
+      referrals = ret.data
+    }
+    isLoadingReferral = false
+  }
+
+  onMount(async () => {
+    getReferrals()
+  })
 
 </script>
 
@@ -24,17 +38,24 @@
 </svelte:head>
 
 <main class="h-full flex justify-center items-center flex-col gap-2">
-  <button class="btn glass" on:click={createReferral}>
+  <button class="btn glass" on:click={createReferral} >
+    {#if isLoadingReferral }
+      <span class="loading loading-spinner"></span>
+    {/if}
     create a referral code
   </button>
 
   <div class="flex flex-col items-center">
     <h1 class="text-xl font-bold">Referral Codes</h1>
-    <div class="flex flex-col items-center">
-      {#each referralCodes as code}
-        <div class="text-xl">{code.code}</div>
-      {/each}
-    </div>
+    {#if isLoadingReferral }
+      <span class="loading loading-ring loading-lg"> loading referrals </span>
+    {:else}
+      <div class="flex flex-col items-center">
+        {#each referrals as referral}
+          <div class="text-xl">{referral.code}</div>
+        {/each}
+      </div>
+    {/if}
   </div>
 
 </main>

@@ -17,6 +17,7 @@ const config = {
       $styles: './src/lib/styles',
       $apis: './src/apis',
       $configs: './src/configs',
+      $models: './src/lib/models',
     }
 	},
 
