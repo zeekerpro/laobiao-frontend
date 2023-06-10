@@ -2,7 +2,7 @@
   import "@styles/app.css";
   import PageTransition from "@components/PageTransition.svelte";
   import { navigating } from "$app/stores";
-  import config  from "./config.json";
+  import { authWhiteList } from "@configs";
   import { guard } from "@utils/client/routeMonitor";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -17,15 +17,15 @@
 
   let isLoading = true
 
-  $: isAuthPage = $page.route.id && config.authWhiteList.includes($page.route.id)
+  $: isAuthPage = $page.route.id && authWhiteList.includes($page.route.id)
 
   // route guard
-  $: if($navigating) { guard($navigating, config.authWhiteList) }
+  $: if($navigating) { guard($navigating, authWhiteList) }
 
   async function checkIsSigned() {
     isLoading = true
     // check signed status at first open page
-    if(config.authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
+    if(authWhiteList.includes($page.route.id || "")) { isLoading = false; return }
     if(!$isLoggedIn) {
       const ret = await userService.me()
       if(ret.isSuccess) {
