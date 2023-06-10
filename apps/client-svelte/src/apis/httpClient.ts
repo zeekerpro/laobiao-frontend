@@ -2,6 +2,8 @@ import { PUBLIC_API_END_POINT, PUBLIC_REQUEST_TIMEOUT, PUBLIC_ACCESS_TOKEN_LABEL
 import { AxiosHttpieClient, ContentTypes, type AxiosHttpieConfig } from "@laobiao/httpie";
 import { browser } from "$app/environment";
 import { log } from "$utils/log";
+import { goto } from "$app/navigation";
+
 
 const baseServiceConfig :AxiosHttpieConfig = {
   baseURL: PUBLIC_API_END_POINT,
@@ -22,18 +24,20 @@ async function createCsrConfig() {
 
   httpConfigForCsr.requestInterceptor = (config) => {
     if(!browser){return config}
-    const token = appStorage["access-token"];
+    const token = appStorage["token"];
     if (token) {
       config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
     }
+    log.bold(`header token: ${config.headers[PUBLIC_ACCESS_TOKEN_LABEL]}`)
     return config;
   },
 
   httpConfigForCsr.responseInterceptor = (response) => {
     if(!browser){return response}
     const newToken = response.headers[PUBLIC_ACCESS_TOKEN_LABEL];
+    log.bold(`newToken: ${newToken}`)
     if (newToken) {
-      appStorage["access-token"] = newToken;
+      appStorage["token"] = newToken;
     }
     return response;
   },
@@ -44,8 +48,8 @@ async function createCsrConfig() {
         break
       case 401:
         if(!browser){break}
-        appStorage.remove("access-token");
-        break
+        appStorage.remove("token");
+        goto("/signin")
       default:
         break
     }

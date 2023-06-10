@@ -6,7 +6,7 @@
 // storage.remove("token")
 // storage.removeAll(["token"])
 
-type AppStorageKey = "access-token" | "theme"
+type AppStorageKey = "token" | "theme"
 
 type StorageActions = {
   clear: () => void
