@@ -16,7 +16,6 @@ export default class User extends BaseModel {
     const userParams = mapKeys(instanceToPlain(this), (value, key) => snakeCase(key))
     const ret = await httpClient.post("/signin", {user: userParams});
     if(ret.isSuccess){ ret.data = plainToInstance(User, ret.data); }
-    debugger
     return ret;
   }
 
