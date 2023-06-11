@@ -3,6 +3,8 @@ import { AxiosHttpieClient, ContentTypes, type AxiosHttpieConfig } from "@laobia
 import { browser } from "$app/environment";
 import { log } from "$utils/log";
 import { goto } from "$app/navigation";
+import { page } from "$app/stores";
+import { get } from "svelte/store"
 
 
 const baseServiceConfig :AxiosHttpieConfig = {
@@ -47,7 +49,9 @@ async function createCsrConfig() {
       case 401:
         if(!browser){break}
         appStorage.remove("token");
-        goto("/signin")
+        const recirectTo = get(page).url.pathname
+        goto(`/signin?redirect=${recirectTo}`)
+        break
       default:
         break
     }

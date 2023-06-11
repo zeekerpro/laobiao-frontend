@@ -6,6 +6,7 @@
   import { session } from "$stores/session";
   import User from "$models/User";
   import { plainToInstance } from "class-transformer";
+  import { page } from "$app/stores";
 
   let signinFormOptions :Array<LbFromItemOption> = [
     {
@@ -33,7 +34,8 @@
 
   let signinFormRef :LbForm;
 
-  async function handleSubmit() {
+  async function handleSubmit(e :Event) {
+    e.preventDefault();
     const formData = await signinFormRef.validate();
     if(!formData){ return; }
 
@@ -45,8 +47,9 @@
     let res = await user.signin()
     isLoading = false
     if(res.isSuccess){
-      goto('/')
       $session.user = res.data
+      const redirect = $page.url.searchParams.get('redirect') || '/'
+      goto(redirect)
     }else{
       const error = res.data?.error;
       // @ts-ignore
