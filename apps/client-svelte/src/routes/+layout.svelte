@@ -13,7 +13,7 @@
   import StatusBar from "$components/layout/StatusBar.svelte";
   import TabBar from "$components/layout/TabBar.svelte";
   import User from "$models/User";
-    import Pageloding from "$components/layout/Pageloding.svelte";
+  import Pageloding from "$components/layout/Pageloding.svelte";
 
   let isLoading = true
 
