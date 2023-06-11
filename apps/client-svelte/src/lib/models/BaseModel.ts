@@ -4,7 +4,5 @@ export default class BaseModel {
   created_at?: Date
   updated_at?: Date
 
-
 	[key :string]: any
-
 }

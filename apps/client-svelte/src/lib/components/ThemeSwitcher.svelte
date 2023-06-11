@@ -33,7 +33,7 @@
   <meta name="theme-color" content={themeBgColor}>
 </svelte:head>
 
-<label class="swap swap-rotate {classes} text-4xl">
+<label class="swap swap-rotate {classes} text-2xl">
 
   <!-- this hidden checkbox controls the state -->
   <input type="checkbox" data-toggle-theme={dataToggleTheme} checked={isDark} on:change={handleChangeTheme} />

@@ -10,7 +10,6 @@
   import { log } from "$utils/log";
   import { goto } from "$app/navigation";
   import LogoAnimation from "$components/LogoAnimation.svelte";
-  import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
   import StatusBar from "$components/StatusBar.svelte";
   import TabBar from "$components/TabBar.svelte";
   import User from "$models/User";
@@ -54,8 +53,7 @@
         <slot></slot>
       </PageTransition>
     {:else}
-      <StatusBar class="h-16" />
-      <main class="h-screen pt-16 pb-24">
+      <main class="h-screen pt-12 pb-24">
         <div class="h-full overflow-scroll">
           <PageTransition class="h-full">
             <slot></slot>
@@ -63,11 +61,10 @@
         </div>
       </main>
       <TabBar class="h-24" />
+      <StatusBar class="h-12" />
     {/if}
   {:else}
     <LogoAnimation class="h-screen flex justify-center" dancing={true} />
   {/if }
-
-  <ThemeSwitcher class="fixed right-4 top-2 z-10" />
 
 </div>

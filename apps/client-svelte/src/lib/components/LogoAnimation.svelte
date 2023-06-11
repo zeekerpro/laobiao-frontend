@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  const { throttle } = lodash;
-  import lodash from "lodash";
 
   let classes = ''
   export { classes as class }
@@ -10,36 +7,19 @@
 
   let logoText = "LaoBiao..."
 
-  let dom: HTMLElement | null = null
-
-  const dynamicStyle = () => {
-    const logoTop = dom?.getBoundingClientRect().top || 0
-    if (logoTop < 1) {
-      dom?.classList.add("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
-    }else{
-      dom?.classList.remove("shadow-[0_1px_2px_-2px_hsl(var(--inc))]");
-    }
-  }
-
-  onMount(async () => {
-    dynamicStyle()
-    window.addEventListener("scroll", throttle(dynamicStyle, 100));
-  })
 </script>
 
-<div bind:this={dom} class="{classes} bg-base-100 py-2 bg-opacity-90">
-  <section class="logo flex items-center justify-center gap-2 font-bold ">
-    <img src="/images/logo.png" class="h-12 {dancing ? 'wave' : ''}" alt="logo" style="--order: 1;" />
-    <span class="
-      text-3xl italic tracking-widest
-      { dancing ? '' : 'bg-gradient-animate bg-gradient-to-r from-purple-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent ' }
-      ">
-      {#each logoText.split("") as letter, index}
-        <span class="tracking-wider {dancing ? 'wave' : ''}" style="--order: {index + 1}">{letter}</span>
-      {/each}
-    </span>
-  </section>
-</div>
+<section class="{classes} logo flex items-center justify-center gap-2 font-bold ">
+  <img src="/images/logo.png" class="h-8 {dancing ? 'wave' : ''}" alt="logo" style="--order: 1;" />
+  <span class="
+    text-xl italic tracking-widest
+    { dancing ? '' : 'bg-gradient-animate bg-gradient-to-r from-purple-500 via-emerald-500 to-sky-500 bg-clip-text text-transparent ' }
+    ">
+    {#each logoText.split("") as letter, index}
+      <span class="tracking-wider {dancing ? 'wave' : ''}" style="--order: {index + 1}">{letter}</span>
+    {/each}
+  </span>
+</section>
 
 <style lang="scss">
 .bg-gradient-animate {
