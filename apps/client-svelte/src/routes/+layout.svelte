@@ -1,5 +1,6 @@
 <script lang="ts">
   import "$styles/app.css";
+  import Preloading from "$components/layout/Preloading.svelte";
   import PageTransition from "$components/PageTransition.svelte";
   import { navigating } from "$app/stores";
   import { authWhiteList } from "$configs";
@@ -9,7 +10,6 @@
   import { session, isLoggedIn } from "$stores/session";
   import { log } from "$utils/log";
   import { goto } from "$app/navigation";
-  import LogoAnimation from "$components/LogoAnimation.svelte";
   import StatusBar from "$components/StatusBar.svelte";
   import TabBar from "$components/TabBar.svelte";
   import User from "$models/User";
@@ -70,7 +70,7 @@
       <StatusBar class="h-12" />
     {/if}
   {:else}
-    <LogoAnimation class="h-screen flex justify-center" dancing={true} />
+    <Preloading />
   {/if }
 
 </div>
