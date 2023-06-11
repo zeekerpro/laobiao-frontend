@@ -12,7 +12,9 @@
   <input id="side-toggle" type="checkbox" class="drawer-toggle" bind:checked={isOpen} />
   <div class="drawer-content">
     <label for="side-toggle" class="text-2xl">
-      <Icon icon="line-md:close-to-menu-alt-transition" class="{isOpen ? 'hidden' : ''} " ></Icon>
+      {#key isOpen}
+        <Icon icon="line-md:close-to-menu-alt-transition" ></Icon>
+      {/key}
     </label>
   </div>
   <aside class="drawer-side">
