@@ -23,8 +23,8 @@
 </script>
 
 <section class="mt-16 md:mt-24 " >
-  <div bind:this={logoDom} class="sticky top-0 w-full bg-base-100 bg-opacity-90 py-3">
-    <LogoAnimation />
+  <div bind:this={logoDom} class="sticky top-0 w-full bg-base-100 bg-opacity-90 py-3 flex justify-center ">
+    <LogoAnimation class="scale-150" />
   </div>
   <div class="sm:max-w-md mx-auto ">
     <slot></slot>
