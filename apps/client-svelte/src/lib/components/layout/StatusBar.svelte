@@ -1,6 +1,6 @@
 <script lang="ts">
-  import LogoAnimation from "$components/LogoAnimation.svelte";
-  import AsideDrawer from "$components/AsideDrawer.svelte";
+  import LogoAnimation from "$components/layout/LogoAnimation.svelte";
+  import AsideDrawer from "$components/layout/AsideDrawer.svelte";
   import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
 
   let classes = ''; export { classes as class };

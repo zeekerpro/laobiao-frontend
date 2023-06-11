@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LogoAnimation from "$components/LogoAnimation.svelte";
+  import LogoAnimation from "$components/layout/LogoAnimation.svelte";
   import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
   import { onMount } from "svelte";
   import lodash from "lodash";

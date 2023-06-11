@@ -1,5 +1,5 @@
 <script>
-  import LogoAnimation from "$components/LogoAnimation.svelte";
+  import LogoAnimation from "$components/layout/LogoAnimation.svelte";
   import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
 </script>
 
