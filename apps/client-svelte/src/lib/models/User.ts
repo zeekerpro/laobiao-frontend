@@ -1,7 +1,8 @@
 import httpClient from "$apis/httpClient";
 import { instanceToPlain, plainToInstance } from "class-transformer";
 import BaseModel from "./BaseModel";
-import { camelCase, mapKeys, snakeCase } from "lodash";
+import lodash from "lodash";
+const { mapKeys, snakeCase }  = lodash ;
 
 export default class User extends BaseModel {
 
