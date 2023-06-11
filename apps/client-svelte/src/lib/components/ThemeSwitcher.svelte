@@ -33,12 +33,12 @@
   <meta name="theme-color" content={themeBgColor}>
 </svelte:head>
 
-<div class="{classes}">
-  <button data-toggle-theme={dataToggleTheme} class="text-3xl my-1" on:click={handleChangeTheme}>
-    {#if !!isDark }
-      <Icon icon="line-md:sunny-outline-to-moon-loop-transition" class="text-[#ffb62e]" />
-    {:else}
-      <Icon icon="line-md:moon-to-sunny-outline-loop-transition" class="text-[#ffd22e]" />
-    {/if}
-  </button>
-</div>
+<label class="swap swap-rotate {classes} text-4xl">
+
+  <!-- this hidden checkbox controls the state -->
+  <input type="checkbox" data-toggle-theme={dataToggleTheme} checked={isDark} on:change={handleChangeTheme} />
+
+  <Icon class="swap-on text-[#ffb62e]" icon="line-md:sunny-outline-to-moon-loop-transition" />
+  <Icon class="swap-off text-[#ffd22e]" icon="line-md:moon-to-sunny-outline-loop-transition" />
+
+</label>
