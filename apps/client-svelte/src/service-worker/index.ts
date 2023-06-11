@@ -44,6 +44,7 @@ self.addEventListener('fetch', (event) => {
 
     // `build`/`files` can always be served from the cache
     if (ASSETS.includes(url.pathname)) {
+      debugger
       // @ts-ignore
       console.log("result from cache ..")
       return cache.match(event.request);
