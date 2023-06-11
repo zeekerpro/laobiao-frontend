@@ -55,9 +55,15 @@
     {:else}
       <main class="h-screen pt-12 pb-24">
         <div class="h-full overflow-scroll">
+          {#if $navigating}
+          <div class="h-full flex justify-center items-center">
+            <span class="loading loading-bars loading-md"></span>
+          </div>
+          {:else}
           <PageTransition class="h-full">
             <slot></slot>
           </PageTransition>
+          {/if}
         </div>
       </main>
       <TabBar class="h-24" />

@@ -10,7 +10,10 @@ export { classes as class }
 
 </script>
 
-<footer class="{classes} fixed bottom-0 w-full overflow-hidden">
+<footer class="{classes}
+  bg-base-100 bg-opacity-90
+  fixed bottom-0 w-full overflow-hidden
+  ">
   <div class="tabs flex justify-between border-t border-t-primary ">
     {#each tabs as tab}
       <a class="tab py-2
