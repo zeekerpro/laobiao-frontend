@@ -1,13 +1,14 @@
-import { redirect, type Navigation } from "@sveltejs/kit";
+import type { BeforeNavigate } from "@sveltejs/kit";
 import { isLoggedIn } from "$stores/session";
+import { goto } from "$app/navigation"
 
-export async function guard(navigation: Navigation, authWhiteList: string[] = []) {
+export function guard(navigation: BeforeNavigate, authWhiteList: string[] = []) {
 
   if(authWhiteList.includes(navigation.to?.route.id || "")) { return }
 
-  if(navigation.from?.route.id === navigation.to?.route.id) { return }
+  if(navigation.from?.route.id === navigation.to?.route.id) { navigation.cancel() }
 
-  if(!isLoggedIn){ throw redirect(307, "/signin") }
+  if(!isLoggedIn){ goto("/signin") }
 
 }
 

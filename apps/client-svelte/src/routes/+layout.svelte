@@ -9,7 +9,7 @@
   import { page } from "$app/stores";
   import { session, isLoggedIn } from "$stores/session";
   import { log } from "$utils/log";
-  import { goto } from "$app/navigation";
+  import { beforeNavigate, goto } from "$app/navigation";
   import StatusBar from "$components/layout/StatusBar.svelte";
   import TabBar from "$components/layout/TabBar.svelte";
   import User from "$models/User";
@@ -19,8 +19,7 @@
 
   $: isAuthPage = $page.route.id && authWhiteList.includes($page.route.id)
 
-  // route guard
-  $: if($navigating) { guard($navigating, authWhiteList) }
+  beforeNavigate(guard)
 
   async function checkIsSigned() {
     isLoading = true
