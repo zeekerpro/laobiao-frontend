@@ -34,10 +34,6 @@
 
   onMount(async () => {
     console.log("index page onmount....")
-  })
-
-  afterNavigate(() => {
-    console.log("index page afterNavigate....")
     getReferrals()
   })
 
@@ -48,7 +44,6 @@
 </svelte:head>
 
 <PageTransition>
-
 <main class="flex justify-center items-center flex-col gap-2">
   <button class="btn glass" on:click={createReferral} >
     <span class="loading loading-spinner"></span>
