@@ -2,6 +2,7 @@
   import { fly } from "svelte/transition";
   import { navigating, page } from "$app/stores";
   import { tabs } from "$configs";
+    import { afterNavigate, beforeNavigate } from "$app/navigation";
 
   export let duration = { in: 600, out: 0}
   let flyX = -200
@@ -19,12 +20,16 @@
   let classes = ""
   export { classes as class }
 
+  let refresh = false
+  beforeNavigate(() => refresh = false)
+  afterNavigate(() => refresh = true)
+
 </script>
 
-{#key $page.url.pathname}
+{#if refresh}
 <div in:fly={{ x: flyX, duration: duration.in, delay: duration.out }} class={classes} >
   <slot></slot>
 </div>
-{/key}
+{/if}
 
 
