@@ -6,8 +6,8 @@
   import Pageloding from "$components/layout/Pageloding.svelte";
 </script>
 
-<main class="h-screen pt-12 pb-24">
-  <div class="h-full overflow-scroll">
+<main class="h-screen pt-12 pb-24 fixed top-0">
+  <div class="h-full w-screen overflow-scroll ">
     {#if !!$navigating} <Pageloding /> {/if}
     <PageTransition class="h-full">
       <slot></slot>
