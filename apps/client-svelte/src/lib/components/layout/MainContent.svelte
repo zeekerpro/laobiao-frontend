@@ -16,7 +16,7 @@
   </div>
   </PageTransition>
 </main>
-<StatusBar class="h-12 bg-opacity-95" />
+<StatusBar class="h-12 bg-opacity-95 z-10" />
 <TabBar class="h-24" />
 
 <style>
