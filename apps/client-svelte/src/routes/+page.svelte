@@ -20,6 +20,8 @@
   }
 
   async function getReferrals() {
+    console.log("get referrals")
+    debugger
     const ret = await Referral.index()
     if(ret.isSuccess) {
       referrals = ret.data
@@ -39,9 +41,7 @@
 
 <main class="h-full flex justify-center items-center flex-col gap-2">
   <button class="btn glass" on:click={createReferral} >
-    {#if isLoadingReferral }
-      <span class="loading loading-spinner"></span>
-    {/if}
+    <!-- <span class="loading loading-spinner"></span> -->
     create a referral code
   </button>
 

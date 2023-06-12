@@ -10,7 +10,7 @@ export function guard(navigation: BeforeNavigate) {
   log.endpoint(`route from: ${navigation.from.route.id}`)
   log.endpoint(`route to: ${navigation.to?.route.id}`)
 
-  if(authWhiteList.includes(navigation.to?.route.id)) { return }
+  if(!(navigation.to) || authWhiteList.includes(navigation.to?.route.id)) { return }
 
   if(navigation.from?.route.id === navigation.to?.route.id) { navigation.cancel(); return; }
 

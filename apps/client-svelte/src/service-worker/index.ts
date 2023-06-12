@@ -44,9 +44,8 @@ self.addEventListener('fetch', (event) => {
 
     // `build`/`files` can always be served from the cache
     if (ASSETS.includes(url.pathname)) {
-      debugger
       // @ts-ignore
-      console.log("result from cache ..")
+      console.log(`request: ${url.pathname}, result from cache ..`)
       return cache.match(event.request);
     }
 
@@ -59,10 +58,12 @@ self.addEventListener('fetch', (event) => {
       console.log("fetching from network..")
 
       // @ts-ignore
-      if (response.status === 200) {
+      if (response.status === 200
+          && !url.pathname.startsWith('/api')
+          && ['basic', 'default'].includes(response.type) ) {
         // @ts-ignore
         cache.put(event.request, response.clone());
-
+        console.log(`response for ${response.url} was cached..`)
         limitCacheCount(CACHE, MAX_ITEMS);
       }
 
