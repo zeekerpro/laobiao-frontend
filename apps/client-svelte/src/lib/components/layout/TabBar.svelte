@@ -13,8 +13,9 @@ export { classes as class }
 <footer class="{classes}
   bg-base-100
   fixed bottom-0 w-full overflow-hidden
+  shadow-[0_-1px_2px_-2px_hsl(var(--inc))]
   ">
-  <div class="tabs flex justify-between border-t border-t-primary ">
+  <div class="tabs flex justify-between">
     {#each tabs as tab}
       <a class="tab py-2
         {currentPath == tab.path ? 'tab-active text-secondary-focus' : ''}
