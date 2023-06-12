@@ -3,6 +3,7 @@
   import { session } from "$stores/session";
   import { log } from "$utils/log";
   import { onMount } from "svelte";
+  import { afterNavigate } from "$app/navigation";
 
   let referrals :Array<Referral> = []
 
@@ -24,12 +25,18 @@
     const ret = await Referral.index()
     if(ret.isSuccess) {
       referrals = ret.data
+    }else{
+      log.layout("get referrals failed")
     }
     isLoadingReferral = false
   }
 
   onMount(async () => {
     console.log("index page onmount....")
+  })
+
+  afterNavigate(() => {
+    console.log("index page afterNavigate....")
     getReferrals()
   })
 

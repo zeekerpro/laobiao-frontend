@@ -8,7 +8,7 @@
 </script>
 
 <div class="{classes}
-  bg-base-100 bg-opacity-90
+  bg-base-100
   fixed top-0
   flex items-center
   w-full px-4 py-2

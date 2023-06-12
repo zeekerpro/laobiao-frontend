@@ -6,14 +6,26 @@
   import Pageloding from "$components/layout/Pageloding.svelte";
 </script>
 
-<main class="h-screen pt-12 pb-24 fixed top-0">
-  <div class="h-full w-screen overflow-scroll ">
-    {#if !!$navigating} <Pageloding /> {/if}
-    <PageTransition class="h-full">
-      <slot></slot>
-    </PageTransition>
+<main class="h-screen pt-12 pb-24
+  overflow-scroll scrollbar-hide scroll-smooth
+  ">
+  {#if !!$navigating} <Pageloding /> {/if}
+  <PageTransition>
+  <div class="my-2">
+    <slot></slot>
   </div>
+  </PageTransition>
 </main>
+<StatusBar class="h-12 bg-opacity-95" />
 <TabBar class="h-24" />
-<StatusBar class="h-12" />
 
+<style>
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

@@ -11,7 +11,7 @@ export { classes as class }
 </script>
 
 <footer class="{classes}
-  bg-base-100 bg-opacity-90
+  bg-base-100
   fixed bottom-0 w-full overflow-hidden
   ">
   <div class="tabs flex justify-between border-t border-t-primary ">
