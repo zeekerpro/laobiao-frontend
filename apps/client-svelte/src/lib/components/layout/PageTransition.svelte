@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { navigating } from "$app/stores";
+  import { navigating, page } from "$app/stores";
   import { tabs } from "$configs";
 
   export let duration = { in: 600, out: 0}
@@ -21,8 +21,10 @@
 
 </script>
 
+{#key $page.url.pathname}
 <div in:fly={{ x: flyX, duration: duration.in, delay: duration.out }} class={classes} >
   <slot></slot>
 </div>
+{/key}
 
 
