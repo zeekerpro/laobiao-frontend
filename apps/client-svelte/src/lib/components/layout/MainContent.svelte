@@ -9,7 +9,7 @@
   overflow-scroll scrollbar-hide scroll-smooth
   ">
   {#if !!$navigating} <Pageloding /> {/if}
-  <div class="my-2">
+  <div class="h-full mx-2">
     <slot></slot>
   </div>
 </main>
