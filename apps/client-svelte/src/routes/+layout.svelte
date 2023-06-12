@@ -2,7 +2,7 @@
   import "$styles/app.css";
   import Preloading from "$components/layout/Preloading.svelte";
   import PageTransition from "$components/layout/PageTransition.svelte";
-  import { navigating } from "$app/stores";
+  import MainContent from "$components/layout/MainContent.svelte";
   import { authWhiteList } from "$configs";
   import { guard } from "$utils/client/routeMonitor";
   import { onMount } from "svelte";
@@ -10,10 +10,7 @@
   import { session, isLoggedIn } from "$stores/session";
   import { log } from "$utils/log";
   import { beforeNavigate, goto } from "$app/navigation";
-  import StatusBar from "$components/layout/StatusBar.svelte";
-  import TabBar from "$components/layout/TabBar.svelte";
   import User from "$models/User";
-  import Pageloding from "$components/layout/Pageloding.svelte";
 
   let isLoading = true
 
@@ -47,28 +44,18 @@
 
 <div class="flow-root">
 
-  {#if !isLoading }
-    {#if isAuthPage}
-      <PageTransition>
-        <slot></slot>
-      </PageTransition>
-    {:else}
-      <main class="h-screen pt-12 pb-24">
-        <div class="h-full overflow-scroll">
-          {#if $navigating}
-            <Pageloding />
-          {:else}
-          <PageTransition class="h-full">
-            <slot></slot>
-          </PageTransition>
-          {/if}
-        </div>
-      </main>
-      <TabBar class="h-24" />
-      <StatusBar class="h-12" />
-    {/if}
-  {:else}
+  {#if isLoading}
     <Preloading />
-  {/if }
+  {/if}
+
+  {#if isAuthPage}
+    <PageTransition>
+      <slot></slot>
+    </PageTransition>
+  {:else}
+    <MainContent >
+      <slot></slot>
+    </MainContent>
+  {/if}
 
 </div>

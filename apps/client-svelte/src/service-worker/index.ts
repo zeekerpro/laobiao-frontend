@@ -46,7 +46,9 @@ self.addEventListener('fetch', (event) => {
     if (ASSETS.includes(url.pathname)) {
       // @ts-ignore
       console.log(`request: ${url.pathname}, result from cache ..`)
-      return cache.match(event.request);
+      // @ts-ignore
+      const response = cache.match(event.request);
+      return response
     }
 
     // for everything else, try the network first, but
@@ -58,12 +60,9 @@ self.addEventListener('fetch', (event) => {
       console.log("fetching from network..")
 
       // @ts-ignore
-      if (response.status === 200
-          && !url.pathname.startsWith('/api')
-          && ['basic', 'default'].includes(response.type) ) {
+      if (response.status === 200) {
         // @ts-ignore
         cache.put(event.request, response.clone());
-        console.log(`response for ${response.url} was cached..`)
         limitCacheCount(CACHE, MAX_ITEMS);
       }
 
