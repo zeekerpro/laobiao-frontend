@@ -1,7 +1,6 @@
 <script lang="ts">
   import "$styles/app.css";
   import LayoutContainer from "$components/layout/LayoutContainer.svelte";
-  import PageTransition from "$components/layout/PageTransition.svelte";
   import MainContent from "$components/layout/MainContent.svelte";
   import { authWhiteList } from "$configs";
   import { guard } from "$utils/client/routeMonitor";
@@ -17,9 +16,7 @@
 <LayoutContainer>
 
 {#if isAuthPage}
-  <PageTransition>
-    <slot></slot>
-  </PageTransition>
+  <slot></slot>
 {:else}
   <MainContent >
     <slot></slot>

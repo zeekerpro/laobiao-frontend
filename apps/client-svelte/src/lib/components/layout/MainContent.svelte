@@ -1,5 +1,4 @@
 <script>
-  import PageTransition from "$components/layout/PageTransition.svelte";
   import { navigating } from "$app/stores";
   import StatusBar from "$components/layout/StatusBar.svelte";
   import TabBar from "$components/layout/TabBar.svelte";
@@ -10,11 +9,9 @@
   overflow-scroll scrollbar-hide scroll-smooth
   ">
   {#if !!$navigating} <Pageloding /> {/if}
-  <PageTransition>
   <div class="my-2">
     <slot></slot>
   </div>
-  </PageTransition>
 </main>
 <StatusBar class="h-12 bg-opacity-95 z-10" />
 <TabBar class="h-24" />

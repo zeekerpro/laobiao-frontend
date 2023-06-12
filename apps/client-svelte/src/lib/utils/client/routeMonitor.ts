@@ -7,8 +7,7 @@ import { authWhiteList } from "$configs";
 
 export function guard(navigation: BeforeNavigate) {
 
-  log.endpoint(`route from: ${navigation.from.route.id}`)
-  log.endpoint(`route to: ${navigation.to?.route.id}`)
+  log.endpoint(`route guard: ${navigation.from.route.id} -> ${navigation.to?.route.id}`)
 
   if(!(navigation.to) || authWhiteList.includes(navigation.to?.route.id)) { return }
 
