@@ -1,6 +1,6 @@
 <script lang="ts">
   import "$styles/app.css";
-  import Preloading from "$components/layout/Preloading.svelte";
+  import LayoutContainer from "$components/layout/LayoutContainer.svelte";
   import PageTransition from "$components/layout/PageTransition.svelte";
   import MainContent from "$components/layout/MainContent.svelte";
   import { authWhiteList } from "$configs";
@@ -14,19 +14,16 @@
 
 </script>
 
-<div class="flow-root">
+<LayoutContainer>
 
+{#if isAuthPage}
+  <PageTransition>
+    <slot></slot>
+  </PageTransition>
+{:else}
+  <MainContent >
+    <slot></slot>
+  </MainContent>
+{/if}
 
-  {#if isAuthPage}
-    <PageTransition>
-      <slot></slot>
-    </PageTransition>
-  {:else}
-    <MainContent >
-      <slot></slot>
-    </MainContent>
-  {/if}
-
-  <Preloading />
-
-</div>
+</LayoutContainer>

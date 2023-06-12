@@ -35,9 +35,11 @@
 
 </script>
 
+<div class="flow-root">
 {#if isLoading}
-  <div class="h-screen w-screen flex justify-center items-center absolute top-0 left-0 bg-base-100">
-    <LogoAnimation class="h-screen flex justify-center" dancing={true} />
-    <ThemeSwitcher class="fixed top-3 right-3" />
-  </div>
+  <ThemeSwitcher class="fixed top-3 right-3" />
+  <LogoAnimation class="h-screen flex justify-center" dancing={true} />
+{:else}
+  <slot></slot>
 {/if}
+</div>
