@@ -20,6 +20,8 @@
   let classes = ""
   export { classes as class }
 
+  // user hooks to toggle transition, do not use $page store
+  // https://stackoverflow.com/questions/71702763/onmount-is-being-called-twice
   let refresh = false
   beforeNavigate(() => refresh = false)
   afterNavigate(() => refresh = true)
