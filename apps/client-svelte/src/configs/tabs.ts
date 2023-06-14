@@ -16,16 +16,8 @@ export const tabs = [
       active: "mdi:chat",
       inactive: "mdi:chat-outline"
     }
-  },
-  {
-    index: 3,
-    label: "profile",
-    path: "/profile",
-    icon: {
-      active: "mdi:account",
-      inactive: "mdi:account-outline"
-    }
   }
+
 ]
 
 

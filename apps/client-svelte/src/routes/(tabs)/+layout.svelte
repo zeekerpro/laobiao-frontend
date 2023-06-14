@@ -1,7 +1,7 @@
-<script lang="ts">
-  import TabsContainer from "$components/layout/TabsContainer.svelte";
+<script>
+  import TabsLayouter from "$components/layout/tabs/TabsLayouter.svelte";
 </script>
 
-<TabsContainer>
+<TabsLayouter>
   <slot></slot>
-</TabsContainer>
+</TabsLayouter>

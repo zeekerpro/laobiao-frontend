@@ -1,6 +1,6 @@
 <script>
   import LogoAnimation from "$components/layout/LogoAnimation.svelte";
-  import ThemeSwitcher from "$components/ThemeSwitcher.svelte";
+  import ThemeSwitcher from "$components/layout/ThemeSwitcher.svelte";
   import { onMount } from "svelte";
   import { session, isLoggedIn } from "$stores/session";
   import { log } from "$utils/log";

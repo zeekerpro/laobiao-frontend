@@ -5,12 +5,9 @@ import { tabs }  from "$configs"
 
 $: currentPath = $page.url.pathname
 
-let classes = ''
-export { classes as class }
-
 </script>
 
-<footer class="{classes}
+<footer class="h-24
   bg-base-100
   fixed bottom-0 w-full overflow-hidden
   shadow-[0_-1px_2px_-2px_hsl(var(--inc))]

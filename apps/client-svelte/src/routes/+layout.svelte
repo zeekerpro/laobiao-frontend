@@ -1,12 +1,12 @@
 <script lang="ts">
   import "$styles/app.css";
-  import LayoutContainer from "$components/layout/LayoutContainer.svelte";
+  import AppContainer from "$components/layout/AppContainer.svelte";
   import { guard } from "$utils/client/routeMonitor";
   import { beforeNavigate } from "$app/navigation";
 
   beforeNavigate(guard)
 </script>
 
-<LayoutContainer>
+<AppContainer>
   <slot></slot>
-</LayoutContainer>
+</AppContainer>
