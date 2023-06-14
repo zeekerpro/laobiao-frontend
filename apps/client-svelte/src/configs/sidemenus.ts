@@ -1,8 +1,8 @@
 export const sidemenus = [
   {
     index: 1,
-    label: "refferals",
-    link: "/refferals",
+    label: "referrals",
+    link: "/referrals",
     icon: "mdi:xml"
   },
 ]
