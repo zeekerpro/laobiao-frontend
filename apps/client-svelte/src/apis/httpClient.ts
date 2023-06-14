@@ -13,7 +13,7 @@ const baseServiceConfig :AxiosHttpieConfig = {
   withCredentials:false,
   headers: {
     'Content-Type': ContentTypes.JSON,
-    'Accept': ContentTypes.JSON
+    'Accept': ContentTypes.JSON,
   }
 }
 
@@ -30,6 +30,10 @@ async function createCsrConfig() {
     if (token) {
       config.headers[PUBLIC_ACCESS_TOKEN_LABEL] = token;
     }
+    // prefer to use etag to check if the resource is updated, always request the resource from server
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/etag
+    // another way is to add a query param like ?_t=timestamp
+    config.headers.delete("If-None-Match")
     return config;
   },
 

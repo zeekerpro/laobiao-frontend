@@ -36,7 +36,7 @@ export default class User extends BaseModel {
   }
 
   static async me(){
-    return httpClient.get(`/me`, { t: new Date().getTime()} );
+    return httpClient.get(`/me`);
   }
 
 }
