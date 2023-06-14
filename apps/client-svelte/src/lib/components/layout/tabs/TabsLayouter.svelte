@@ -2,7 +2,7 @@
   import MainContainer from "$components/layout/MainContainer.svelte";
   import TabNavBar from "$components/layout/tabs/TabNavBar.svelte";
   import TabStatusBar from "$components/layout/tabs/TabStatusBar.svelte";
-  import { activeTab, showView, viewStack }  from "$stores/layouts"
+  import { activeTab, showView }  from "$stores/layouts"
   import Icon from "@iconify/svelte"
   import NavWrapper from "$components/layout/NavWrapper.svelte";
   import { back } from "$utils/client/routeMonitor";
@@ -13,32 +13,29 @@
 
 </script>
 
-<div class="flex flex-nowrap
-  w-screen h-screen
-  relative
-  transition-all
-  { $showView ? 'left-[-100%]' : 'left-0'}
-  ">
+<div >
 
-  <MainContainer class="tab-viewer shrink-0 ">
+  <MainContainer class="tab-viewer">
     <svelte:component this={$activeTab.view}/>
     <TabStatusBar />
     <TabNavBar />
   </MainContainer>
 
-  <MainContainer class="detail-viewer shrink-0 z-50" >
-    {$showView}
-    {$viewStack}
 
-    <slot></slot>
-
-    <!-- nav bar -->
-    <NavWrapper>
-      <button on:click={handleBack} class="btn" >
-        <Icon icon="ion:chevron-back" class="text-xl" />
-      </button>
-    </NavWrapper>
-  </MainContainer>
+  <div class="drawer drawer-end z-50">
+    <input id="detail-viewer-toggle" type="checkbox" class="drawer-toggle" bind:checked={$showView}  />
+    <div class="drawer-side">
+      <MainContainer class="bg-base-100 bg-opacity-100">
+        <slot></slot>
+        <!-- nav bar -->
+        <NavWrapper class="flex items-center">
+          <button on:click|preventDefault={handleBack} class="btn btn-ghost btn-sm" >
+            <Icon icon="ion:chevron-back" class="text-xl" />
+          </button>
+        </NavWrapper>
+      </MainContainer>
+    </div>
+  </div>
 
 </div>
 
