@@ -33,8 +33,11 @@
       <ul class="menu mt-8 flex gap-2">
 
       {#each sidemenus as sidemenu}
-        <li>
-          <a href="{sidemenu.path}" class="text-lg font-medium capitalize">
+        <li  >
+          <a href="{sidemenu.path}"
+            class="text-lg font-medium capitalize"
+            on:click|stopPropagation={() => isOpen = false }
+            >
             <Icon icon="{sidemenu.icon}" class="text-2xl mr-3" />
             <span> {sidemenu.label} </span>
             <Icon icon="icon-park-outline:right" class="text-xl" />
