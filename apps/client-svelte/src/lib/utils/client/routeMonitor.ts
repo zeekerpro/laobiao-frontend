@@ -32,8 +32,6 @@ export function follow(navigation :AfterNavigate){
 export function back(){
   const stack = get(viewStack)
   stack.pop()
-  if(stack.length > 0){
-    goto(stack.pop())
-  }
+  if(stack.length > 0){ goto(stack.pop()) }
   viewStack.update((views) => stack)
 }
