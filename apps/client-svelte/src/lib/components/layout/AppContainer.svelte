@@ -36,13 +36,13 @@
 
 </script>
 
-<div class="flow-root">
+<div class="flow-root overflow-hidden scrollbar-hide">
 {#if isLoading}
   <ThemeSwitcher class="fixed top-3 right-3" />
   <LogoAnimation class="h-screen flex justify-center" dancing={true} />
 {:else}
   {#if $isLoggedIn}
-    <TabsLayouter />
+    <TabsLayouter><slot></slot></TabsLayouter>
   {:else}
     <slot></slot>
   {/if}

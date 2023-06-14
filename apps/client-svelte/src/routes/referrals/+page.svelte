@@ -3,7 +3,6 @@
   import { session } from "$stores/session";
   import { log } from "$utils/log";
   import { onMount } from "svelte";
-  import PageTransition from "$components/layout/PageTransition.svelte";
 
   let referrals :Array<Referral> = []
 
@@ -35,14 +34,12 @@
     console.log("index page onmount....")
     getReferrals()
   })
-
 </script>
 
 <svelte:head>
   <title>Referrals</title>
 </svelte:head>
 
-<PageTransition>
 <main class="flex justify-center items-center flex-col gap-2">
   <button class="btn glass" on:click={createReferral} >
     <span class="loading loading-spinner"></span>
@@ -62,4 +59,3 @@
     {/if}
   </div>
 </main>
-</PageTransition>

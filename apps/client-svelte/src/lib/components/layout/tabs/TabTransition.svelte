@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { tabsInfo } from "$stores/tabs";
+  import { tabsInfo } from "$stores/layouts";
 
   export let duration = { in: 600, out: 0}
   let flyX = 200

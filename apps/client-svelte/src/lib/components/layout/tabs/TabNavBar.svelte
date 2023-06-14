@@ -1,7 +1,7 @@
 <script lang="ts">
 import Icon from "@iconify/svelte"
 import { tabs } from "$configs"
-import { tabsInfo }  from "$stores/tabs"
+import { tabsInfo }  from "$stores/layouts"
 
 $: activeTabIndex = $tabsInfo.activeTabIndex
 

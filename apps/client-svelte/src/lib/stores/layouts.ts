@@ -11,3 +11,8 @@ export const activeTab = derived(
   $tabsInfo => tabs[$tabsInfo.activeTabIndex]
 )
 
+export const viewStack = writable([])
+export const showView = derived(
+  viewStack,
+  $viewStack => $viewStack.length > 0
+)
