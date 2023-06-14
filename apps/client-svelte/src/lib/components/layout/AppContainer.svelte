@@ -1,6 +1,7 @@
 <script>
   import LogoAnimation from "$components/layout/LogoAnimation.svelte";
   import ThemeSwitcher from "$components/layout/ThemeSwitcher.svelte";
+  import TabsLayouter from "$components/layout/tabs/TabsLayouter.svelte";
   import { onMount } from "svelte";
   import { session, isLoggedIn } from "$stores/session";
   import { log } from "$utils/log";
@@ -40,6 +41,10 @@
   <ThemeSwitcher class="fixed top-3 right-3" />
   <LogoAnimation class="h-screen flex justify-center" dancing={true} />
 {:else}
-  <slot></slot>
+  {#if $isLoggedIn}
+    <TabsLayouter />
+  {:else}
+    <slot></slot>
+  {/if}
 {/if}
 </div>
