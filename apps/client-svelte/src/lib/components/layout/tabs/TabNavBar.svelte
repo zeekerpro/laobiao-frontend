@@ -1,10 +1,7 @@
 <script lang="ts">
-import {page} from "$app/stores"
 import Icon from "@iconify/svelte"
-import { tabs }  from "$configs"
-
-$: currentPath = $page.url.pathname
-
+import { tabs } from "$configs"
+import { activeTabIndex }  from "$stores/tabs"
 </script>
 
 <footer class="h-24
@@ -14,16 +11,19 @@ $: currentPath = $page.url.pathname
   ">
   <div class="tabs flex justify-between">
     {#each tabs as tab}
-      <a class="tab py-2
-        {currentPath == tab.path ? 'tab-active text-secondary-focus' : ''}
+      <button class="tab py-2
+        { $activeTabIndex == tab.index ? 'tab-active text-secondary-focus' : ''}
         grow h-auto
         flex flex-col items-center justify-center flex-nowrap
         "
-        href={tab.path}
+        on:click={() => $activeTabIndex = tab.index}
         >
-        <Icon icon="{currentPath == tab.path ? tab.icon.active: tab.icon.inactive}" class="text-3xl my-1 " />
+        <Icon
+          icon="{ $activeTabIndex == tab.index ? tab.icon.active: tab.icon.inactive}"
+          class="text-3xl my-1 "
+        />
         <span class="text-xs">{tab.label}</span>
-      </a>
+      </button>
     {/each}
   </div>
 </footer>

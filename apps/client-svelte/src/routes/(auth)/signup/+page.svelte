@@ -1,5 +1,5 @@
 <script>
-import Signup from "$views/authentication/Signup.svelte";
+import Signup from "$components/views/authentication/Signup.svelte";
 </script>
 
 <svelte:head>

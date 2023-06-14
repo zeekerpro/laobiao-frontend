@@ -1,12 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { page } from "$app/stores";
   import PageTransition from "$components/layout/PageTransition.svelte";
   import Icon from "@iconify/svelte"
 
-  onMount(async () => {
-    console.log(` page ${$page.url.pathname} onmount....`)
-  })
 </script>
 
 <PageTransition>

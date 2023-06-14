@@ -1,12 +1,12 @@
 export const tabs = [
   {
-    index: 1,
+    index: 0,
     label: "home",
-    path: "/",
+    path: "/", // todo: delete
     icon: {
       active: "mdi:home",
       inactive: "mdi:home-outline"
-    }
+    },
   },
   {
     index: 2,
@@ -17,7 +17,6 @@ export const tabs = [
       inactive: "mdi:chat-outline"
     }
   }
-
 ]
 
 

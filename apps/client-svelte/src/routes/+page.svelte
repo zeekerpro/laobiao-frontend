@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { goto } from "$app/navigation";
-  onMount(async () => { goto("/home") })
+import TabsLayouter from "$components/layout/tabs/TabsLayouter.svelte";
 </script>
+
+<TabsLayouter></TabsLayouter>

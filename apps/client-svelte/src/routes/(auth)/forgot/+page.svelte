@@ -1,5 +1,5 @@
 <script>
-  import Forgot from "$views/authentication/Forgot.svelte";
+  import Forgot from "$components/views/authentication/Forgot.svelte";
 </script>
 
 <svelte:head>
