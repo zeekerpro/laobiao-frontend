@@ -1,21 +1,9 @@
 <script lang="ts">
   import TabTransition from "$components/layout/tabs/TabTransition.svelte";
   import Icon from "@iconify/svelte"
-  import { onDestroy, onMount } from "svelte";
+  import { activeTab } from "$stores/layouts";
 
-  let showAddChat = false;
-
-  let showAddChatTimer :any;
-
-  onMount(() => {
-    showAddChatTimer = setTimeout(() => {
-      showAddChat = true;
-    }, 1000);
-  })
-
-  onDestroy(() => {
-    clearTimeout(showAddChatTimer);
-  })
+  $: isChatTab = $activeTab?.label === 'chat';
 
 </script>
 
@@ -23,16 +11,13 @@
 
 this is chat page
 
-{#key showAddChat}
-  <button class="btn btn-circle
-    fixed bottom-32 right-2
-    text-2xl bg-info
-    transition-opacity duration-500
-    {showAddChat ? 'opacity-100' : 'opacity-0'}
-    ">
-    <Icon class="" icon="material-symbols:add" />
-  </button>
-{/key}
+<button class="btn btn-circle
+  text-2xl bg-info
+  transition-opacity duration-500
+  { isChatTab ? 'opacity-100 fixed bottom-32 right-2 ' : 'opacity-0'}
+  ">
+  <Icon class="" icon="material-symbols:add" />
+</button>
 
 </TabTransition>
 
