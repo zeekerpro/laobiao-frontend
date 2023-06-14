@@ -24,7 +24,7 @@
 
   <div class="drawer drawer-end z-50">
     <input id="detail-viewer-toggle" type="checkbox" class="drawer-toggle" bind:checked={$showView}  />
-    <div class="drawer-side">
+    <div class="drawer-side duration-500">
       <MainContainer class="bg-base-100 bg-opacity-100">
         <slot></slot>
         <!-- nav bar -->

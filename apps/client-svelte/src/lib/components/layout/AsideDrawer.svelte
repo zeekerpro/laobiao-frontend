@@ -2,24 +2,24 @@
   import Icon from "@iconify/svelte"
   import { session } from "$stores/session"
   import { sidemenus } from "$configs";
+  import { goto } from "$app/navigation";
+  import { isOpenAside  } from "$stores/layouts";
 
   let classes = ''
   export { classes as class }
 
-  let isOpen = false
-
 </script>
 
 <div class="drawer {classes}">
-  <input id="side-toggle" type="checkbox" class="drawer-toggle" bind:checked={isOpen} />
+  <input id="side-toggle" type="checkbox" class="drawer-toggle" bind:checked={$isOpenAside} />
   <div class="drawer-content">
     <label for="side-toggle" class="text-2xl">
-      {#key isOpen}
+      {#key $isOpenAside}
         <Icon icon="line-md:close-to-menu-alt-transition" ></Icon>
       {/key}
     </label>
   </div>
-  <div class="drawer-side">
+  <div class="drawer-side ">
     <label for="side-toggle" class="drawer-overlay"></label>
 
     <!-- side menus here -->
@@ -33,15 +33,15 @@
       <ul class="menu mt-8 flex gap-2">
 
       {#each sidemenus as sidemenu}
-        <li  >
-          <a href="{sidemenu.path}"
+        <li>
+          <button
             class="text-lg font-medium capitalize"
-            on:click|stopPropagation={() => isOpen = false }
+            on:click={() => { $isOpenAside = false; goto(sidemenu.path)} }
             >
             <Icon icon="{sidemenu.icon}" class="text-2xl mr-3" />
             <span> {sidemenu.label} </span>
             <Icon icon="icon-park-outline:right" class="text-xl" />
-          </a>
+          </button>
         </li>
       {/each}
 

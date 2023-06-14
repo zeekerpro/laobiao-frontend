@@ -11,7 +11,14 @@ export function guard(navigation: BeforeNavigate) {
 
   if(!(navigation.to) || authWhiteList.includes(navigation.to?.route.id)) { return }
 
-  if(navigation.from?.route.id === navigation.to?.route.id) { navigation.cancel(); return; }
+  if(navigation.from?.route.id === navigation.to?.route.id) {
+    navigation.cancel();
+    viewStack.update((stack) => {
+      stack.push(navigation.to?.url?.pathname)
+      return stack
+    })
+    return;
+  }
 
   if(get(isLoggedIn) === false){
     let redirectTo = navigation.to?.url.pathname || "/"
