@@ -3,7 +3,6 @@
   import TabNavBar from "$components/layout/tabs/TabNavBar.svelte";
   import TabStatusBar from "$components/layout/tabs/TabStatusBar.svelte";
   import { activeTab }  from "$stores/tabs"
-
 </script>
 
 <MainContainer>

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import PageTransition from "$components/layout/PageTransition.svelte";
+  import TabTransition from "$components/layout/tabs/TabTransition.svelte";
   import Icon from "@iconify/svelte"
 </script>
 
-<PageTransition>
+<TabTransition>
 
 this is chat page
 
@@ -11,6 +11,6 @@ this is chat page
   <Icon class="" icon="material-symbols:add" />
 </button>
 
-</PageTransition>
+</TabTransition>
 
 
