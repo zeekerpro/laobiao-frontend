@@ -15,8 +15,8 @@
   <slot></slot>
   <!-- nav bar -->
   <HeaderWrapper class="flex items-center">
-    <button on:click|preventDefault={handleBack} class="btn btn-ghost btn-sm" >
-      <Icon icon="ion:chevron-back" class="text-xl" />
+    <button on:click|preventDefault={handleBack} class="btn btn-ghost btn-sm px-1" >
+      <Icon icon="ion:chevron-back" class="text-2xl" />
     </button>
   </HeaderWrapper>
 </MainContainer>

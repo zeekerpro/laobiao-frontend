@@ -16,7 +16,7 @@
   <div class="detail-viewer drawer drawer-end z-50">
     <input id="detail-viewer-toggle" type="checkbox" class="drawer-toggle" bind:checked={$showView}  />
     <div class="drawer-side duration-500">
-      <TabsRouterViewer/>
+      <TabsRouterViewer> <slot></slot> </TabsRouterViewer>
     </div>
   </div>
 

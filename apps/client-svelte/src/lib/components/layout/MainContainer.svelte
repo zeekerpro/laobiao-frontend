@@ -11,7 +11,7 @@
   overflow-hidden
   ">
   {#if !!$navigating} <Pageloding /> {/if}
-  <div class="h-full mx-2 overflow-y-scroll scroll-smooth">
+  <div class="h-full mx-2 overflow-y-scroll scroll-smooth scrollbar-hide">
     <slot></slot>
   </div>
 </main>
