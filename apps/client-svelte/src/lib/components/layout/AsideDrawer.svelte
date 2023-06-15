@@ -17,7 +17,7 @@
     if(!browser) return
     if(!window.Hammer){ await import("hammerjs") }
     gesture = new Hammer(asideRef)
-    gesture.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
+    gesture.get('swipe').set({ direction: Hammer.DIRECTION_LEFT, threshold: 5, velocity: 0.1 });
     gesture.on('swipe', () => {
       isOpenAside.set(false)
     })

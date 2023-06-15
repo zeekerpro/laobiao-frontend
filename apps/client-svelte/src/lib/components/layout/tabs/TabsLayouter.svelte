@@ -15,7 +15,7 @@
   async function supportGesture(){
     if(!window.Hammer){ await import("hammerjs") }
     gesture = new Hammer(viewerRef)
-    gesture.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
+    gesture.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT, threshold: 5, velocity: 0.1 });
     gesture.on('swipe', () => {
       back()
     })
