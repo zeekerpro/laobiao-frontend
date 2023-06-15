@@ -19,11 +19,11 @@
       {/key}
     </label>
   </div>
-  <div class="drawer-side ">
+  <div class="drawer-side duration-500 z-30">
     <label for="side-toggle" class="drawer-overlay"></label>
 
     <!-- side menus here -->
-    <aside class="p-4 w-80 h-full bg-base-100 text-base-content">
+    <aside class="p-4 w-80 h-screen bg-base-100 text-base-content">
       <a href="/" class="btn btn-ghost btn-sm rounded-btn">
         <Icon icon="radix-icons:avatar" class="w-6 h-6" />
         <span>{$session.user.username} </span>
