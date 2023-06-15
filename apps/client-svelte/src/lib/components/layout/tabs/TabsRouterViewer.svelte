@@ -3,6 +3,7 @@
   import Icon from "@iconify/svelte"
   import HeaderWrapper from "$components/layout/HeaderWrapper.svelte";
   import { back } from "$utils/client/routeMonitor";
+  import { onMount } from "svelte";
 
   function handleBack(){
     back()
@@ -10,10 +11,24 @@
 
   let classes = ''; export { classes as class }
 
+  let viewerRef: HTMLElement;
+  let gesture :HammerManager;
+
+  async function supportGesture(){
+    if(!window.Hammer){ await import("hammerjs") }
+    gesture = new Hammer(viewerRef)
+    gesture.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT, threshold: 5, velocity: 0.1 });
+    gesture.on('swipe', () => { back() })
+  }
+
+  onMount(() => {
+    supportGesture()
+  })
+
 </script>
 
 
-<MainContainer class="pt-12 pb-10 {classes}">
+<MainContainer class="pt-12 pb-10 {classes}" bind:nodeEl={viewerRef}>
   <!-- acturelly router view here -->
   <slot></slot>
   <!-- nav bar -->
