@@ -14,13 +14,13 @@
     <TabsFooterNav />
   </MainContainer>
 
-  <div class="detail-viewer drawer drawer-end z-50">
+  <div class="detail-viewer drawer drawer-end ">
     <input id="detail-viewer-toggle"
       type="checkbox"
       class="drawer-toggle"
       checked={$showView}
     />
-    <div class="drawer-side duration-500">
+    <div class="drawer-side duration-500 bg-base-100 bg-opacity-100 z-50">
       <TabsRouterViewer> <slot></slot> </TabsRouterViewer>
     </div>
   </div>

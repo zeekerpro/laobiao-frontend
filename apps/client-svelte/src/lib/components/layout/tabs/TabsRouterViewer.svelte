@@ -10,7 +10,7 @@
 </script>
 
 
-<MainContainer class="bg-base-100 bg-opacity-100 pt-12">
+<MainContainer class="pt-12 pb-10">
   <!-- acturelly router view here -->
   <slot></slot>
   <!-- nav bar -->
