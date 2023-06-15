@@ -29,6 +29,8 @@ export function follow(navigation :AfterNavigate){
   if(!navigation.from){ return }
   // same page, not add to stack
   if(navigation.from.url?.pathname === navigation.to?.url?.pathname) return
+  // not login, not add to stack
+  if(!get(isLoggedIn)) return
   viewStack.push(navigation.to?.url?.pathname)
   console.log(`follow: ${get(viewStack)}`)
 }
