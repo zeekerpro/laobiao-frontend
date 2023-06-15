@@ -36,7 +36,7 @@
         <li>
           <button
             class="text-lg font-medium capitalize"
-            on:click={() => { $isOpenAside = false; goto(sidemenu.path)} }
+            on:click={() => { goto(sidemenu.path)} }
             >
             <Icon icon="{sidemenu.icon}" class="text-2xl mr-3" />
             <span> {sidemenu.label} </span>

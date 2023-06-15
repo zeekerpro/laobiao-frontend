@@ -12,9 +12,3 @@ export const activeTab = derived(
 )
 
 export const isOpenAside = writable(false)
-
-export const viewStack = writable([])
-export const showView = derived(
-  viewStack,
-  $viewStack => $viewStack.length > 0
-)
