@@ -34,6 +34,6 @@
     </div>
   </section>
 
-  <ThemeSwitcher class="fixed top-3 right-3" />
+  <ThemeSwitcher class="fixed-silky top-3 right-3" />
 
 </PageTransition>

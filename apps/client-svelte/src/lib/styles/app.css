@@ -10,3 +10,11 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/*
+nomal fixed element will cause page flickering, this is a workaround
+*/
+.fixed-silky {
+  @apply fixed translate-x-0 will-change-transform;
+  -webkit-backface-visibility: hidden;
+}
