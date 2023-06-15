@@ -4,9 +4,25 @@
   import { sidemenus } from "$configs";
   import { goto } from "$app/navigation";
   import { isOpenAside  } from "$stores/layouts";
+  import { onMount } from "svelte";
 
   let classes = ''
   export { classes as class }
+
+  let asideRef: HTMLElement
+  let gesture :HammerManager;
+
+  async function supportGesture(){
+    const Hanmmer = await import("hammerjs")
+    gesture = new Hammer(asideRef)
+    gesture.on('swipeleft', () => {
+      isOpenAside.set(false)
+    })
+  }
+
+  onMount(() => {
+    supportGesture()
+  })
 
 </script>
 
@@ -23,7 +39,7 @@
     <label for="side-toggle" class="drawer-overlay"></label>
 
     <!-- side menus here -->
-    <aside class="p-4 w-80 h-screen bg-base-100 text-base-content">
+    <aside class="p-4 w-80 h-screen bg-base-100 text-base-content" bind:this={asideRef}>
       <a href="/" class="btn btn-ghost btn-sm rounded-btn
         flex pb-10
         shadow-[0_1px_2px_-2px_hsl(var(--inc))]
