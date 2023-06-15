@@ -7,10 +7,12 @@
   function handleBack(){
     back()
   }
+
+  let classes = ''; export { classes as class }
 </script>
 
 
-<MainContainer class="pt-12 pb-10">
+<MainContainer class="pt-12 pb-10 {classes}">
   <!-- acturelly router view here -->
   <slot></slot>
   <!-- nav bar -->

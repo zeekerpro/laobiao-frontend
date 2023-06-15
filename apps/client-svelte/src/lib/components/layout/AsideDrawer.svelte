@@ -19,7 +19,7 @@
       {/key}
     </label>
   </div>
-  <div class="drawer-side duration-500 z-30">
+  <div class="drawer-side duration-500">
     <label for="side-toggle" class="drawer-overlay"></label>
 
     <!-- side menus here -->

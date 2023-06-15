@@ -20,8 +20,10 @@
       class="drawer-toggle"
       checked={$showView}
     />
-    <div class="drawer-side duration-500 bg-base-100 bg-opacity-100 z-50">
-      <TabsRouterViewer> <slot></slot> </TabsRouterViewer>
+    <div class="drawer-side duration-500 z-10">
+      <TabsRouterViewer class="bg-base-100 bg-opacity-100" >
+        <slot></slot>
+      </TabsRouterViewer>
     </div>
   </div>
 
