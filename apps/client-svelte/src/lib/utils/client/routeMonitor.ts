@@ -1,5 +1,5 @@
 import type { AfterNavigate, BeforeNavigate } from "@sveltejs/kit";
-import { isLoggedIn } from "$stores/session";
+import { isLoggedIn, session } from "$stores/session";
 import { get } from "svelte/store";
 import { goto } from "$app/navigation"
 import { log } from "$utils/log";
@@ -26,11 +26,9 @@ export function guard(navigation: BeforeNavigate) {
 
 export function follow(navigation :AfterNavigate){
   // first time open app, not add to stack
-  if(!navigation.from){ return }
+  if(!navigation.from && navigation.to.route.id === '/'){ return }
   // same page, not add to stack
-  if(navigation.from.url?.pathname === navigation.to?.url?.pathname) return
-  // not login, not add to stack
-  if(!get(isLoggedIn)) return
+  if(navigation.from?.url?.pathname === navigation.to?.url?.pathname) return
   viewStack.push(navigation.to?.url?.pathname)
   console.log(`follow: ${get(viewStack)}`)
 }

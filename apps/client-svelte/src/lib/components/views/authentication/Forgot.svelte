@@ -37,7 +37,10 @@ import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
     Enter the email address you used when you joined and we’ll send you instructions to reset your password.
   </p>
 
-  <LbForm options={forgotFormOptions} bind:this={forgotFormRef} {handleSubmit}>
+  <LbForm class="px-8"
+    options={forgotFormOptions}
+    bind:this={forgotFormRef} {handleSubmit}
+    >
 
     <button class="btn btn-primary w-full capitalize ">
       <span class="{isLoading ? 'loading loading-spinner' : ''}"></span>

@@ -3,8 +3,8 @@
   import LbForm from "$components/form/LbForm.svelte";
   import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
   import { goto } from "$app/navigation";
-    import { plainToInstance } from "class-transformer";
-    import User from "$models/User";
+  import { plainToInstance } from "class-transformer";
+  import User from "$models/User";
 
   let signupFormOptions :Array<LbFromItemOption> = [
     {
@@ -97,7 +97,10 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign Up</h3>
 
-  <LbForm options={signupFormOptions} bind:this={signupFormRef} {handleSubmit} >
+  <LbForm class="px-8"
+    options={signupFormOptions}
+    bind:this={signupFormRef} {handleSubmit}
+    >
 
     <div class="form-control my-6">
       <label class="cursor-pointer flex gap-1">

@@ -63,7 +63,10 @@
 
   <h3 class="my-5 ml-8 text-xl font-bold text-left uppercase">Sign In</h3>
 
-  <LbForm options={signinFormOptions} bind:this={signinFormRef} {handleSubmit} >
+  <LbForm class="px-8"
+    options={signinFormOptions}
+    bind:this={signinFormRef} {handleSubmit}
+    >
 
     <div class="my-6 flex justify-between">
       <label class="cursor-pointer flex gap-1">

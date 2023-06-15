@@ -41,7 +41,7 @@
   };
 </script>
 
-<form class="px-8 {classes}"
+<form class="{classes}"
   bind:this={formRef}
   on:submit={handleSubmit}
   >

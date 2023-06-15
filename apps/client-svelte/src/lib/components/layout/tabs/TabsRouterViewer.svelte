@@ -29,8 +29,10 @@
 
 
 <MainContainer class="pt-12 pb-10 {classes}" bind:nodeEl={viewerRef}>
-  <!-- acturelly router view here -->
-  <slot></slot>
+  <div class="px-2">
+    <!-- acturelly router view here -->
+    <slot></slot>
+  </div>
   <!-- nav bar -->
   <HeaderWrapper class="flex items-center">
     <button on:click|preventDefault={handleBack} class="btn btn-ghost btn-sm px-1" >
