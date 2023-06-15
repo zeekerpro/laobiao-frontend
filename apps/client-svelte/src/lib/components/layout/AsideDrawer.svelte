@@ -24,7 +24,10 @@
 
     <!-- side menus here -->
     <aside class="p-4 w-80 h-screen bg-base-100 text-base-content">
-      <a href="/" class="btn btn-ghost btn-sm rounded-btn">
+      <a href="/" class="btn btn-ghost btn-sm rounded-btn
+        flex pb-10
+        shadow-[0_1px_2px_-2px_hsl(var(--inc))]
+        ">
         <Icon icon="radix-icons:avatar" class="w-6 h-6" />
         <span>{$session.user.username} </span>
         <Icon icon="line-md:arrow-right" class="text-lg" />
