@@ -5,6 +5,7 @@
   import { goto } from "$app/navigation";
   import { isOpenAside  } from "$stores/layouts";
   import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   let classes = ''
   export { classes as class }
@@ -13,9 +14,11 @@
   let gesture :HammerManager;
 
   async function supportGesture(){
-    const Hanmmer = await import("hammerjs")
+    if(!browser) return
+    if(!window.Hammer){ await import("hammerjs") }
     gesture = new Hammer(asideRef)
-    gesture.on('swipeleft', () => {
+    gesture.get('swipe').set({ direction: Hammer.DIRECTION_LEFT });
+    gesture.on('swipe', () => {
       isOpenAside.set(false)
     })
   }

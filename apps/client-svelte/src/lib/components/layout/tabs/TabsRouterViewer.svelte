@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import MainContainer from "$components/layout/MainContainer.svelte";
   import Icon from "@iconify/svelte"
   import HeaderWrapper from "$components/layout/HeaderWrapper.svelte";
@@ -9,6 +9,7 @@
   }
 
   let classes = ''; export { classes as class }
+
 </script>
 
 
