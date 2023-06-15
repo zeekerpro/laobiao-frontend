@@ -8,7 +8,7 @@
 </script>
 
 <div >
-  <MainContainer class="tab-viewer">
+  <MainContainer class="tab-viewer pt-12 pb-24">
     <svelte:component this={$activeTab.view}/>
     <TabsHeaderBar />
     <TabsFooterNav />

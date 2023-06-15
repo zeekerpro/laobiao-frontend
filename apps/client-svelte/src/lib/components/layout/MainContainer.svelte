@@ -7,7 +7,6 @@
 
 <main class="{classes}
   h-screen w-screen
-  pt-12 pb-24
   overflow-hidden
   ">
   {#if !!$navigating} <Pageloding /> {/if}
