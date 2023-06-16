@@ -23,7 +23,7 @@ import { useCompletion } from "ai/svelte";
   <form
     on:submit={handleSubmit}
     class="fixed-silky bottom-0 left-0 right-0
-      pb-3 px-3
+      pb-12 px-3
       bg-base-300
       bg-opacity-30
     "
