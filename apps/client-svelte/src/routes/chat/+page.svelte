@@ -31,7 +31,7 @@ import { useCompletion } from "ai/svelte";
     <label for=""
       class="block w-full text-center my-4 text-sm italic
       ">
-      input chat name {isFocus}
+      input chat name
     </label>
     <div class="flex flex-wrap
       rounded-lg
