@@ -40,12 +40,14 @@
 	"dependencies": {
 		"@laobiao/httpie": "workspace:*",
 		"@types/lodash": "^4.14.195",
+		"ai": "^2.0.1",
 		"axios": "^1.4.0",
 		"chalk": "^5.2.0",
 		"class-transformer": "^0.5.1",
 		"daisyui": "^3.1.0",
 		"hammerjs": "^2.0.8",
 		"lodash": "^4.17.21",
+		"openai-edge": "^1.0.0",
 		"reflect-metadata": "^0.1.13",
 		"theme-change": "^2.5.0"
 	}

@@ -1,27 +1,16 @@
 <script lang="ts">
+import { useCompletion } from "ai/svelte";
+
+  const { input, handleSubmit, completion } = useCompletion({
+    api: '/api/completion',
+  });
+
 </script>
 
-<div class="chat chat-start">
-  <div class="chat-bubble chat-bubble-primary">What kind of nonsense is this</div>
-</div>
-<div class="chat chat-start">
-  <div class="chat-bubble chat-bubble-secondary">Put me on the Council and not make me a Master!??</div>
-</div>
-<div class="chat chat-start">
-  <div class="chat-bubble chat-bubble-accent">That's never been done in the history of the Jedi. It's insulting!</div>
-</div>
-<div class="chat chat-end">
-  <div class="chat-bubble chat-bubble-info">Calm down, Anakin.</div>
-</div>
-<div class="chat chat-end">
-  <div class="chat-bubble chat-bubble-success">You have been given a great honor.</div>
-</div>
-<div class="chat chat-end">
-  <div class="chat-bubble chat-bubble-warning">To be on the Council at your age.</div>
-</div>
-<div class="chat chat-end">
-  <div class="chat-bubble chat-bubble-error">It's never happened before.</div>
-</div>
-
-<input type="text" class="input focus:border-0 outline-none" />
-
+<main>
+  <form on:submit={handleSubmit}>
+    <input type="text" bind:value={$input} placeholder="Describe your business..." />
+    <button type="submit">Generate Slogan</button>
+  </form>
+  <p>{$completion}</p>
+</main>
