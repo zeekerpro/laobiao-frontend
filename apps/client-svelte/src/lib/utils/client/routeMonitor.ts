@@ -1,9 +1,9 @@
 import type { AfterNavigate, BeforeNavigate } from "@sveltejs/kit";
-import { isLoggedIn, session } from "$stores/session";
+import { isLoggedIn } from "$stores/session";
 import { get } from "svelte/store";
 import { goto } from "$app/navigation"
 import { log } from "$utils/log";
-import { authWhiteList } from "$configs";
+import { authWhiteList, isAuthRoute } from "$configs";
 import { viewStack, currentView } from "$stores/viewStack";
 
 export function guard(navigation: BeforeNavigate) {
@@ -12,7 +12,7 @@ export function guard(navigation: BeforeNavigate) {
   if(!(navigation.to) || authWhiteList.includes(navigation.to?.route.id)) { return }
 
   if(navigation.from?.route.id === navigation.to?.route.id) {
-    viewStack.push(navigation.to?.url?.pathname)
+    viewStack.push(navigation.to)
     navigation.cancel();
     return;
   }
@@ -27,9 +27,11 @@ export function guard(navigation: BeforeNavigate) {
 export function follow(navigation :AfterNavigate){
   // first time open app, not add to stack
   if(!navigation.from && navigation.to.route.id === '/'){ return }
+  // if signed in just now, not add to stack
+  if(!!navigation.from && isAuthRoute(navigation.from)) { return }
   // same page, not add to stack
   if(navigation.from?.url?.pathname === navigation.to?.url?.pathname) return
-  viewStack.push(navigation.to?.url?.pathname)
+  viewStack.push(navigation.to)
   console.log(`follow: ${get(viewStack)}`)
 }
 

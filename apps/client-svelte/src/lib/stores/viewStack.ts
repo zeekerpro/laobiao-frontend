@@ -1,14 +1,18 @@
 import { writable, derived } from "svelte/store";
+import { isExcludedViewStack } from "$configs";
+import type { NavigationTarget } from "@sveltejs/kit";
 
 // histories stack
 function createViewStack(){
   const { subscribe, set, update } = writable([])
   return {
     subscribe,
-    push: (urlPath: string) => update((stack) => {
+    push: (route: NavigationTarget) => update((stack) => {
       // same page, not add to stack
-      if(stack[stack.length - 1] === urlPath) return stack
-      stack.push(urlPath)
+      if(stack[stack.length - 1] === route) return stack
+      // if is excluded view stack, not add to stack
+      if(isExcludedViewStack(route)) return stack
+      stack.push(route)
       return stack
     }),
     pop: () => update((stack) => {
