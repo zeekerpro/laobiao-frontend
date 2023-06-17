@@ -3,12 +3,12 @@ export const sidemenus = [
     index: 1,
     label: "profile",
     path: "/profile",
-    icon: "mdi:account" // "mdi:account-outline"
+    icon: "mdi:account"
   },
   {
-    index: 2,
-    label: "referrals",
-    path: "/referrals",
-    icon: "mdi:xml"
+    index: 0,
+    label: "dashboard",
+    path: "/dashboard",
+    icon: "ic:baseline-dashboard"
   },
 ]
