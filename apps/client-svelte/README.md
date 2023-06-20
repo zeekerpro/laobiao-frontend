@@ -36,3 +36,10 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## update mkcert
+
+```
+1. delete .vite-plugin-mkcert at homedpath
+2. run dev in app root, that is apps/client-svelte, not in turbo project workspace root path
+```

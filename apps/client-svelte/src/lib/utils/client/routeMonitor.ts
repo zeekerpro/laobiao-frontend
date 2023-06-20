@@ -42,7 +42,8 @@ export function back(){
   if(backTo){
     // pop current view here to avoid follow() push it again
     viewStack.pop()
-    goto(backTo)
+    goto(backTo.url)
+    console.log(`back to: ${backTo}`)
   }
-  console.log(`back to: ${backTo}`)
+  console.log(`viewstacks: ${get(viewStack)}`)
 }
