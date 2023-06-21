@@ -18,7 +18,8 @@ import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
   let forgotFormRef :LbForm;
   let isLoading = false;
 
-  async function handleSubmit() {
+  async function handleSubmit(e :SubmitEvent) {
+    e.preventDefault()
     const formData = await forgotFormRef.validate();
     if(!formData){ return; }
   }

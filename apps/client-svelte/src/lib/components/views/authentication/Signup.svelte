@@ -68,7 +68,8 @@
 
   let signupFormRef :LbForm;
 
-  async function handleSubmit() {
+  async function handleSubmit(e :SubmitEvent) {
+    e.preventDefault();
     const formData = await signupFormRef.validate();
     if(!formData){ return; }
 
