@@ -1,8 +1,8 @@
 <script lang="ts">
-import { useCompletion } from "ai/svelte";
+import { useChat, useCompletion } from "ai/svelte";
   import Icon from "@iconify/svelte"
 
-  const { input, handleSubmit, completion } = useCompletion({
+  const { input, handleSubmit, messages } = useChat({
     api: '/api/completion',
   });
 
@@ -18,7 +18,17 @@ import { useCompletion } from "ai/svelte";
 </script>
 
 <main>
-  <p>{$completion}</p>
+  {#each $messages as message }
+  <div class="chat chat-start">
+    <div class="chat-header">
+      {message.role}
+      <time class="text-xs opacity-50">{message.createdAt}</time>
+    </div>
+    <div class="chat-bubble chat-bubble-accent">
+       {message.content}
+    </div>
+  </div>
+  {/each}
 
   <form
     on:submit={handleSubmit}

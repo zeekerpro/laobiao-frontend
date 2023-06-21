@@ -9,20 +9,22 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
+export const runtime = 'edge';
+
 export async function POST(requestEvent: RequestEvent) {
 
   // Get the prompt from the request body
   // (this is a streaming request, so we need to read the body as a stream)
   const reader = requestEvent.request.body.getReader();
   const { value } = await reader.read();
-  const prompt = JSON.parse(new TextDecoder().decode(value)) ;
+  const messages = JSON.parse(new TextDecoder().decode(value)) ;
 
   // Ask OpenAI for a streaming completion given the prompt
-  const response = await openai.createCompletion({
+  const response = await openai.createChatCompletion({
     model: 'text-davinci-003',
     stream: true,
     temperature: 0.6,
-    prompt: ` ${prompt} `,
+    messages
   });
 
   // Convert the response into a friendly text-stream
