@@ -5,7 +5,7 @@ dayjs.extend(duration)
 const DEFAULT_DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm'
 
 type WithOptions = (val: number, timestamp: number) => string
-type WithTimeOptions = (val: number, timestamp: number) => string
+type WithTimeOptions = (timestamp: number | Date | string) => string
 
 export function toFixed(fractionDigit: number, divider = 1): WithOptions {
   return (val) => (val / divider).toFixed(fractionDigit)
