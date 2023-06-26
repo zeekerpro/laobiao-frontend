@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai-edge';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { OPENAI_API_KEY } from '$env/static/private';
-import type { RequestEvent } from './$types';
+import type { RequestEvent, RequestHandler } from './$types';
 
 // Create an OpenAI API client (that's edge friendly!)
 const config = new Configuration({
@@ -9,15 +9,12 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
-export const runtime = 'edge';
-
-export async function POST(requestEvent: RequestEvent) {
+export const POST = (async (requestEvent: RequestEvent) => {
 
   // Get the prompt from the request body
-  // (this is a streaming request, so we need to read the body as a stream)
-  const reader = requestEvent.request.body.getReader();
-  const { value } = await reader.read();
-  const messages = JSON.parse(new TextDecoder().decode(value)) ;
+  const { request } = requestEvent
+
+  const { messages } = await request.json();
 
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.createChatCompletion({
@@ -31,4 +28,4 @@ export async function POST(requestEvent: RequestEvent) {
   const stream = OpenAIStream(response);
   // Respond with the stream
   return new StreamingTextResponse(stream);
-}
+}) satisfies RequestHandler
