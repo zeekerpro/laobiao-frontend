@@ -34,7 +34,7 @@
     <slot></slot>
   </div>
   <!-- nav bar -->
-  <HeaderWrapper class="flex items-center">
+  <HeaderWrapper class="fixed-silky bottom-0 flex items-center">
     <button on:click|preventDefault={handleBack} class="btn btn-ghost btn-sm px-1" >
       <Icon icon="ion:chevron-back" class="text-2xl" />
     </button>

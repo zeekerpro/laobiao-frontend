@@ -7,7 +7,7 @@
 
   let isFocus = false
 
-  function autoFocusAction(node :HTMLTextAreaElement){
+  function autoFocusAction(node :HTMLInputElement){
     if(!isFocus){
       node.focus()
       isFocus = true
@@ -32,7 +32,8 @@
 
   <form
     on:submit={handleSubmit}
-    class="fixed-silky bottom-0 left-0 right-0
+    class="
+      fixed-silky bottom-0 left-0 right-0
       pb-12 px-3
       bg-base-300
       bg-opacity-75
@@ -50,7 +51,7 @@
       shadow-2xl
       bg-base-100
       ">
-      <textarea
+      <input
         bind:value={$input}
         use:autoFocusAction
         placeholder="Write a message ..."

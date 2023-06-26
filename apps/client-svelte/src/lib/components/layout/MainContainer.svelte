@@ -7,9 +7,9 @@
   export let nodeEl: HTMLElement | null = null;
 </script>
 
-<main class="h-screen w-screen overflow-hidden " bind:this={nodeEl}>
+<main bind:this={nodeEl}>
   {#if !!$navigating} <Pageloding /> {/if}
-  <div class="h-full w-full overflow-y-scroll scroll-smooth scrollbar-hide overflow-visible {classes} ">
+  <div class="w-screen h-screen overflow-y-scroll scroll-smooth scrollbar-hide overflow-visible {classes} ">
     <slot></slot>
   </div>
 </main>
