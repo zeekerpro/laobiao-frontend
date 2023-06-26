@@ -7,7 +7,7 @@
 
   let isFocus = false
 
-  function autoFocusAction(node :HTMLInputElement){
+  function autoFocusAction(node :HTMLTextAreaElement){
     if(!isFocus){
       node.focus()
       isFocus = true
@@ -50,7 +50,7 @@
       shadow-2xl
       bg-base-100
       ">
-      <input type="text"
+      <textarea
         bind:value={$input}
         use:autoFocusAction
         placeholder="Write a message ..."
