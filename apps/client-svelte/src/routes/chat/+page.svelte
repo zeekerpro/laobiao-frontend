@@ -2,9 +2,7 @@
 import { useChat, useCompletion } from "ai/svelte";
   import Icon from "@iconify/svelte"
 
-  const { input, handleSubmit, messages } = useChat({
-    api: '/api/completion',
-  });
+  const { input, handleSubmit, messages } = useChat();
 
   let isFocus = false
 

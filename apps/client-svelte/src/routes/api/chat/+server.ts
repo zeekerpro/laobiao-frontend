@@ -6,6 +6,7 @@ import type { RequestEvent, RequestHandler } from './$types';
 // Create an OpenAI API client (that's edge friendly!)
 const config = new Configuration({
   apiKey: OPENAI_API_KEY,
+  basePath: 'https://openai.laobiao.us/v1'
 });
 const openai = new OpenAIApi(config);
 
@@ -16,9 +17,11 @@ export const POST = (async (requestEvent: RequestEvent) => {
 
   const { messages } = await request.json();
 
+  debugger
+
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.createChatCompletion({
-    model: 'text-davinci-003',
+    model: 'gpt-3.5-turbo',
     stream: true,
     temperature: 0.6,
     messages
