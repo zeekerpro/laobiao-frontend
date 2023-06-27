@@ -10,8 +10,6 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
-// export const runtime = 'edge'
-
 export const POST = (async (requestEvent: RequestEvent) => {
 
   // Get the prompt from the request body
@@ -24,12 +22,17 @@ export const POST = (async (requestEvent: RequestEvent) => {
     // todo: use model that user setting before
     model: 'gpt-3.5-turbo',
     stream: true,
+    messages,
     temperature: 0.6,
-    messages
+    max_tokens: 500,
+    top_p: 1,
+    frequency_penalty: 1,
+    presence_penalty: 1
   });
 
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response);
+
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }) satisfies RequestHandler
