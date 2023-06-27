@@ -7,8 +7,7 @@
     input,
     handleSubmit,
     messages,
-    isLoading,
-    error
+    isLoading
   } = useChat();
 
 </script>
@@ -26,10 +25,6 @@
       </div>
     </div>
     {/each}
-
-    {$error.message}
-    {$error.name}
-
   </div>
 
   <form
