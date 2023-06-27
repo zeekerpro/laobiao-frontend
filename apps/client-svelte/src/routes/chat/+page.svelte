@@ -28,7 +28,7 @@
   </div>
 
   <form
-    on:submit={handleSubmit}
+    on:submit={(e) => !$isLoading && handleSubmit(e)}
     class="
       fixed-silky bottom-0 left-0 right-0
       pb-12 px-3
@@ -62,7 +62,7 @@
           <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
         {:else}
           <Icon icon="fa:send"
-            class="h-10 w-10 p-2 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
+            class="h-5 w-5 mr-1 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
             >
           </Icon>
         {/if}

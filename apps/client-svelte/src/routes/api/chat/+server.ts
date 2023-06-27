@@ -10,6 +10,8 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
+// export const runtime = 'edge'
+
 export const POST = (async (requestEvent: RequestEvent) => {
 
   // Get the prompt from the request body
