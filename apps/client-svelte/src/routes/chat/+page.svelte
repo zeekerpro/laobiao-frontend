@@ -3,16 +3,13 @@
   import Icon from "@iconify/svelte"
   import { dateFormatter } from "$utils/formatter";
 
-  const { input, handleSubmit, messages } = useChat();
+  const {
+    input,
+    handleSubmit,
+    messages,
+    isLoading
+  } = useChat();
 
-  let isFocus = false
-
-  function autoFocusAction(node :HTMLInputElement){
-    if(!isFocus){
-      node.focus()
-      isFocus = true
-    }
-  }
 </script>
 
 <main>
@@ -40,9 +37,7 @@
       backdrop-filter
     "
     >
-    <label for=""
-      class="block w-full text-center my-4 text-sm italic
-      ">
+    <label for="" class="block w-full text-center my-4 italic ">
       input chat name
     </label>
     <div class="flex flex-wrap
@@ -53,10 +48,7 @@
       ">
       <input
         bind:value={$input}
-        use:autoFocusAction
         placeholder="Write a message ..."
-        on:focus="{() => isFocus = true}"
-        on:focusout="{() => isFocus = false}"
         class="
           grow
           outline-none
@@ -66,12 +58,14 @@
         "
       />
       <button type="submit" class="pr-1">
-        <Icon icon="fa:send"
-          class="h-10 w-10 p-2
-          transition
-          {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'}
-          ">
-        </Icon>
+        {#if $isLoading}
+          <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
+        {:else}
+          <Icon icon="fa:send"
+            class="h-10 w-10 p-2 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
+            >
+          </Icon>
+        {/if}
       </button>
     </div>
   </form>
