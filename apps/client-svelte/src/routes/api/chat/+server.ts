@@ -24,7 +24,7 @@ export const POST = (async (requestEvent: RequestEvent) => {
     stream: true,
     messages,
     temperature: 0.6,
-    max_tokens: 500,
+    // max_tokens: 500,
     top_p: 1,
     frequency_penalty: 1,
     presence_penalty: 1
