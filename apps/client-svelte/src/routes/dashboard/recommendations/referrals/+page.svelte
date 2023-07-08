@@ -6,7 +6,7 @@
 
   let referrals :Array<Referral> = []
 
-  let isLoadingReferral = true
+  let isLoading = true
 
   async function createReferral() {
     if(!$session.user) return log.layout("user not login")
@@ -27,7 +27,7 @@
     }else{
       log.layout("get referrals failed")
     }
-    isLoadingReferral = false
+    isLoading = false
   }
 
   onMount(async () => {
@@ -41,14 +41,14 @@
 </svelte:head>
 
 <main class="flex justify-center items-center flex-col gap-2">
-  <button class="btn glass" on:click={createReferral} >
-    <span class="loading loading-spinner"></span>
+  <button class="btn" on:click={createReferral} >
+    {#if isLoading } <span class="loading loading-spinner"></span> {/if}
     create a referral code
   </button>
 
   <div class="flex flex-col items-center">
     <h1 class="text-xl font-bold">Referral Codes</h1>
-    {#if isLoadingReferral }
+    {#if isLoading }
       <span class="loading loading-ring loading-lg"> loading referrals </span>
     {:else}
       <div class="flex flex-col items-center">
