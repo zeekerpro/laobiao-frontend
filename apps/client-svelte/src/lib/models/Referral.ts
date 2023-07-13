@@ -1,10 +1,19 @@
 import httpClient from "$apis/httpClient";
-import { plainToInstance } from "class-transformer";
+import { plainToInstance, Type } from "class-transformer";
 import BaseModel from "./BaseModel";
+import User from "./User";
 
 export default class Referral extends BaseModel {
 
   code :string
+
+  @Type(() => User)
+  referred?: User
+
+  @Type(() => User)
+  referrer: User
+
+  get isActivated(){ return !!this.referred  }
 
   static async create(){
     const ret = await httpClient.post(`/referrals`);

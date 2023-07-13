@@ -18,7 +18,8 @@ export function guard(navigation: BeforeNavigate) {
   }
 
   if(get(isLoggedIn) === false){
-    let redirectTo = navigation.to?.url.pathname || "/"
+    let redirectTo =  "/"
+    if(navigation.to?.route.id !== "/(auth)/signin"){ redirectTo = navigation.to?.url.pathname }
     goto(`/signin?redirect=${redirectTo}`)
     return
   }

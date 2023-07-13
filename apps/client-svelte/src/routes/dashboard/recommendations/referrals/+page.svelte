@@ -1,6 +1,7 @@
 <script lang="ts">
   import Referral from "$models/Referral";
   import { session } from "$stores/session";
+    import { dateFormatter } from "$utils/formatter";
   import { log } from "$utils/log";
   import { onMount } from "svelte";
 
@@ -12,7 +13,8 @@
     if(!$session.user) return log.layout("user not login")
     const ret = await Referral.create()
     if(ret.isSuccess) {
-      referrals = ret.data
+      const newReferral = ret.data
+      referrals = [newReferral, ...referrals]
       log.layout("create referral success")
     }else{
       log.layout("create referral failed")
@@ -46,16 +48,26 @@
     create a referral code
   </button>
 
-  <div class="flex flex-col items-center">
-    <h1 class="text-xl font-bold">Referral Codes</h1>
-    {#if isLoading }
-      <span class="loading loading-ring loading-lg"> loading referrals </span>
-    {:else}
-      <div class="flex flex-col items-center">
-        {#each referrals as referral}
-          <div class="text-xl">{referral.code}</div>
-        {/each}
-      </div>
-    {/if}
-  </div>
+  {#if isLoading }
+    <span class="loading loading-ring loading-lg"> loading referrals </span>
+  {:else}
+    <div class="overflow-x-auto">
+      <table class="table min-w-full">
+        <tbody>
+          {#each referrals as referral}
+          {#if referral.isUsed}
+            <tr>
+              <th>{referral.referred.username}</th>
+              <td>{ dateFormatter()(referral.referred.created_at) }</td>
+            </tr>
+          {:else}
+            <tr>
+              <th>{referral.code}</th>
+            </tr>
+          {/if}
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  {/if}
 </main>

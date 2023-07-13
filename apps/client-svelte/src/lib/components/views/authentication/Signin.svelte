@@ -48,7 +48,8 @@
     isLoading = false
     if(res.isSuccess){
       $session.user = res.data
-      const redirect = $page.url.searchParams.get('redirect') || '/'
+      let redirect = $page.url.searchParams.get('redirect') || '/'
+      if(redirect === '/signin'){ redirect = '/' }
       goto(redirect)
     }else{
       const error = res.data?.error;

@@ -6,7 +6,6 @@ import { goto } from "$app/navigation";
 import { page } from "$app/stores";
 import { get } from "svelte/store"
 
-
 const baseServiceConfig :AxiosHttpieConfig = {
   baseURL: PUBLIC_API_END_POINT,
   timeout: Number(PUBLIC_REQUEST_TIMEOUT),

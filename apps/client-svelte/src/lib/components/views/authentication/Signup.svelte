@@ -81,7 +81,7 @@
     let res = await user.signup()
     isLoading = false
     if(res.isSuccess){
-      goto('/')
+      goto('/signin')
     }else{
       const errors = res.data;
       Object.keys(errors).forEach(key => {

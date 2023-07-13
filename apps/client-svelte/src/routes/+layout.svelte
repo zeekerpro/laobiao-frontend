@@ -1,3 +1,7 @@
+<script context="module" >
+import 'reflect-metadata'
+</script>
+
 <script lang="ts">
   import "$styles/app.css";
   import AppContainer from "$components/layout/AppContainer.svelte";
