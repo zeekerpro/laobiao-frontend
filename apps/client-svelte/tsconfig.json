@@ -11,7 +11,9 @@
 		"strict": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
-    "lib": ["DOM", "WebWorker", "ESNext", "DOM.Iterable", "ScriptHost"]
+    "lib": ["DOM", "WebWorker", "ESNext", "DOM.Iterable", "ScriptHost"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

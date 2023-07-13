@@ -17,6 +17,7 @@ const config = {
       $apis: './src/apis',
       $configs: './src/configs',
       $models: './src/lib/models',
+      $armodels: './src/lib/armodels',
     }
 	},
 

@@ -4,7 +4,8 @@
   import type { LbFromItemOption } from "$components/form/LbFormItem.svelte";
   import { goto } from "$app/navigation";
   import { plainToInstance } from "class-transformer";
-  import User from "$models/User";
+  import { User } from "$armodels/User";
+  import { Referral } from "$armodels/Referral";
 
   let signupFormOptions :Array<LbFromItemOption> = [
     {
@@ -44,7 +45,7 @@
       schema: yup.string().required().min(8).max(16).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
     },
     {
-      name: 'password_confirmation',
+      name: 'passwordConfirmation',
       type: "password",
       placeholder: "password confirmation",
       value: "",
@@ -53,7 +54,7 @@
       schema: yup.string().required().oneOf([yup.ref('password'), ''], 'Passwords must match')
     },
     {
-      name: 'referral_code',
+      name: 'referralCode',
       type: "text",
       placeholder: "referal code",
       value: "",
@@ -75,21 +76,29 @@
 
     // @ts-ignore
     const value = Object.fromEntries(formData.entries());
-    const user = plainToInstance(User, value)
+    // const user = plainToInstance(User, value)
+    const user = new User(value)
 
-    isLoading = true;
-    let res = await user.signup()
-    isLoading = false
-    if(res.isSuccess){
-      goto('/')
-    }else{
-      const errors = res.data;
-      Object.keys(errors).forEach(key => {
-        // @ts-ignore
-        signupFormOptions.find(item => item.name === key).message = errors[key][0];
-      })
-      signupFormOptions = signupFormOptions
-    }
+    const referral = new Referral({code: value.referralCode})
+
+    user.referral = referral
+
+    debugger
+
+    // isLoading = true;
+    let success = user.save({with: "referral"})
+    // let res = await user.signup()
+    // isLoading = false
+    // if(res.isSuccess){
+    //   goto('/')
+    // }else{
+    //   const errors = res.data;
+    //   Object.keys(errors).forEach(key => {
+    //     // @ts-ignore
+    //     signupFormOptions.find(item => item.name === key).message = errors[key][0];
+    //   })
+    //   signupFormOptions = signupFormOptions
+    // }
   }
 
 </script>
