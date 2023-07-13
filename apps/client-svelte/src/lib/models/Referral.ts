@@ -13,7 +13,7 @@ export default class Referral extends BaseModel {
   @Type(() => User)
   referrer: User
 
-  get isActivated(){ return !!this.referred  }
+  get isUsed(){ return !!this.referred  }
 
   static async create(){
     const ret = await httpClient.post(`/referrals`);
