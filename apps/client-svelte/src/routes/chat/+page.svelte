@@ -16,12 +16,21 @@
   <div class="mb-32">
     {#each $messages as message}
     <div class="chat { message.role == 'user' ? 'chat-end' : 'chat-start' }">
-      <div class="chat-header">
-        {message.role}
-        <time class="text-xs opacity-50">{ dateFormatter()(message.createdAt)}</time>
+
+      <div class="chat-image avatar">
+        <div class="w-10 rounded-full">
+          <Icon icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }" class="w-10 h-10" ></Icon>
+        </div>
       </div>
+
+
       <div class="chat-bubble {message.role == 'user' ? 'chat-bubble-primary' : 'chat-bubble-info'}">
          {message.content}
+      </div>
+
+      <div class="chat-footer">
+        {message.role}
+        <time class="text-xs opacity-50">{ dateFormatter()(message.createdAt)}</time>
       </div>
     </div>
     {/each}
