@@ -50,6 +50,7 @@
 		"lodash": "^4.17.21",
 		"openai-edge": "^1.2.0",
 		"reflect-metadata": "^0.1.13",
+		"sveltronics": "^0.0.13",
 		"theme-change": "^2.5.0"
 	}
 }
