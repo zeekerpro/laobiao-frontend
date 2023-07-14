@@ -27,7 +27,8 @@ export const POST = (async (requestEvent: RequestEvent) => {
     // max_tokens: 500,
     top_p: 1,
     frequency_penalty: 1,
-    presence_penalty: 1
+    presence_penalty: 1,
+    max_tokens: 2048
   });
 
   // Convert the response into a friendly text-stream
