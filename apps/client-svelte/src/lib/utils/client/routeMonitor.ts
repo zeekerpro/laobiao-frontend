@@ -25,6 +25,7 @@ export function guard(navigation: BeforeNavigate) {
   }
 }
 
+// do something after navigation
 export function follow(navigation :AfterNavigate){
   // first time open app, not add to stack
   if(!navigation.from && navigation.to.route.id === '/'){ return }

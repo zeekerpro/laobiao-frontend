@@ -28,7 +28,8 @@ export default class User extends BaseModel {
   }
 
   async signout() {
-    return httpClient.post("/signout");
+    const { appStorage } = await import("$utils/client/storage");
+    appStorage.remove("token");
   }
 
    async update(user: any) {
@@ -36,7 +37,9 @@ export default class User extends BaseModel {
   }
 
   static async me(){
-    return httpClient.get(`/me`);
+    const ret = await httpClient.get(`/me`);
+    if(ret.isSuccess){ret.data = plainToInstance(User, ret.data); }
+    return ret;
   }
 
 }
