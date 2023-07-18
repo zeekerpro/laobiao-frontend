@@ -2,13 +2,41 @@
   import { useChat } from "ai/svelte";
   import Icon from "@iconify/svelte"
   import { dateFormatter } from "$utils/formatter";
+  import type { Message } from "ai";
+  import { db } from "$db";
+  import { liveQuery } from "dexie";
+  import { page } from "$app/stores";
+
+  let chat = liveQuery(() => db.chats.get(Number($page.params.id)))
+
+  let initialMessages = liveQuery(() => db.messages.where({chatId: Number($page.params.id)}).toArray())
 
   const {
     input,
     handleSubmit,
     messages,
     isLoading
-  } = useChat();
+  } = useChat({
+    onFinish: persistChat,
+    initialMessages: $initialMessages
+  });
+
+  async function submitHandler(e: SubmitEvent) {
+    if($isLoading){ return }
+    handleSubmit(e)
+  }
+
+  async function persistChat(message: Message) {
+    let chatId = $chat?.id
+    if(!$chat){
+      chatId  = await db.chats.add({ name: $messages[0].content })
+    }
+    // save last 2 messages
+    const messagesForDb = $messages.slice(-2).map((message) => {
+      return {chatId: chatId, ...message}
+    })
+    db.messages.bulkAdd(messagesForDb)
+  }
 
 </script>
 
@@ -36,8 +64,7 @@
     {/each}
   </div>
 
-  <form
-    on:submit={(e) => !$isLoading && handleSubmit(e)}
+  <form on:submit={submitHandler}
     class="
       fixed-silky bottom-0 left-0 right-0
       pb-12 px-3

@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai-edge';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { OpenAIStream, StreamingTextResponse, type Message } from 'ai';
 import { OPENAI_API_KEY } from '$env/static/private';
 import type { RequestEvent, RequestHandler } from './$types';
 
@@ -35,8 +35,19 @@ export const POST = (async (requestEvent: RequestEvent) => {
   });
 
   // Convert the response into a friendly text-stream
-  const stream = OpenAIStream(response);
+  const stream = OpenAIStream(response, {
+    onStart: async () => {},
+    onToken: async (token: string) => {},
+    onCompletion: async (completion: string) => {
+      // Save the messages to the database
+      await saveMessages(completion);
+    },
+  });
 
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }) satisfies RequestHandler
+
+
+async function saveMessages(lastMessage: string){
+}
