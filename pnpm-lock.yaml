@@ -41,6 +41,9 @@ importers:
       dayjs:
         specifier: ^1.11.9
         version: registry.npmmirror.com/dayjs@1.11.9
+      dexie:
+        specifier: 4.0.1-alpha.25
+        version: registry.npmmirror.com/dexie@4.0.1-alpha.25
       hammerjs:
         specifier: ^2.0.8
         version: registry.npmmirror.com/hammerjs@2.0.8
@@ -3699,6 +3702,12 @@ packages:
     name: devalue
     version: 4.3.2
     dev: true
+
+  registry.npmmirror.com/dexie@4.0.1-alpha.25:
+    resolution: {integrity: sha512-udAExYYfJaC6IzVC+ygHdlWYoYxhwYHtiITkthGgSH7dh2FBk3qqDGkJ/Mn2lfxsmATcq9qJDUjyO7yWOo/ZPA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dexie/-/dexie-4.0.1-alpha.25.tgz}
+    name: dexie
+    version: 4.0.1-alpha.25
+    dev: false
 
   registry.npmmirror.com/didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/didyoumean/-/didyoumean-1.2.2.tgz}

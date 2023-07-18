@@ -10,9 +10,9 @@ const openaiConfig = new Configuration({
 });
 const openai = new OpenAIApi(openaiConfig);
 
-export const config = {
-  runtime: "edge"
-}
+// export const config = {
+//   runtime: "edge"
+// }
 
 export const POST = (async (requestEvent: RequestEvent) => {
 
