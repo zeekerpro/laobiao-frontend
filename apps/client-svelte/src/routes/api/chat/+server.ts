@@ -4,11 +4,15 @@ import { OPENAI_API_KEY } from '$env/static/private';
 import type { RequestEvent, RequestHandler } from './$types';
 
 // Create an OpenAI API client (that's edge friendly!)
-const config = new Configuration({
+const openaiConfig = new Configuration({
   apiKey: OPENAI_API_KEY,
   basePath: 'https://openai.laobiao.us/v1'
 });
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(openaiConfig);
+
+export const config = {
+  runtime: "edge"
+}
 
 export const POST = (async (requestEvent: RequestEvent) => {
 
