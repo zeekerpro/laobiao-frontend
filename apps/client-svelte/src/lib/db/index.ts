@@ -1,7 +1,8 @@
 import type { Message } from "ai";
 import Dexie, { type Table } from "dexie";
 
-export interface DbMessage extends Message {
+export interface DbMessage extends Partial<Omit<Message, 'id'>> {
+  id?: number;
   chatId: number;
 }
 

@@ -4,18 +4,18 @@
   import Icon from "@iconify/svelte"
   import { onMount } from "svelte";
 
-  let chats :Array<OpenaiChat> = []
-
-  async function loadChats() {
-    const ret = await OpenaiChat.index()
-    if(ret.isSuccess){
-      chats = ret.data
-    }
-  }
-
-  onMount(() => {
-    loadChats()
-  })
+  // let chats :Array<OpenaiChat> = []
+  //
+  // async function loadChats() {
+  //   const ret = await OpenaiChat.index()
+  //   if(ret.isSuccess){
+  //     chats = ret.data
+  //   }
+  // }
+  //
+  // onMount(() => {
+  //   loadChats()
+  // })
 
 </script>
 

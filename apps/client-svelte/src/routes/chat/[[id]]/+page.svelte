@@ -6,13 +6,14 @@
   import { db } from "$db";
   import { liveQuery } from "dexie";
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
 
   let chat = liveQuery(() => db.chats.get(Number($page.params.id)))
 
-  let initialMessages = liveQuery(async () => {
-    const initMsgs = await db.messages.where({chatId: Number($page.params.id)}).toArray()
-    initMsgs.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
-    return initMsgs || []
+  let initialMessages = []
+
+  onMount(async () => {
+    initialMessages = await db.messages.where({chatId: Number($page.params.id)}).toArray()
   })
 
   const {
@@ -36,12 +37,14 @@
     }
     // save last 2 messages
     const messagesForDb = $messages.slice(-2).map((message) => {
-      return {chatId: chatId, ...message}
+      // db will generate id, we need to remove id from message
+      const {id, ...rest} = message
+      return {chatId: chatId, ...rest}
     })
     db.messages.bulkAdd(messagesForDb)
   }
 
-  $: allMessages = [...($initialMessages || []), ...$messages]
+  $: allMessages = [...(initialMessages || []), ...$messages]
 
 </script>
 
