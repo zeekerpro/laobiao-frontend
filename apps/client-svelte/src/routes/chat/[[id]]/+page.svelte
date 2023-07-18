@@ -9,7 +9,11 @@
 
   let chat = liveQuery(() => db.chats.get(Number($page.params.id)))
 
-  let initialMessages = liveQuery(() => db.messages.where({chatId: Number($page.params.id)}).toArray())
+  let initialMessages = liveQuery(async () => {
+    const initMsgs = await db.messages.where({chatId: Number($page.params.id)}).toArray()
+    initMsgs.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+    return initMsgs || []
+  })
 
   const {
     input,
@@ -17,8 +21,7 @@
     messages,
     isLoading
   } = useChat({
-    onFinish: persistChat,
-    initialMessages: $initialMessages
+    onFinish: persistChat
   });
 
   async function submitHandler(e: SubmitEvent) {
@@ -38,13 +41,15 @@
     db.messages.bulkAdd(messagesForDb)
   }
 
+  $: allMessages = [...($initialMessages || []), ...$messages]
+
 </script>
 
 <main>
   <div class="mb-32">
-    {#each $messages as message}
-    <div class="chat { message.role == 'user' ? 'chat-end' : 'chat-start' }">
 
+    {#each allMessages as message}
+    <div class="chat { message.role == 'user' ? 'chat-end' : 'chat-start' }">
       <div class="chat-image avatar">
         <div class="w-10 rounded-full">
           <Icon icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }" class="w-10 h-10" ></Icon>
@@ -105,4 +110,5 @@
       </button>
     </div>
   </form>
+
 </main>
