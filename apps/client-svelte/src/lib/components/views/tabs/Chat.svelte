@@ -16,13 +16,17 @@
   <div class="m-4 rounded flex flex-col">
     {#each $chats as chat }
       <a href="/chat/{chat.id}"
-        class="flex items-center justify-between btn mt-1"
+        class="btn mt-1 grid grid-cols-9"
         >
-        <Icon icon="ion:chatbox-outline" class="text-2xl font-semibold"></Icon>
-        <div class="grow ml-2">
-          <p class="text-left"> {chat.name} </p>
+        <div class="col-span-1">
+          <Icon icon="ion:chatbox-outline" class="text-2xl font-semibold "></Icon>
         </div>
-        <Icon icon="ion:chevron-forward-outline"></Icon>
+        <div class="col-span-7">
+          <p class="text-left overflow-hidden text-ellipsis whitespace-nowrap"> {chat.name} </p>
+        </div>
+        <div class="col-span-1 text-right">
+          <Icon icon="icon-park-outline:right" class="text-xl" />
+        </div>
       </a>
     {/each}
   </div>
