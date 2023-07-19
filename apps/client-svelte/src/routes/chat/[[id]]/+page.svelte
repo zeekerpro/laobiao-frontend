@@ -13,9 +13,7 @@
 
   let chatHelper: UseChatHelpers
 
-  $: if($showView){
-    initChat(Number($page.params.id))
-  }
+  $: if($showView){ initChat() }
 
   // init chat helper if initialMessages is changed
   $: {
@@ -33,7 +31,8 @@
     chatHelper.handleSubmit(e)
   }
 
-  async function initChat(id: number) {
+  async function initChat() {
+    const id = Number($page.params.id)
     if(!!id){
       chat = await db.chats.get(id)
       initialMessages = await db.messages.where({chatId: id}).toArray()
