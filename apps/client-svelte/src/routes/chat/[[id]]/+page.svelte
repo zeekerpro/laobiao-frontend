@@ -1,65 +1,69 @@
 <script lang="ts">
-  import { useChat } from "ai/svelte";
+  import { useChat, type UseChatHelpers } from "ai/svelte";
   import Icon from "@iconify/svelte"
   import { dateFormatter } from "$utils/formatter";
   import type { Message } from "ai";
   import { db } from "$db";
-  import { liveQuery } from "dexie";
   import { page } from "$app/stores";
-  import { onMount } from "svelte";
+  import { showView } from "$stores/viewStack";
 
-  let chat = liveQuery(() => db.chats.get(Number($page.params.id)))
+  let chat = null;
 
   let initialMessages = []
 
-  onMount(async () => {
-    initMessages()
-  })
+  let chatHelper: UseChatHelpers
 
-    $: {
-    !!$page.params.id  ? initMessages() : initialMessages = []
+  $: if($showView){
+    initChat(Number($page.params.id))
   }
 
-  const {
-    input,
-    handleSubmit,
-    messages,
-    isLoading
-  } = useChat({
-    onFinish: persistChat
-  });
-
-  async function initMessages() {
-    initialMessages = await db.messages.where({chatId: Number($page.params.id)}).toArray()
+  // init chat helper if initialMessages is changed
+  $: {
+    chatHelper = useChat({
+      onFinish: persistChat,
+      initialMessages: initialMessages
+    });
   }
+  $: input = chatHelper.input
+  $: messages = chatHelper.messages
+  $: isLoading = chatHelper.isLoading
 
   async function submitHandler(e: SubmitEvent) {
     if($isLoading){ return }
-    handleSubmit(e)
+    chatHelper.handleSubmit(e)
+  }
+
+  async function initChat(id: number) {
+    if(!!id){
+      chat = await db.chats.get(id)
+      initialMessages = await db.messages.where({chatId: id}).toArray()
+    }else{
+      chat = null;
+      initialMessages = []
+    }
   }
 
   async function persistChat(message: Message) {
-    let chatId = $chat?.id
-    if(!$chat){
-      chatId  = await db.chats.add({ name: $messages[0].content })
+    // create chat
+    if(!chat){
+      let id = await db.chats.add({ name: $messages[0].content })
+      chat = await db.chats.get(id)
     }
     // save last 2 messages
     const messagesForDb = $messages.slice(-2).map((message) => {
       // db will generate id, we need to remove id from message
       const {id, ...rest} = message
-      return {chatId: chatId, ...rest}
+      return {chatId: chat.id, ...rest}
     })
     db.messages.bulkAdd(messagesForDb)
   }
-
-  $: allMessages = [...(initialMessages || []), ...$messages]
 
 </script>
 
 <main>
   <div class="mb-32">
 
-    {#each allMessages as message}
+    {#each $messages as message}
     <div class="chat { message.role == 'user' ? 'chat-end' : 'chat-start' }">
       <div class="chat-image avatar">
         <div class="w-10 rounded-full">
@@ -73,7 +77,6 @@
       </div>
 
       <div class="chat-footer">
-        {message.role}
         <time class="text-xs opacity-50">{ dateFormatter()(message.createdAt)}</time>
       </div>
     </div>

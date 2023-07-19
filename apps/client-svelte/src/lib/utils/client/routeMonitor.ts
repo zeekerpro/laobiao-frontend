@@ -47,5 +47,5 @@ export function back(){
     goto(backTo.url)
     console.log(`back to: ${backTo}`)
   }
-  console.log(`viewstacks: ${get(viewStack)}`)
+  console.log(`viewstacks: ${get(viewStack).length}`)
 }
