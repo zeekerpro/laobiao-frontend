@@ -30,6 +30,8 @@ export default class User extends BaseModel {
   async signout() {
     const { appStorage } = await import("$utils/client/storage");
     appStorage.remove("token");
+    const { db } = await import("$db");
+    db.delete()
   }
 
    async update(user: any) {
