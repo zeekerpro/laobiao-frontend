@@ -16,7 +16,7 @@
   <div class="m-4 rounded flex flex-col">
     {#each $chats as chat }
       <a href="/chat/{chat.id}"
-        class="flex items-center justify-between btn"
+        class="flex items-center justify-between btn mt-1"
         >
         <Icon icon="ion:chatbox-outline" class="text-2xl font-semibold"></Icon>
         <div class="grow ml-2">
