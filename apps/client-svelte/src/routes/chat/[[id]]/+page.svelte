@@ -13,8 +13,12 @@
   let initialMessages = []
 
   onMount(async () => {
-    initialMessages = await db.messages.where({chatId: Number($page.params.id)}).toArray()
+    initMessages()
   })
+
+    $: {
+    !!$page.params.id  ? initMessages() : initialMessages = []
+  }
 
   const {
     input,
@@ -24,6 +28,10 @@
   } = useChat({
     onFinish: persistChat
   });
+
+  async function initMessages() {
+    initialMessages = await db.messages.where({chatId: Number($page.params.id)}).toArray()
+  }
 
   async function submitHandler(e: SubmitEvent) {
     if($isLoading){ return }
