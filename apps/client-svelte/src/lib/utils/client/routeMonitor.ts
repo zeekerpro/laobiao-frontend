@@ -7,11 +7,11 @@ import { authWhiteList, isAuthRoute } from "$configs";
 import { viewStack, currentView } from "$stores/viewStack";
 
 export function guard(navigation: BeforeNavigate) {
-  log.endpoint(`route guard: ${navigation.from.route.id} -> ${navigation.to?.route.id}`)
+  log.endpoint(`route guard: ${navigation.from.url.pathname} -> ${navigation.to?.url.pathname}`)
 
   if(!(navigation.to) || authWhiteList.includes(navigation.to?.route.id)) { return }
 
-  if(navigation.from?.route.id === navigation.to?.route.id) {
+  if(navigation.from?.url.pathname === navigation.to?.url.pathname) {
     viewStack.push(navigation.to)
     navigation.cancel();
     return;
