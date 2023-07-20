@@ -128,17 +128,16 @@
       shadow-2xl
       bg-base-100
       ">
-      <textarea
-        bind:value={$input}
-        placeholder="Write a message ..."
+      <div contenteditable="true"
+        bind:innerText={$input}
         class="
           grow
           outline-none
           bg-transparent
-          px-3 py-0
-          h-12
+          px-3 py-3
         "
-      />
+        >
+      </div>
       <button type="submit" class="pr-1">
         {#if $isLoading}
           <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
