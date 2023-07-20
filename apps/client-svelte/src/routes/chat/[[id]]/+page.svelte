@@ -6,6 +6,37 @@
   import { db } from "$db";
   import { page } from "$app/stores";
   import { showView } from "$stores/viewStack";
+  import MarkdownIt from "markdown-it";
+  import hljs from 'highlight.js'
+
+  const md = new MarkdownIt({
+    linkify: true,
+    breaks: true,
+    highlight: (str: string, lang: string, attrs: string): string => {
+        let content = str
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                content = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
+            } catch (e) {
+                console.log(e)
+                return str
+            }
+        } else {
+            content = md.utils.escapeHtml(str)
+        }
+
+        // join actions html string
+        lang = (lang || 'txt').toUpperCase()
+        return [
+            '<div class="code-block-wrapper">',
+            `<div class="code-header"><span class="code-lang">${lang}</span><div class="copy-action">copy</div></div>`,
+            '<pre class="hljs code-block overflow-scroll bg-success p-1 rounded shadow-2xl scollbar-hidden">',
+            `<code>${content}</code>`,
+            '</pre>',
+            '</div>',
+        ].join('');
+    },
+  });
 
   let chat = null;
 
@@ -72,7 +103,7 @@
 
 
       <div class="chat-bubble {message.role == 'user' ? 'chat-bubble-primary' : 'chat-bubble-info'}">
-         {message.content}
+         { @html md.render(message.content)}
       </div>
 
       <div class="chat-footer">
@@ -91,8 +122,8 @@
       backdrop-filter
     "
     >
-    <label for="" class="block w-full text-center my-4 italic ">
-      input chat name
+    <label for="" class="block w-full text-center my-3 italic text-sm">
+      Ask anything you want to know, I will try to answer it.
     </label>
     <div class="flex flex-wrap
       rounded-lg

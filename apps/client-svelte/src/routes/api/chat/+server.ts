@@ -24,7 +24,7 @@ export const POST = (async (requestEvent: RequestEvent) => {
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.createChatCompletion({
     // todo: use model that user setting before
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-16k',
     stream: true,
     temperature: 0.6,
     top_p: 1,
