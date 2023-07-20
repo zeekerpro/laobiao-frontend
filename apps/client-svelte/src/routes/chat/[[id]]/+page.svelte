@@ -13,28 +13,25 @@
     linkify: true,
     breaks: true,
     highlight: (str: string, lang: string, attrs: string): string => {
-        let content = str
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                content = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
-            } catch (e) {
-                console.log(e)
-                return str
-            }
-        } else {
-            content = md.utils.escapeHtml(str)
-        }
+      let content = str
+      if (lang && hljs.getLanguage(lang)) {
+          try {
+              content = hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
+          } catch (e) {
+              console.log(e)
+              return str
+          }
+      } else {
+          content = md.utils.escapeHtml(str)
+      }
 
-        // join actions html string
-        lang = (lang || 'txt').toUpperCase()
-        return [
-            '<div class="code-block-wrapper">',
-            `<div class="code-header"><span class="code-lang">${lang}</span><div class="copy-action">copy</div></div>`,
-            '<pre class="hljs code-block overflow-scroll bg-success p-1 rounded shadow-2xl scollbar-hidden">',
-            `<code>${content}</code>`,
-            '</pre>',
-            '</div>',
-        ].join('');
+      // join actions html string
+      lang = (lang || 'txt').toUpperCase()
+      return  `
+        <div class="mockup-code text-sm min-w-0">
+          <pre><code>${content}</code></pre>
+        </div>
+      `
     },
   });
 
@@ -131,7 +128,7 @@
       shadow-2xl
       bg-base-100
       ">
-      <input
+      <textarea
         bind:value={$input}
         placeholder="Write a message ..."
         class="
