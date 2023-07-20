@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.appmaker.wakesy",
+      "sha256_cert_fingerprints": ["B0:87:D3:11:17:B7:C2:98:C9:F8:28:D7:3B:69:46:AF:96:10:A0:E0:9E:D0:D9:B4:37:D0:AC:F1:A8:51:B6:18"]
+    }
+  }
+]
