@@ -82,7 +82,7 @@
     {/each}
   </div>
 
-  <form on:submit={submitHandler}
+  <form on:submit|self|trusted={submitHandler}
     class="
       fixed-silky bottom-0 left-0 right-0
       pb-12 px-3

@@ -43,7 +43,7 @@
 </svelte:head>
 
 <main class="flex justify-center items-center flex-col gap-2">
-  <button class="btn" on:click={createReferral} >
+  <button class="btn" on:click|trusted|self={createReferral} >
     {#if isLoading } <span class="loading loading-spinner"></span> {/if}
     create a referral code
   </button>

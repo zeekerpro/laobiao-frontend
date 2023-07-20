@@ -43,7 +43,7 @@
 
 <form class="{classes}"
   bind:this={formRef}
-  on:submit={handleSubmit}
+  on:submit|self|trusted={handleSubmit}
   >
 
   {#each options as option }
