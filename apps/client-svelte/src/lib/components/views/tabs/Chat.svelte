@@ -3,8 +3,16 @@
   import { db } from "$db";
   import Icon from "@iconify/svelte"
   import { liveQuery } from "dexie";
+    import { onMount } from "svelte";
 
-  let chats = liveQuery(() => db.chats.toArray() )
+  let chats = liveQuery(() => db.chats.toCollection().reverse().sortBy("updatedAt"))
+
+  onMount(() => {
+    db.chats.each((chat, cursow) => {
+      if(!chat.createdAt){ db.chats.update(chat.id, { createdAt: new Date()}) }
+      if(!chat.updatedAt){ db.chats.update(chat.id, { updatedAt: new Date()}) }
+    })
+  })
 
  </script>
 

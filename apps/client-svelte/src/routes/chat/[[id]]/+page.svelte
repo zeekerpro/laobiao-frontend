@@ -73,7 +73,8 @@
   async function persistChat(message: Message) {
     // create chat
     if(!chat){
-      let id = await db.chats.add({ name: $messages[0].content })
+      const newChat = { name: message.content, createdAt: new Date(), updatedAt: new Date() }
+      let id = await db.chats.add(newChat)
       chat = await db.chats.get(id)
     }
     // save last 2 messages
@@ -83,6 +84,8 @@
       return {chatId: chat.id, ...rest}
     })
     db.messages.bulkAdd(messagesForDb)
+    if(chat.createdAt == null) db.chats.update(chat.id, { createdAt: new Date() })
+    db.chats.update(chat.id, { updatedAt: new Date() })
   }
 
 </script>

@@ -9,6 +9,8 @@ export interface DbMessage extends Partial<Omit<Message, 'id'>> {
 export interface DbChat {
   id?: number;
   name: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class LaobiaoDB extends Dexie {
