@@ -125,7 +125,7 @@
     <label for="" class="block w-full text-center my-3 italic text-sm">
       Ask anything you want to know, I will try to answer it.
     </label>
-    <div class="flex flex-wrap
+    <div class="flex flex-nowrap
       rounded-lg
       overflow-clip
       shadow-2xl
@@ -138,10 +138,14 @@
           outline-none
           bg-transparent
           px-3 py-3
+          min-h-12
+          max-h-36
+          overflow-y-scroll
+          scrollbar-hide
         "
         >
       </div>
-      <button type="submit" class="pr-1">
+      <button type="submit" class="p-1 h-12 self-end">
         {#if $isLoading}
           <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
         {:else}
