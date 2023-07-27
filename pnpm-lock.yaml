@@ -62,9 +62,6 @@ importers:
       reflect-metadata:
         specifier: ^0.1.13
         version: registry.npmmirror.com/reflect-metadata@0.1.13
-      sveltronics:
-        specifier: ^0.0.13
-        version: registry.npmmirror.com/sveltronics@0.0.13(svelte@4.1.1)(typescript@5.1.6)
       theme-change:
         specifier: ^2.5.0
         version: registry.npmmirror.com/theme-change@2.5.0
@@ -2626,26 +2623,6 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-TXbrzsk+T5WNcSzrU41D8P32vU5guo96lVS11/R+rpLhZBH5sORh0Qp6r68Jg4O5vcdS3JLwpwcpe8VFbT/QeA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@sveltejs/package/-/package-2.2.0.tgz}
-    id: registry.npmmirror.com/@sveltejs/package/2.2.0
-    name: '@sveltejs/package'
-    version: 2.2.0
-    engines: {node: ^16.14 || >=18}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.44.0 || ^4.0.0
-    dependencies:
-      chokidar: registry.npmmirror.com/chokidar@3.5.3
-      kleur: registry.npmmirror.com/kleur@4.1.5
-      sade: registry.npmmirror.com/sade@1.8.1
-      semver: registry.npmmirror.com/semver@7.5.4
-      svelte: registry.npmmirror.com/svelte@4.1.1
-      svelte2tsx: registry.npmmirror.com/svelte2tsx@0.6.19(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - typescript
-    dev: false
-
   registry.npmmirror.com/@sveltejs/vite-plugin-svelte-inspector@1.0.3(@sveltejs/vite-plugin-svelte@2.4.3)(svelte@4.1.1)(vite@4.4.7):
     resolution: {integrity: sha512-Khdl5jmmPN6SUsVuqSXatKpQTMIifoQPDanaxC84m9JxIibWvSABJyHpyys0Z+1yYrxY5TTEQm+6elh0XCMaOA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@sveltejs/vite-plugin-svelte-inspector/-/vite-plugin-svelte-inspector-1.0.3.tgz}
     id: registry.npmmirror.com/@sveltejs/vite-plugin-svelte-inspector/1.0.3
@@ -3673,12 +3650,6 @@ packages:
         optional: true
     dependencies:
       ms: registry.npmmirror.com/ms@2.1.2
-
-  registry.npmmirror.com/dedent-js@1.0.1:
-    resolution: {integrity: sha512-OUepMozQULMLUmhxS95Vudo0jb0UchLimi3+pQ2plj61Fcy8axbP9hbiD4Sz6DPqn6XG3kfmziVfQ1rSys5AJQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dedent-js/-/dedent-js-1.0.1.tgz}
-    name: dedent-js
-    version: 1.0.1
-    dev: false
 
   registry.npmmirror.com/deep-eql@4.1.3:
     resolution: {integrity: sha512-WaEtAOpRA1MQ0eohqZjpGD8zdI0Ovsm8mmFhaDN8dvDZzyoUMcYDnf5Y6iu7HTXxf8JDS23qWa4a+hKCDyOPzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/deep-eql/-/deep-eql-4.1.3.tgz}
@@ -4764,6 +4735,7 @@ packages:
     name: kleur
     version: 4.1.5
     engines: {node: '>=6'}
+    dev: true
 
   registry.npmmirror.com/leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/leven/-/leven-3.1.0.tgz}
@@ -4855,14 +4827,6 @@ packages:
       get-func-name: registry.npmmirror.com/get-func-name@2.0.0
     dev: true
 
-  registry.npmmirror.com/lower-case@2.0.2:
-    resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lower-case/-/lower-case-2.0.2.tgz}
-    name: lower-case
-    version: 2.0.2
-    dependencies:
-      tslib: registry.npmmirror.com/tslib@2.6.1
-    dev: false
-
   registry.npmmirror.com/lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lru-cache/-/lru-cache-5.1.1.tgz}
     name: lru-cache
@@ -4878,6 +4842,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: registry.npmmirror.com/yallist@4.0.0
+    dev: true
 
   registry.npmmirror.com/magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/magic-string/-/magic-string-0.25.9.tgz}
@@ -5068,6 +5033,7 @@ packages:
     name: mri
     version: 1.2.0
     engines: {node: '>=4'}
+    dev: true
 
   registry.npmmirror.com/mrmime@1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mrmime/-/mrmime-1.0.1.tgz}
@@ -5096,15 +5062,6 @@ packages:
     version: 3.3.6
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  registry.npmmirror.com/no-case@3.0.4:
-    resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/no-case/-/no-case-3.0.4.tgz}
-    name: no-case
-    version: 3.0.4
-    dependencies:
-      lower-case: registry.npmmirror.com/lower-case@2.0.2
-      tslib: registry.npmmirror.com/tslib@2.6.1
-    dev: false
 
   registry.npmmirror.com/node-fetch@2.6.12:
     resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-fetch/-/node-fetch-2.6.12.tgz}
@@ -5235,15 +5192,6 @@ packages:
     dependencies:
       callsites: registry.npmmirror.com/callsites@3.1.0
     dev: true
-
-  registry.npmmirror.com/pascal-case@3.1.2:
-    resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pascal-case/-/pascal-case-3.1.2.tgz}
-    name: pascal-case
-    version: 3.1.2
-    dependencies:
-      no-case: registry.npmmirror.com/no-case@3.0.4
-      tslib: registry.npmmirror.com/tslib@2.6.1
-    dev: false
 
   registry.npmmirror.com/path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz}
@@ -5697,6 +5645,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mri: registry.npmmirror.com/mri@1.2.0
+    dev: true
 
   registry.npmmirror.com/safe-array-concat@1.0.0:
     resolution: {integrity: sha512-9dVEFruWIsnie89yym+xWTAYASdpw3CJV7Li/6zBewGf9z2i1j31rP6jnY0pHEO4QZh6N0K11bFjWmdR8UGdPQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/safe-array-concat/-/safe-array-concat-1.0.0.tgz}
@@ -5764,6 +5713,7 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: registry.npmmirror.com/lru-cache@6.0.0
+    dev: true
 
   registry.npmmirror.com/serialize-javascript@4.0.0:
     resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/serialize-javascript/-/serialize-javascript-4.0.0.tgz}
@@ -6188,46 +6138,6 @@ packages:
       typescript: registry.npmmirror.com/typescript@5.1.6
     dev: true
 
-  registry.npmmirror.com/svelte-use-helpers@0.0.2(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-Hk12+M4cjTFXnoHy0VXQp9lnv9pGSEE/aF/bo2ZxPcPl3RA7HR7c6zeZ/wM2loxhNe5nDawMKNpod5bR7rf8/Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/svelte-use-helpers/-/svelte-use-helpers-0.0.2.tgz}
-    id: registry.npmmirror.com/svelte-use-helpers/0.0.2
-    name: svelte-use-helpers
-    version: 0.0.2
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
-
-  registry.npmmirror.com/svelte-use-helpers@0.0.4(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-h7EJSDRAganaMqEgkEKK02VFeo0XagTwVTE/152hPlHck4fhAQCGwL70THZwbDqyURDupkys+Vtl6QURXuta/Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/svelte-use-helpers/-/svelte-use-helpers-0.0.4.tgz}
-    id: registry.npmmirror.com/svelte-use-helpers/0.0.4
-    name: svelte-use-helpers
-    version: 0.0.4
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-      svelte-use-helpers: registry.npmmirror.com/svelte-use-helpers@0.0.2(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
-
-  registry.npmmirror.com/svelte2tsx@0.6.19(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-h3b5OtcO8zyVL/RiB2zsDwCopeo/UH+887uyhgb2mjnewOFwiTxu+4IGuVwrrlyuh2onM2ktfUemNrNmQwXONQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/svelte2tsx/-/svelte2tsx-0.6.19.tgz}
-    id: registry.npmmirror.com/svelte2tsx/0.6.19
-    name: svelte2tsx
-    version: 0.6.19
-    peerDependencies:
-      svelte: ^3.55 || ^4.0.0-next.0 || ^4.0
-      typescript: ^4.9.4 || ^5.0.0
-    dependencies:
-      dedent-js: registry.npmmirror.com/dedent-js@1.0.1
-      pascal-case: registry.npmmirror.com/pascal-case@3.1.2
-      svelte: registry.npmmirror.com/svelte@4.1.1
-      typescript: registry.npmmirror.com/typescript@5.1.6
-    dev: false
-
   registry.npmmirror.com/svelte@4.1.1:
     resolution: {integrity: sha512-Enick5fPFISLoVy0MFK45cG+YlQt6upw8skEK9zzTpJnH1DqEv8xOZwizCGSo3Q6HZ7KrZTM0J18poF7aQg5zw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/svelte/-/svelte-4.1.1.tgz}
     name: svelte
@@ -6247,58 +6157,6 @@ packages:
       locate-character: registry.npmmirror.com/locate-character@3.0.0
       magic-string: registry.npmmirror.com/magic-string@0.30.1
       periscopic: registry.npmmirror.com/periscopic@3.1.0
-
-  registry.npmmirror.com/sveltronics@0.0.10(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-UeailXE5yK6I3aUJ0hoJwRXsUeP3zG/12Ge5C7kCDswa+WChQ2+oWaAeBEgNlAbEd3vY2w2u1e5MIxPyLDEarw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sveltronics/-/sveltronics-0.0.10.tgz}
-    id: registry.npmmirror.com/sveltronics/0.0.10
-    name: sveltronics
-    version: 0.0.10
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-      sveltronics: registry.npmmirror.com/sveltronics@0.0.6(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
-
-  registry.npmmirror.com/sveltronics@0.0.12(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-vfFZr+g5wI4vCLZyKWEUx3Esnqnl9k47OYYOYgztOH+qASOtFF4FKDwgZRNcUlJo+6JNHNrIV304goO+e9biOw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sveltronics/-/sveltronics-0.0.12.tgz}
-    id: registry.npmmirror.com/sveltronics/0.0.12
-    name: sveltronics
-    version: 0.0.12
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-      sveltronics: registry.npmmirror.com/sveltronics@0.0.10(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
-
-  registry.npmmirror.com/sveltronics@0.0.13(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-24Yi41cuVhLmB2RMyXts6vjWqhBM9dsCuDkDETBXpHKcxnCP/iwTalq9Nz99JA/eXK74PuKF7Z36PeVihVjsXg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sveltronics/-/sveltronics-0.0.13.tgz}
-    id: registry.npmmirror.com/sveltronics/0.0.13
-    name: sveltronics
-    version: 0.0.13
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-      sveltronics: registry.npmmirror.com/sveltronics@0.0.12(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
-
-  registry.npmmirror.com/sveltronics@0.0.6(svelte@4.1.1)(typescript@5.1.6):
-    resolution: {integrity: sha512-ss83MrSe6oYxpIN9f5xIIi0mOB++VTNSJd3K7h3l6UnjD6kPSXRXbupVRctVIVgU7p4rLCdCp0MvAnJz+b6RuQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sveltronics/-/sveltronics-0.0.6.tgz}
-    id: registry.npmmirror.com/sveltronics/0.0.6
-    name: sveltronics
-    version: 0.0.6
-    dependencies:
-      '@sveltejs/package': registry.npmmirror.com/@sveltejs/package@2.2.0(svelte@4.1.1)(typescript@5.1.6)
-      svelte-use-helpers: registry.npmmirror.com/svelte-use-helpers@0.0.4(svelte@4.1.1)(typescript@5.1.6)
-    transitivePeerDependencies:
-      - svelte
-      - typescript
-    dev: false
 
   registry.npmmirror.com/swr-store@0.10.6:
     resolution: {integrity: sha512-xPjB1hARSiRaNNlUQvWSVrG5SirCjk2TmaUyzzvk69SZQan9hCJqw/5rG9iL7xElHU784GxRPISClq4488/XVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/swr-store/-/swr-store-0.10.6.tgz}
@@ -6513,6 +6371,7 @@ packages:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tslib/-/tslib-2.6.1.tgz}
     name: tslib
     version: 2.6.1
+    dev: true
 
   registry.npmmirror.com/turbo-darwin-64@1.10.7:
     resolution: {integrity: sha512-N2MNuhwrl6g7vGuz4y3fFG2aR1oCs0UZ5HKl8KSTn/VC2y2YIuLGedQ3OVbo0TfEvygAlF3QGAAKKtOCmGPNKA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/turbo-darwin-64/-/turbo-darwin-64-1.10.7.tgz}
@@ -6670,6 +6529,7 @@ packages:
     version: 5.1.6
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   registry.npmmirror.com/uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/uc.micro/-/uc.micro-1.0.6.tgz}
@@ -7312,6 +7172,7 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yallist/-/yallist-4.0.0.tgz}
     name: yallist
     version: 4.0.0
+    dev: true
 
   registry.npmmirror.com/yaml@2.3.1:
     resolution: {integrity: sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yaml/-/yaml-2.3.1.tgz}

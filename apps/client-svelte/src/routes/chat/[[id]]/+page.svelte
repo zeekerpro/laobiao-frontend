@@ -1,7 +1,6 @@
 <script lang="ts">
   import { useChat, type UseChatHelpers } from "ai/svelte";
   import Icon from "@iconify/svelte"
-  import { dateFormatter } from "$utils/formatter";
   import type { Message } from "ai";
   import { db } from "$db";
   import { page } from "$app/stores";
@@ -28,7 +27,7 @@
       // join actions html string
       lang = (lang || 'txt').toUpperCase()
       return  `
-        <div class="mockup-code text-sm min-w-0">
+        <div class="mockup-code text-sm min-w-0 px-3">
           <pre><code>${content}</code></pre>
         </div>
       `
@@ -87,29 +86,45 @@
     if(chat.createdAt == null) db.chats.update(chat.id, { createdAt: new Date() })
     db.chats.update(chat.id, { updatedAt: new Date() })
   }
-
 </script>
 
-<main>
+<main >
   <div class="mb-32">
 
     {#each $messages as message}
-    <div class="chat { message.role == 'user' ? 'chat-end' : 'chat-start' }">
-      <div class="chat-image avatar">
-        <div class="w-10 rounded-full">
-          <Icon icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }" class="w-10 h-10" ></Icon>
+
+    <div class="py-5 px-1 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
+
+      <Icon
+        icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }"
+        class="w-7 h-7 absolute top-5 left-1
+          {message.role == 'user' ? '' : 'text-green-600'}
+         "
+      />
+
+      <div class="ml-10 flex flex-col">
+
+        <div class="">
+          {@html md.render(message.content)}
         </div>
+
+        <div class="self-end mt-4">
+          {#if message.role == 'user'}
+            <div data-tip="edit" class="text-3xs hover:text-success tooltip-success" >
+              <Icon icon="raphael:edit" class="text-3xs hover:text-success text-gray-400" ></Icon>
+            </div>
+          {:else}
+            <div data-tip="copy" class="text-3xs hover:text-success tooltip-success" >
+              <Icon icon="uiw:copy" class="text-3xs hover:text-success text-gray-400" ></Icon>
+            </div>
+          {/if}
+
+        </div>
+
       </div>
 
-
-      <div class="chat-bubble {message.role == 'user' ? 'chat-bubble-primary' : 'chat-bubble-info'}">
-         { @html md.render(message.content)}
-      </div>
-
-      <div class="chat-footer">
-        <time class="text-xs opacity-50">{ dateFormatter()(message.createdAt)}</time>
-      </div>
     </div>
+
     {/each}
   </div>
 
