@@ -110,13 +110,19 @@
 
         <div class="self-end mt-4">
           {#if message.role == 'user'}
-            <div data-tip="edit" class="text-3xs hover:text-success tooltip-success" >
+            <button data-tip="edit" class="tooltip text-3xs hover:text-info tooltip-info" >
               <Icon icon="raphael:edit" class="text-3xs hover:text-success text-gray-400" ></Icon>
-            </div>
+            </button>
           {:else}
-            <div data-tip="copy" class="text-3xs hover:text-success tooltip-success" >
+            <button
+              data-tip="copy"
+              class="tooltip text-3xs hover:text-success tooltip-success"
+              on:click|preventDefault={async () => {
+                await navigator.clipboard.writeText(message.content)
+              }}
+              >
               <Icon icon="uiw:copy" class="text-3xs hover:text-success text-gray-400" ></Icon>
-            </div>
+            </button>
           {/if}
 
         </div>
