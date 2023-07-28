@@ -27,7 +27,7 @@
       // join actions html string
       lang = (lang || 'txt').toUpperCase()
       return  `
-        <div class="mockup-code text-sm min-w-0 px-3">
+        <div class="mockup-code text-sm min-w-0">
           <pre><code>${content}</code></pre>
         </div>
       `
