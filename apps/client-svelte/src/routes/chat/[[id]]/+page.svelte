@@ -86,6 +86,14 @@
     if(chat.createdAt == null) db.chats.update(chat.id, { createdAt: new Date() })
     db.chats.update(chat.id, { updatedAt: new Date() })
   }
+
+  let textareaRef: HTMLTextAreaElement;
+  function adjustTextareaHeight(){
+    if(!textareaRef){ return }
+    textareaRef.style.height = "auto";
+    textareaRef.style.height = (textareaRef.scrollHeight)+"px";
+  }
+
 </script>
 
 <main >
@@ -144,7 +152,7 @@
     "
     >
     <label for="" class="block w-full text-center my-3 italic text-sm">
-      Ask anything you want to know, I will try to answer it.
+      {$input ? 'Press Enter to send' : 'Type something to start'}
     </label>
     <div class="flex flex-nowrap
       rounded-lg
@@ -152,8 +160,10 @@
       shadow-2xl
       bg-base-100
       ">
-      <div contenteditable="true"
-        bind:innerText={$input}
+      <textarea
+        bind:this={textareaRef}
+        bind:value={$input}
+        rows="1"
         class="
           grow
           outline-none
@@ -164,8 +174,8 @@
           overflow-y-scroll
           scrollbar-hide
         "
-        >
-      </div>
+        on:input={adjustTextareaHeight}
+      />
       <button type="submit" class="p-1 h-12 self-end">
         {#if $isLoading}
           <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
