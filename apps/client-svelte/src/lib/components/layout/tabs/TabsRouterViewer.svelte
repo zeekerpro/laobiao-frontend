@@ -29,7 +29,7 @@
 
 
 <MainContainer class="pt-12 pb-10 {classes}" bind:nodeEl={viewerRef}>
-  <div class="px-2">
+  <div class="">
     <!-- acturelly router view here -->
     <slot></slot>
   </div>

@@ -101,18 +101,18 @@
 
     {#each $messages as message}
 
-    <div class="py-5 px-1 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
+    <div class="py-5 px-2 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
 
       <Icon
         icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }"
-        class="w-7 h-7 absolute top-5 left-1
+        class="w-7 h-7 absolute top-5 left-2
           {message.role == 'user' ? '' : 'text-green-600'}
          "
       />
 
       <div class="ml-10 flex flex-col">
 
-        <div class="">
+        <div class="w-11/12">
           {@html md.render(message.content)}
         </div>
 
