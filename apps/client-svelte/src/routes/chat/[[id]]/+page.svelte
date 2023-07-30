@@ -101,11 +101,11 @@
 
     {#each $messages as message}
 
-    <div class="py-5 px-2 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
+    <div class="pt-8 pb-3 px-2 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
 
       <Icon
         icon="{ message.role == 'user' ? 'radix-icons:avatar' : 'ri:openai-fill' }"
-        class="w-7 h-7 absolute top-5 left-2
+        class="w-7 h-7 absolute top-8 left-2
           {message.role == 'user' ? '' : 'text-green-600'}
          "
       />
@@ -116,14 +116,18 @@
           {@html md.render(message.content)}
         </div>
 
-        <div class="self-end mt-4">
+        <div class="self-end mt-4 mr-4">
           {#if message.role == 'user'}
-            <button data-tip="edit" class="tooltip text-3xs hover:text-info tooltip-info" >
+            <button
+              data-tip="edit"
+              class="tooltip text-3xs hover:text-info tooltip-info"
+              on:click={() => $input = message.content }
+              >
               <Icon icon="raphael:edit" class="text-3xs hover:text-success text-gray-400" ></Icon>
             </button>
           {:else}
             <button
-              data-tip="copy"
+              data-tip="copyed"
               class="tooltip text-3xs hover:text-success tooltip-success"
               on:click|preventDefault={async () => {
                 await navigator.clipboard.writeText(message.content)
