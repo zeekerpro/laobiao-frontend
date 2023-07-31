@@ -47,12 +47,14 @@
   // init chat helper if initialMessages is changed
   $: {
     chatHelper = useChat({
+      initialMessages: initialMessages,
       onFinish: persistChat,
-      initialMessages: initialMessages
+      onError: (error: Error) => isLoading = false
     });
   }
   $: input = chatHelper.input
   $: messages = chatHelper.messages
+  $: error = chatHelper.error
 
   async function submitHandler(e: SubmitEvent) {
     if(isLoading || !$input.trim().length ){ return }
@@ -193,6 +195,13 @@
         </Icon>
       </button>
     </div>
+
+    {#if $error}
+      <span class="w-full text-left mt-2 italic text-xs text-error">
+        { $error.message }
+      </span>
+    {/if}
   </form>
+
 
 </main>
