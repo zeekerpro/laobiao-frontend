@@ -40,6 +40,8 @@
 
   let chatHelper: UseChatHelpers
 
+  let isLoading = false
+
   $: if($showView){ initChat() }
 
   // init chat helper if initialMessages is changed
@@ -51,10 +53,10 @@
   }
   $: input = chatHelper.input
   $: messages = chatHelper.messages
-  $: isLoading = chatHelper.isLoading
 
   async function submitHandler(e: SubmitEvent) {
-    if($isLoading){ return }
+    if(isLoading || !$input.trim().length ){ return }
+    isLoading = true
     chatHelper.handleSubmit(e)
   }
 
@@ -70,6 +72,7 @@
   }
 
   async function persistChat(message: Message) {
+    isLoading = false
     // create chat
     if(!chat){
       const newChat = { name: message.content, createdAt: new Date(), updatedAt: new Date() }
@@ -93,7 +96,6 @@
     textareaRef.style.height = "auto";
     textareaRef.style.height = (textareaRef.scrollHeight)+"px";
   }
-
 </script>
 
 <main >
@@ -127,7 +129,7 @@
             </button>
           {:else}
             <button
-              data-tip="copyed"
+              data-tip="copy"
               class="tooltip text-3xs hover:text-success tooltip-success"
               on:click|preventDefault={async () => {
                 await navigator.clipboard.writeText(message.content)
@@ -155,8 +157,12 @@
       backdrop-filter
     "
     >
-    <label for="" class="block w-full text-center my-3 italic text-sm">
-      {$input ? 'Press Enter to send' : 'Type something to start'}
+    <label for="" class="w-full text-center my-3 italic text-sm flex justify-center">
+      {#if isLoading}
+        <Icon icon="eos-icons:three-dots-loading" class="text-2xl"></Icon>
+      {:else}
+        {$input ? 'Press "sent button" to send' : 'Send a message'}
+      {/if}
     </label>
     <div class="flex flex-nowrap
       rounded-lg
@@ -181,14 +187,10 @@
         on:input={adjustTextareaHeight}
       />
       <button type="submit" class="p-1 h-12 self-end">
-        {#if $isLoading}
-          <Icon icon="eos-icons:three-dots-loading" class="text-3xl"></Icon>
-        {:else}
-          <Icon icon="fa:send"
-            class="h-5 w-5 mr-1 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
-            >
-          </Icon>
-        {/if}
+        <Icon icon="fa:send"
+          class="h-5 w-5 mr-1 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
+          >
+        </Icon>
       </button>
     </div>
   </form>
