@@ -70,7 +70,7 @@
             "
             transition:fade
             >
-            <li> <button> <Icon icon="circum:edit" class="text-info-content"></Icon> </button> </li>
+            <li> <button> <Icon icon="circum:edit" class=""></Icon> </button> </li>
             <li> <button> <Icon icon="ion:trash" class="text-error"></Icon> </button> </li>
           </ul>
 
