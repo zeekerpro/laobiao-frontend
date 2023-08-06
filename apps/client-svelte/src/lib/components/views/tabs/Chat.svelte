@@ -35,6 +35,11 @@
     }
   }
 
+  function deleteChat(id :number) {
+    db.chats.delete(id)
+    showActionsId = null
+  }
+
  </script>
 
 <TabTransition>
@@ -65,13 +70,23 @@
             />
           </button>
 
-          <ul class="text-xl flex gap-1 text-3xl
+          <ul class="text-xl flex justify-center
             { showActionsId == chat.id ? 'block' : 'hidden'}
             "
             transition:fade
             >
-            <li> <button> <Icon icon="circum:edit" class=""></Icon> </button> </li>
-            <li> <button> <Icon icon="ion:trash" class="text-error"></Icon> </button> </li>
+            <li>
+              <button class="w-9 h-9 flex justify-center items-center hidden">
+                <Icon icon="circum:edit" class=""></Icon>
+              </button>
+            </li>
+            <li>
+              <button class="w-9 h-9 flex justify-center items-center"
+                on:click|stopPropagation|preventDefault={() => deleteChat(chat.id)}
+                >
+                <Icon icon="ion:trash" class="text-error"></Icon>
+              </button>
+            </li>
           </ul>
 
         </div>

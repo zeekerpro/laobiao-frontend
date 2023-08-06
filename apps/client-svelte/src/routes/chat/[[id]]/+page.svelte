@@ -77,7 +77,7 @@
     isLoading = false
     // create chat
     if(!chat){
-      const newChat = { name: message.content, createdAt: new Date(), updatedAt: new Date() }
+      const newChat = { name: $messages[0].content, createdAt: new Date(), updatedAt: new Date() }
       let id = await db.chats.add(newChat)
       chat = await db.chats.get(id)
     }
