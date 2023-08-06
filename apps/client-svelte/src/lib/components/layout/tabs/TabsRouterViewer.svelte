@@ -4,6 +4,7 @@
   import HeaderWrapper from "$components/layout/HeaderWrapper.svelte";
   import { back } from "$utils/client/routeMonitor";
   import { onMount } from "svelte";
+  import { isMobile } from "$utils/client/runtime";
 
   function handleBack(){
     back()
@@ -15,7 +16,7 @@
   let gesture :HammerManager;
 
   async function supportGesture(){
-    if(!window.Hammer){ await import("hammerjs") }
+    if(!window.Hammer && isMobile()){ await import("hammerjs") }
     gesture = new Hammer(viewerRef)
     gesture.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT, threshold: 5, velocity: 0.1 });
     gesture.on('swipe', () => { back() })

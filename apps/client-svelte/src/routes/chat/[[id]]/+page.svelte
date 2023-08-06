@@ -98,6 +98,24 @@
     textareaRef.style.height = "auto";
     textareaRef.style.height = (textareaRef.scrollHeight)+"px";
   }
+
+  function copyContent(e, content: string){
+    e.preventDefault()
+    if(!content){ return }
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(content)
+    }else{
+      const el = document.createElement('textarea');
+      el.style.opacity = "0";
+      el.value = content;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      el.remove()
+    }
+
+  }
+
 </script>
 
 <main >
@@ -116,7 +134,7 @@
 
       <div class="ml-10 flex flex-col">
 
-        <div class="w-11/12">
+        <div class="w-11/12 hover:cursor-text">
           {@html md.render(message.content)}
         </div>
 
