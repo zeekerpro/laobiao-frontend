@@ -8,7 +8,7 @@
 
   let chats = liveQuery(() => db.chats.toCollection().reverse().sortBy("updatedAt"))
 
-  let showActionsId = null
+  let activeChat = null
 
   onMount(() => {
     db.chats.each((chat, cursow) => {
@@ -19,15 +19,15 @@
 
   function clickOutside(node :any) {
     const handlClick = event => {
+      // don't dispatch 'clickOutside' Event on element has dataset.excludeOutsideClick = "true" attribute
+      if(event.target.dataset.excludeOutsideClick == "true") return
       if (node && !node.contains(event.target) && !event.defaultPrevented) {
         node.dispatchEvent(
           new CustomEvent('clickOutside', node)
         )
       }
     }
-
     document.addEventListener('click', handlClick, true)
-
     return {
       destroy() {
         document.removeEventListener('click', handlClick, true)
@@ -35,9 +35,10 @@
     }
   }
 
-  function deleteChat(id :number) {
-    db.chats.delete(id)
-    showActionsId = null
+  async function deleteChat() {
+    if(!activeChat) return
+    await db.chats.delete(Number(activeChat.id))
+    activeChat = null
   }
 
  </script>
@@ -58,20 +59,20 @@
           <p class="text-left overflow-hidden text-ellipsis whitespace-nowrap"> {chat.name} </p>
         </div>
         <div
-          class="col-span-2 flex flex-row-reverse items-center"
+          class="chat-actions col-span-2 flex flex-row-reverse items-center"
           use:clickOutside
-          on:clickOutside={() => showActionsId = null}
-          on:click|stopPropagation|preventDefault={() => showActionsId = chat.id}
+          on:clickOutside={() => activeChat = null}
+          on:click|stopPropagation|preventDefault={() => activeChat = chat }
           >
 
           <button transition:fade >
             <Icon icon="mdi:dots-horizontal"
-              class="text-3xl { showActionsId == chat.id ? 'hidden' : 'block'} "
+              class="text-3xl { activeChat?.id == chat.id ? 'hidden' : 'block'} "
             />
           </button>
 
           <ul class="text-xl flex justify-center
-            { showActionsId == chat.id ? 'block' : 'hidden'}
+            { activeChat?.id == chat.id ? 'block' : 'hidden'}
             "
             transition:fade
             >
@@ -81,8 +82,12 @@
               </button>
             </li>
             <li>
+
               <button class="w-9 h-9 flex justify-center items-center"
-                on:click|stopPropagation|preventDefault={() => deleteChat(chat.id)}
+                on:click|stopPropagation|preventDefault={() => {
+                  activeChat = chat
+                  if(!!activeChat){ deleteConfirmModal.showModal() }
+                } }
                 >
                 <Icon icon="ion:trash" class="text-error"></Icon>
               </button>
@@ -109,5 +114,24 @@
 </a>
 
 </TabTransition>
+
+
+<!-- Open the modal using ID.showModal() method -->
+<dialog id="deleteConfirmModal" class="modal sm:modal-middle">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-lg">Delete Chat</h3>
+    <p class="py-4">
+      this will delete chat <strong class="text-lg font-semibold">{activeChat?.name}</strong>
+    </p>
+    <div class="modal-action">
+      <button class="btn btn-outline btn-xs btn-error" data-exclude-outside-click="true"
+        on:click={() => { deleteChat() }}
+        >
+        Delete
+      </button>
+      <button class="btn btn-outline btn-xs">Close</button>
+    </div>
+  </form>
+</dialog>
 
 
