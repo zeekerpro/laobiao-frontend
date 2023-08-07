@@ -10,6 +10,8 @@
 
   let activeChat = null
 
+  let showDeleteConfirmModal = false
+
   onMount(() => {
     db.chats.each((chat, cursow) => {
       if(!chat.createdAt){ db.chats.update(chat.id, { createdAt: new Date()}) }
@@ -20,7 +22,7 @@
   function clickOutside(node :any) {
     const handlClick = event => {
       // don't dispatch 'clickOutside' Event on element has dataset.excludeOutsideClick = "true" attribute
-      if(event.target.dataset.excludeOutsideClick == "true") return
+      if(event.target.dataset.excludeOutsideClick == "true" || showDeleteConfirmModal) return
       if (node && !node.contains(event.target) && !event.defaultPrevented) {
         node.dispatchEvent(
           new CustomEvent('clickOutside', node)
@@ -86,8 +88,11 @@
               <button class="w-9 h-9 flex justify-center items-center"
                 on:click|stopPropagation|preventDefault={() => {
                   activeChat = chat
-                  if(!!activeChat){ deleteConfirmModal.showModal() }
-                } }
+                  if(!!activeChat){
+                    deleteConfirmModal.showModal();
+                    showDeleteConfirmModal = true
+                  }
+                }}
                 >
                 <Icon icon="ion:trash" class="text-error"></Icon>
               </button>
@@ -127,9 +132,15 @@
       <button class="btn btn-outline btn-xs btn-error" data-exclude-outside-click="true"
         on:click={() => { deleteChat() }}
         >
+        <Icon icon="ion:trash" class="text-error"></Icon>
         Delete
       </button>
-      <button class="btn btn-outline btn-xs">Close</button>
+      <button class="btn btn-outline btn-xs"
+        on:click={() => { showDeleteConfirmModal = false }}
+        >
+        <Icon icon="material-symbols:close" class=""></Icon>
+        Close
+      </button>
     </div>
   </form>
 </dialog>
