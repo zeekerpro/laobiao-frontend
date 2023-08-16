@@ -30,7 +30,7 @@ export const POST = (async (requestEvent: RequestEvent) => {
     top_p: 1,
     frequency_penalty: 1,
     presence_penalty: 1,
-    max_tokens: 16384,
+    max_tokens: 4096,
     messages
   });
 
