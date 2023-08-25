@@ -42,6 +42,8 @@
 
   let isLoading = false
 
+  let formRef;
+
   $: if($showView){ initChat() }
 
   // init chat helper if initialMessages is changed
@@ -113,6 +115,13 @@
       document.execCommand('copy');
       el.remove()
     }
+  }
+
+  function handleHotkeySend(e){
+
+    if(e.key == "Enter" && (e.ctrlKey || e.metaKey)){
+      submitHandler(e)
+    }
 
   }
 
@@ -168,7 +177,8 @@
     {/each}
   </div>
 
-  <form on:submit|self|trusted={submitHandler}
+  <form on:submit={submitHandler}
+    bind:this={formRef}
     class="
       fixed-silky bottom-0 left-0 right-0
       pb-12 px-3
@@ -223,3 +233,5 @@
 
 
 </main>
+
+<svelte:window on:keydown={ handleHotkeySend }/>
