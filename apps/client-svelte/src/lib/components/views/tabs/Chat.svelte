@@ -5,6 +5,7 @@
   import { liveQuery } from "dexie";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
+  import autoAnimate from "@formkit/auto-animate";
 
   let chats = liveQuery(() => db.chats.toCollection().reverse().sortBy("updatedAt"))
 
@@ -49,7 +50,7 @@
 
 {#if $chats?.length}
 
-  <div class="m-4 rounded flex flex-col">
+  <div class="m-4 rounded flex flex-col" use:autoAnimate>
     {#each $chats as chat }
       <a href="/chat/{chat.id}"
         class="btn mt-1 grid grid-cols-9 relative"
@@ -89,7 +90,7 @@
                 on:click|stopPropagation|preventDefault={() => {
                   activeChat = chat
                   if(!!activeChat){
-                    deleteConfirmModal.showModal();
+                    deleteConfirmModal?.showModal();
                     showDeleteConfirmModal = true
                   }
                 }}

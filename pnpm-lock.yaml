@@ -17,6 +17,9 @@ importers:
 
   apps/client-svelte:
     dependencies:
+      '@formkit/auto-animate':
+        specifier: ^0.7.0
+        version: registry.npmmirror.com/@formkit/auto-animate@0.7.0
       '@laobiao/httpie':
         specifier: workspace:*
         version: link:../../packages/httpie
@@ -2136,6 +2139,12 @@ packages:
     name: '@fontsource/fira-mono'
     version: 5.0.8
     dev: true
+
+  registry.npmmirror.com/@formkit/auto-animate@0.7.0:
+    resolution: {integrity: sha512-RczHUr0AhRPssREoNdRjLfk2b/id9/DFnbIq18QM8L7E4zNV3XH+WO480EZ46BQHDEsv76YPJ0JbG2Y2i3GfXw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@formkit/auto-animate/-/auto-animate-0.7.0.tgz}
+    name: '@formkit/auto-animate'
+    version: 0.7.0
+    dev: false
 
   registry.npmmirror.com/@hotwired/stimulus@3.2.1:
     resolution: {integrity: sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz}
