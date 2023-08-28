@@ -59,6 +59,7 @@
   $: error = chatHelper.error
 
   async function submitHandler(e: SubmitEvent) {
+    e.preventDefault()
     if(isLoading || !$input.trim().length ){ return }
     isLoading = true
     chatHelper.handleSubmit(e)
