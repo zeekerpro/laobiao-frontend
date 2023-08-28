@@ -121,7 +121,11 @@
   function handleHotkeySend(e){
 
     if(e.key == "Enter" && (e.ctrlKey || e.metaKey)){
-      submitHandler(e)
+      const submitEvent = new Event('submit', {
+        bubbles: true,
+        cancelable: true,
+      })
+      formRef.dispatchEvent(submitEvent)
     }
 
   }
