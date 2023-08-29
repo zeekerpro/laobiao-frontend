@@ -5,6 +5,7 @@
   import { liveQuery } from "dexie";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
+  import Chat from "$models/Chat";
   import autoAnimate from "@formkit/auto-animate";
 
   let chats = liveQuery(() => db.chats.toCollection().reverse().sortBy("updatedAt"))
@@ -13,11 +14,14 @@
 
   let showDeleteConfirmModal = false
 
-  onMount(() => {
+  onMount(async () => {
     db.chats.each((chat, cursow) => {
       if(!chat.createdAt){ db.chats.update(chat.id, { createdAt: new Date()}) }
       if(!chat.updatedAt){ db.chats.update(chat.id, { updatedAt: new Date()}) }
     })
+
+    let ret = await Chat.syncDetect()
+
   })
 
   function clickOutside(node :any) {

@@ -1,5 +1,11 @@
-import type { Message } from "ai";
 import Dexie, { type Table } from "dexie";
+
+type Message = {
+    id: string;
+    createdAt?: Date;
+    content: string;
+    role: 'system' | 'user' | 'assistant' | 'function';
+};
 
 export interface DbMessage extends Partial<Omit<Message, 'id'>> {
   id?: number;
