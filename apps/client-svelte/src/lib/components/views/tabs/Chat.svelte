@@ -66,10 +66,15 @@
           <p class="text-left overflow-hidden text-ellipsis whitespace-nowrap"> {chat.name} </p>
         </div>
         <div
+          tabindex="0"
+          role="button"
           class="chat-actions col-span-2 flex flex-row-reverse items-center"
           use:clickOutside
           on:clickOutside={() => activeChat = null}
           on:click|stopPropagation|preventDefault={() => activeChat = chat }
+          on:keydown|stopPropagation|preventDefault={(e) => {
+            if(e.key == "Escape") activeChat = null
+          }}
           >
 
           <button transition:fade >

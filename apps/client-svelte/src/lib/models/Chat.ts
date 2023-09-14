@@ -31,7 +31,6 @@ export default class Chat extends BaseModel {
       const ret = await httpClient.get("/chats", { ids: uncached_chat_ids });
       if(!ret.isSuccess){ return }
       const chatToCache = ret.data.map((chat) => mapKeys(chat, (value, key) => camelCase(key)))
-      debugger
       await db.chats.bulkPut(chatToCache)
     }
 
