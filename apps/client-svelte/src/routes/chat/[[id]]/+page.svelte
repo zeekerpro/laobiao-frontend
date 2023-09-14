@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { useChat, type UseChatHelpers } from "ai/svelte";
   import Icon from "@iconify/svelte"
-  import type { Message } from "ai";
   import { db } from "$db";
   import { page } from "$app/stores";
   import { showView } from "$stores/viewStack";
   import MarkdownIt from "markdown-it";
   import hljs from 'highlight.js'
+  import Message from "$models/Message";
 
   const md = new MarkdownIt({
     linkify: true,
@@ -36,63 +35,34 @@
 
   let chat = null;
 
-  let initialMessages = []
-
-  let chatHelper: UseChatHelpers
+  let messages = []
 
   let isLoading = false
 
   let formRef;
 
-  $: if($showView){ initChat() }
+  let input = ''
 
-  // init chat helper if initialMessages is changed
-  $: {
-    chatHelper = useChat({
-      initialMessages: initialMessages,
-      onFinish: persistChat,
-      onError: (error: Error) => isLoading = false
-    });
-  }
-  $: input = chatHelper.input
-  $: messages = chatHelper.messages
-  $: error = chatHelper.error
+  let error = ''
+
+  $: if($showView){ initChat() }
 
   async function submitHandler(e: SubmitEvent) {
     e.preventDefault()
-    if(isLoading || !$input.trim().length ){ return }
+    if(isLoading || !input.trim().length ){ return }
     isLoading = true
-    chatHelper.handleSubmit(e)
   }
 
   async function initChat() {
-    const id = Number($page.params.id)
-    if(!!id){
-      chat = await db.chats.get(id)
-      initialMessages = await db.messages.where({chatId: id}).toArray()
+    const chatId = Number($page.params.id)
+    if(!!chatId){
+      chat = await db.chats.get(chatId)
+      let syncDetect = await Message.syncDetect(chat)
+      messages = await db.messages.where({chatId}).toArray()
     }else{
       chat = null;
-      initialMessages = []
+      messages = []
     }
-  }
-
-  async function persistChat(message: Message) {
-    isLoading = false
-    // create chat
-    if(!chat){
-      const newChat = { name: $messages[0].content, createdAt: new Date(), updatedAt: new Date() }
-      let id = await db.chats.add(newChat)
-      chat = await db.chats.get(id)
-    }
-    // save last 2 messages
-    const messagesForDb = $messages.slice(-2).map((message) => {
-      // db will generate id, we need to remove id from message
-      const {id, ...rest} = message
-      return {chatId: chat.id, ...rest}
-    })
-    db.messages.bulkAdd(messagesForDb)
-    if(chat.createdAt == null) db.chats.update(chat.id, { createdAt: new Date() })
-    db.chats.update(chat.id, { updatedAt: new Date() })
   }
 
   let textareaRef: HTMLTextAreaElement;
@@ -135,7 +105,7 @@
 <main >
   <div class="mb-32">
 
-    {#each $messages as message}
+    {#each messages as message}
 
     <div class="pt-8 pb-3 px-2 relative shadow-[0_1px_2px_-2px_hsl(var(--sf))] ">
 
@@ -157,7 +127,7 @@
             <button
               data-tip="edit"
               class="tooltip text-3xs hover:text-info tooltip-info"
-              on:click={() => $input = message.content }
+              on:click={() => input = message.content }
               >
               <Icon icon="raphael:edit" class="text-3xs hover:text-success text-gray-400" ></Icon>
             </button>
@@ -196,7 +166,7 @@
       {#if isLoading}
         <Icon icon="eos-icons:three-dots-loading" class="text-2xl"></Icon>
       {:else}
-        {$input ? 'Press "sent button" to send' : 'Send a message'}
+        {input ? 'Press "sent button" to send' : 'Send a message'}
       {/if}
     </label>
     <div class="flex flex-nowrap
@@ -207,7 +177,7 @@
       ">
       <textarea
         bind:this={textareaRef}
-        bind:value={$input}
+        bind:value={input}
         rows="1"
         class="
           grow
@@ -223,15 +193,15 @@
       />
       <button type="submit" class="p-1 h-12 self-end">
         <Icon icon="fa:send"
-          class="h-5 w-5 mr-1 transition {!!$input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
+          class="h-5 w-5 mr-1 transition {!!input ? 'text-sky-600 scale-125' : 'text-gray-500'} "
           >
         </Icon>
       </button>
     </div>
 
-    {#if $error}
+    {#if error}
       <span class="w-full text-left mt-2 italic text-xs text-error">
-        { $error.message }
+        { error }
       </span>
     {/if}
   </form>

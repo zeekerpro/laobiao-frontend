@@ -9,13 +9,13 @@ import { db } from "$db";
 export default class Chat extends BaseModel {
 
   name        :string
-  user_id?    :number
+  userId?     :number
 
   static async syncDetect() {
-    const chats = await db.chats.toArray()
-    const ids = chats.map((chat) => chat.id)
+    const localChats = await db.chats.toArray()
+    const localIds = localChats.map((chat) => chat.id)
 
-    const ret = await httpClient.post("/chats/sync_detect", { ids });
+    const ret = await httpClient.post("/chats/sync_detect", { ids: localIds });
     if(!ret.isSuccess){return}
     const {unstored_chat_ids, uncached_chat_ids} = ret.data
 
