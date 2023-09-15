@@ -1,11 +1,12 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-  import { db } from "$db";
+  import { db, type DbMessage } from "$db";
   import { page } from "$app/stores";
   import { showView } from "$stores/viewStack";
   import MarkdownIt from "markdown-it";
   import hljs from 'highlight.js'
   import Message from "$models/Message";
+    import Chat from "$models/Chat";
 
   const md = new MarkdownIt({
     linkify: true,
@@ -45,16 +46,38 @@
 
   let error = ''
 
+  let chatId = Number($page.params.id)
+
   $: if($showView){ initChat() }
 
   async function submitHandler(e: SubmitEvent) {
     e.preventDefault()
-    if(isLoading || !input.trim().length ){ return }
+    const msgContent = input.trim()
+    if(isLoading || !msgContent.length ){ return }
     isLoading = true
+    if(!chatId){
+      const newChat = { name: msgContent, createdAt: new Date(), updatedAt: new Date() }
+      chatId = await db.chats.add(newChat)
+      chat = await db.chats.get(chatId)
+      await Chat.create(chat)
+    }
+    const newMessage :DbMessage = {
+      chatId,
+      content: msgContent,
+      role: 'user',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+    const messageId = await db.messages.add(newMessage)
+    const message = await db.messages.get(messageId)
+    const ret = await Message.create(chat, message)
+    if(!ret){ error = "Failed to send message" }
+    const aiResponseMsg = ret.data
+    isLoading = false
   }
 
   async function initChat() {
-    const chatId = Number($page.params.id)
+    chatId = Number($page.params.id)
     if(!!chatId){
       chat = await db.chats.get(chatId)
       let syncDetect = await Message.syncDetect(chat)

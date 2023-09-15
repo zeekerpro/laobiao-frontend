@@ -34,7 +34,7 @@ export default class User extends BaseModel {
     db.delete()
   }
 
-   async update(user: any) {
+   async update(user: User) {
     return httpClient.put(`/user/${user.id}`, {user: instanceToPlain(user)});
   }
 

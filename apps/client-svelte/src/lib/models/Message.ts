@@ -3,19 +3,19 @@ import { instanceToPlain, plainToInstance } from "class-transformer";
 import BaseModel from "./BaseModel";
 import type Chat from "./Chat";
 import lodash from "lodash";
-const { mapKeys, camelCase }  = lodash ;
+const { mapKeys, camelCase, snakeCase }  = lodash ;
 
 import { db } from "$db";
 
 export default class Message extends BaseModel {
 
   content     :string
-  chatId     :number
-  role      :string
+  chatId?     :number
+  role        :'system' | 'user' | 'assistant' | 'function'
+
 
   // messages 同步探测
   static async syncDetect(chat :Chat) {
-
     const localMessages = await db.messages.where({chatId: chat.id}).toArray()
     const localIds = localMessages.map((msg) => msg.id)
 
@@ -38,6 +38,13 @@ export default class Message extends BaseModel {
       const messagesToCache = ret.data.map((msg) => mapKeys(msg, (value, key) => camelCase(key)))
       await db.messages.bulkPut(messagesToCache)
     }
+  }
+
+  static async create(chat: Chat, params: any) {
+    const msgParams = mapKeys(params, (value, key) => snakeCase(key))
+    const ret = await httpClient.post(`/chats/${chat.id}/messages`, {message: msgParams});
+    if(ret.isSuccess){ ret.data = plainToInstance(Message, ret.data); }
+    return ret;
   }
 
 

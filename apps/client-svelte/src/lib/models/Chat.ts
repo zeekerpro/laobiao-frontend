@@ -2,7 +2,7 @@ import httpClient from "$apis/httpClient";
 import { instanceToPlain, plainToInstance } from "class-transformer";
 import BaseModel from "./BaseModel";
 import lodash from "lodash";
-const { mapKeys, camelCase }  = lodash ;
+const { mapKeys, camelCase, snakeCase }  = lodash ;
 
 import { db } from "$db";
 
@@ -33,15 +33,14 @@ export default class Chat extends BaseModel {
       const chatToCache = ret.data.map((chat) => mapKeys(chat, (value, key) => camelCase(key)))
       await db.chats.bulkPut(chatToCache)
     }
-
   }
-  //
-  // async signup() {
-  //   const userParams = mapKeys(instanceToPlain(this), (value, key) => snakeCase(key))
-  //   const ret = await httpClient.post("/signup", {user: userParams});
-  //   if(ret.isSuccess){ ret.data = plainToInstance(User, ret.data); }
-  //   return ret;
-  // }
+
+  static async create(chat: any) {
+    const chatParams = mapKeys(chat, (value, key) => snakeCase(key))
+    const ret = await httpClient.post("/chats", {chat: chatParams});
+    if(ret.isSuccess){ ret.data = plainToInstance(Chat, ret.data); }
+    return ret;
+  }
   //
   // async signout() {
   //   const { appStorage } = await import("$utils/client/storage");
