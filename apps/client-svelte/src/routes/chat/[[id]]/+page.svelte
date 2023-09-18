@@ -6,7 +6,8 @@
   import MarkdownIt from "markdown-it";
   import hljs from 'highlight.js'
   import Message from "$models/Message";
-    import Chat from "$models/Chat";
+  import Chat from "$models/Chat";
+  import { onMount } from "svelte";
 
   const md = new MarkdownIt({
     linkify: true,
@@ -72,7 +73,6 @@
     const message = await db.messages.get(messageId)
     const ret = await Message.create(chat, message)
     if(!ret){ error = "Failed to send message" }
-    const aiResponseMsg = ret.data
     isLoading = false
   }
 
@@ -122,6 +122,27 @@
     }
 
   }
+
+  onMount(() => {
+
+    const chatSocket = new WebSocket("ws://localhost:4000/cable")
+    chatSocket.onopen = function (event) {
+      chatSocket.send(JSON.stringify({
+        command: "subscribe",
+        identifier: JSON.stringify({
+          channel: "ChatChannel",
+          stream: "openai"
+        }),
+      }))
+    }
+
+    chatSocket.onmessage = function (event) {
+      const data = JSON.parse(event.data)
+      if(data.type == "ping"){ return }
+      console.log(data)
+    }
+
+  })
 
 </script>
 

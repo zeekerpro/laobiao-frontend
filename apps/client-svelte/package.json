@@ -20,6 +20,7 @@
 		"@sveltejs/adapter-vercel": "^3.0.3",
 		"@sveltejs/kit": "^1.23.0",
 		"@tailwindcss/typography": "^0.5.9",
+		"@types/actioncable": "^5.2.8",
 		"@types/cookie": "^0.5.1",
 		"@types/hammerjs": "^2.0.41",
 		"@types/markdown-it": "^13.0.1",

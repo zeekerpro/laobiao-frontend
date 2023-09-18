@@ -93,6 +93,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.9
         version: registry.npmmirror.com/@tailwindcss/typography@0.5.9(tailwindcss@3.3.3)
+      '@types/actioncable':
+        specifier: ^5.2.8
+        version: registry.npmmirror.com/@types/actioncable@5.2.8
       '@types/cookie':
         specifier: ^0.5.1
         version: registry.npmmirror.com/@types/cookie@0.5.1
@@ -2660,6 +2663,12 @@ packages:
       lodash.merge: registry.npmmirror.com/lodash.merge@4.6.2
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser@6.0.10
       tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
+    dev: true
+
+  registry.npmmirror.com/@types/actioncable@5.2.8:
+    resolution: {integrity: sha512-n+KkgO4X0tmg1fZbBHZSgm39B284/p6//6qxLgo4DrvRtdoIhLjb//sPa0Cv00g6htZz6iXvmwNnLs8fbXS4dw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/actioncable/-/actioncable-5.2.8.tgz}
+    name: '@types/actioncable'
+    version: 5.2.8
     dev: true
 
   registry.npmmirror.com/@types/chai-subset@1.3.3:
