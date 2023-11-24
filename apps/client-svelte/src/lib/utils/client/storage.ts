@@ -15,7 +15,7 @@ type StorageActions = {
 
 const storageOrigin :StorageActions = {
   // @ts-ignore
-  clear: localStorage.clear,
+  clear: () => localStorage.clear(),
   // @ts-ignore
   remove: (key: AppStorageKey) => localStorage.removeItem(key),
 }
